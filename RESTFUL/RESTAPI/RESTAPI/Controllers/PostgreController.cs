@@ -12,27 +12,23 @@ namespace RESTAPI.Controllers
     public class PostgreController : ApiController
     {
         string connectionString = "Server=postgreserver-20170401.postgres.database.azure.com; " +
-        "Port=5432; Database=gasstationpharmacy; User Id=rsolano10@postgreserver-20170401; Password=BasesDatosak7;";
+        "Port=5432; SSL Mode=Require;Trust Server Certificate=true; Database=gasstationpharmacy; User Id=rsolano10@postgreserver-20170401; Password=BasesDatosak7;";
+        JSONSerializer serialize = new JSONSerializer();
 
         [HttpGet]
-        public string getAll()
+        public IEnumerable<Dictionary<string, object>> getAll()
         {
             using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
             {
-                /*// Connect to the database
+                // Connect to the database
                 conn.Open();
 
                 // Read rows
-                NpgsqlCommand selectCommand = new NpgsqlCommand("SELECT * FROM MyTable", conn);
+                NpgsqlCommand selectCommand = new NpgsqlCommand("SELECT * FROM cliente", conn);
                 NpgsqlDataReader results = selectCommand.ExecuteReader();
 
-                // Enumerate over the rows
-                while (results.Read())
-                {
-                    Console.WriteLine("Column 0: {0} Column 1: {1}", results[0], results[1]);
-                   
-                }*/
-                return "ok";
+                return serialize.Serialize(results);
+                
             }
         }
     }

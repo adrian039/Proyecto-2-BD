@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="gasstationpharmacyModelStoreContainer" CdmEntityContainer="gspEntities">
+    <EntitySetMapping Name="cajas">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.caja">
+        <MappingFragment StoreEntitySet="caja">
+          <ScalarProperty Name="idcaja" ColumnName="idcaja" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+          <ScalarProperty Name="efectivo" ColumnName="efectivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="papellido" ColumnName="papellido" />
+          <ScalarProperty Name="sapellido" ColumnName="sapellido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empleadoes">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.empleado">
+        <MappingFragment StoreEntitySet="empleado">
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="papellido" ColumnName="papellido" />
+          <ScalarProperty Name="sapellido" ColumnName="sapellido" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empleadosxsucursals">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.empleadosxsucursal">
+        <MappingFragment StoreEntitySet="empleadosxsucursal">
+          <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+          <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productos">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.producto">
+        <MappingFragment StoreEntitySet="productos">
+          <ScalarProperty Name="ean" ColumnName="ean" />
+          <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productosxsucursals">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.productosxsucursal">
+        <MappingFragment StoreEntitySet="productosxsucursal">
+          <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+          <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proveedores">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.proveedore">
+        <MappingFragment StoreEntitySet="proveedores">
+          <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="idrol" ColumnName="idrol" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sucursales">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.sucursale">
+        <MappingFragment StoreEntitySet="sucursales">
+          <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="imagen" ColumnName="imagen" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipopagoes">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.tipopago">
+        <MappingFragment StoreEntitySet="tipopago">
+          <ScalarProperty Name="idtipo" ColumnName="idtipo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ventas">
+      <EntityTypeMapping TypeName="gasstationpharmacyModel.venta">
+        <MappingFragment StoreEntitySet="venta">
+          <ScalarProperty Name="idventa" ColumnName="idventa" />
+          <ScalarProperty Name="tpago" ColumnName="tpago" />
+          <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ventasxempleado" TypeName="gasstationpharmacyModel.ventasxempleado" StoreEntitySet="ventasxempleado">
+      <EndProperty Name="empleado">
+        <ScalarProperty Name="cedula" ColumnName="idempleado" />
+      </EndProperty>
+      <EndProperty Name="venta">
+        <ScalarProperty Name="idventa" ColumnName="idventa" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ventasxsucursal" TypeName="gasstationpharmacyModel.ventasxsucursal" StoreEntitySet="ventasxsucursal">
+      <EndProperty Name="sucursales">
+        <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+      </EndProperty>
+      <EndProperty Name="venta">
+        <ScalarProperty Name="idventa" ColumnName="idventa" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

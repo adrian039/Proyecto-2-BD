@@ -7,26 +7,26 @@ using System.Web.Http;
 
 namespace RESTFUL.Controllers
 {
-    public class ClientesController : ApiController
+    public class ProveedoresController : ApiController
     {
         [HttpGet]
-        public IEnumerable<cliente> getAll()
+        public IEnumerable<proveedore> getAll()
         {
             using (gspEntities entities = new gspEntities())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
-                return entities.clientes.ToList();
+                return entities.proveedores.ToList();
             }
         }
         [HttpGet]
-        public cliente getbyid(int id)
+        public proveedore getbyid(int id)
         {
             try
             {
                 using (gspEntities entities = new gspEntities())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.clientes.FirstOrDefault(e => e.cedula == id);
+                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
                     if (entity == null)
                     {
                         return null;
@@ -45,17 +45,17 @@ namespace RESTFUL.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Post([FromBody] cliente cliente)
+        public HttpResponseMessage Post([FromBody] proveedore proveedor)
         {
             try
             {
                 using (gspEntities entities = new gspEntities())
                 {
-                    
+
                     entities.Configuration.LazyLoadingEnabled = false;
-                    entities.clientes.Add(cliente);
+                    entities.proveedores.Add(proveedor);
                     entities.SaveChanges();
-                    var message = Request.CreateResponse(HttpStatusCode.Created, cliente);
+                    var message = Request.CreateResponse(HttpStatusCode.Created, proveedor);
                     return message;
                 }
             }
@@ -65,24 +65,24 @@ namespace RESTFUL.Controllers
             }
         }
         [HttpPut]
-        public HttpResponseMessage Put(int id, [FromBody]cliente user)
+        public HttpResponseMessage Put(int id, [FromBody]proveedore user)
         {
             try
             {
                 using (gspEntities entities = new gspEntities())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.clientes.FirstOrDefault(e => e.cedula == id);
+                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
                     if (entity == null)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Empleado con Cedula: " + id.ToString() + ", no encontrado.");
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "proveedor con ID: " + id.ToString() + ", no encontrado.");
                     }
                     else
                     {
                         entity.nombre = user.nombre;
-                        entity.cedula = user.cedula;
-                        entity.papellido = user.papellido;
-                        entity.sapellido = user.sapellido;
+                        entity.idproveedor = user.idproveedor;
+                        entity.telefono = user.telefono;
+                        entity.productos = user.productos;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, entity);
                     }
@@ -102,16 +102,16 @@ namespace RESTFUL.Controllers
                 using (gspEntities entities = new gspEntities())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.clientes.FirstOrDefault(e => e.cedula == id);
+                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
                     if (entity == null)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Empleado con Cedula: " + id.ToString() + ", no encontrado.");
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Proveedor con ID: " + id.ToString() + ", no encontrado.");
                     }
                     else
                     {
-                        entities.clientes.Remove(entity);
+                        entities.proveedores.Remove(entity);
                         entities.SaveChanges();
-                        return Request.CreateResponse(HttpStatusCode.OK, "Client Deleted");
+                        return Request.CreateResponse(HttpStatusCode.OK, "Proveedor Deleted");
                     }
 
                 }

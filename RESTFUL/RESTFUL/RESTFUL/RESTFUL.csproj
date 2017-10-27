@@ -263,7 +263,11 @@
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="dbModel.Context.cs">
       <AutoGen>True</AutoGen>

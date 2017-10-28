@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="gspEntities-Web.config Connection String" description="gspEntities Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="metadata=res://*/dbModel.csdl|res://*/dbModel.ssdl|res://*/dbModel.msl;provider=Npgsql;provider connection string=&quot;Host=postgreserver-20170401.postgres.database.azure.com;Username=rsolano10@postgreserver-20170401;Password=BasesDatosak7;Database=gasstationpharmacy&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Esteban\\Documents\\GitHub\\Proyecto-2-BD\\RESTFUL\\RESTFUL\\RESTFUL\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='gspEntities']/@connectionString" />
+  </parameter>
+</parameters>

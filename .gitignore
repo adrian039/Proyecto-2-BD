@@ -15,3 +15,5 @@ RESTFUL/RESTFUL/.vs/RESTFUL/v15/sqlite3/storage.ide
 *.ide-shm
 *.ide-wal
 *.cache
+*.ide
+*.ide

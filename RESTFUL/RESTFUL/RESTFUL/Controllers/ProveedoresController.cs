@@ -12,7 +12,7 @@ namespace RESTFUL.Controllers
         [HttpGet]
         public IEnumerable<proveedore> getAll()
         {
-            using (gspEntities entities = new gspEntities())
+            using (gspEntity entities = new gspEntity())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
                 return entities.proveedores.ToList();
@@ -23,7 +23,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
@@ -49,7 +49,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
 
                     entities.Configuration.LazyLoadingEnabled = false;
@@ -69,7 +69,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
@@ -99,7 +99,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);

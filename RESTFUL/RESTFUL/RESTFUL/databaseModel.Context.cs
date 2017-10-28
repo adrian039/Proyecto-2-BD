@@ -13,10 +13,10 @@ namespace RESTFUL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class gspEntities : DbContext
+    public partial class gspEntity : DbContext
     {
-        public gspEntities()
-            : base("name=gspEntities")
+        public gspEntity()
+            : base("name=gspEntity")
         {
         }
     

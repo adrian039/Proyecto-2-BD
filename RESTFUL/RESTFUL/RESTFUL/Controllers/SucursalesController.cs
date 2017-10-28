@@ -12,7 +12,7 @@ namespace RESTFUL.Controllers
         [HttpGet]
         public IEnumerable<sucursale> getAll()
         {
-            using (gspEntities entities = new gspEntities())
+            using (gspEntity entities = new gspEntity())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
                 return entities.sucursales.ToList();
@@ -23,7 +23,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.sucursales.FirstOrDefault(e => e.idsucursal == id);
@@ -49,7 +49,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
 
                     entities.Configuration.LazyLoadingEnabled = false;
@@ -69,7 +69,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.sucursales.FirstOrDefault(e => e.idsucursal == id);
@@ -98,7 +98,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.sucursales.FirstOrDefault(e => e.idsucursal == id);

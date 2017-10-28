@@ -101,6 +101,7 @@
             <PropertyRef Name="idventa" />
           </Key>
           <Property Name="idventa" Type="int4" Nullable="false" />
+          <Property Name="idcliente" Type="int4" Nullable="false" />
           <Property Name="tpago" Type="int4" Nullable="false" />
           <Property Name="idsucursal" Type="int4" Nullable="false" />
         </EntityType>
@@ -268,6 +269,18 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_venta_clientes">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_venta_sucursal">
           <End Role="sucursales" Type="Self.sucursales" Multiplicity="1" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
@@ -366,6 +379,10 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             <End Role="proveedores" EntitySet="proveedores" />
             <End Role="productos" EntitySet="productos" />
           </AssociationSet>
+          <AssociationSet Name="fk_venta_clientes" Association="Self.fk_venta_clientes">
+            <End Role="cliente" EntitySet="cliente" />
+            <End Role="venta" EntitySet="venta" />
+          </AssociationSet>
           <AssociationSet Name="fk_venta_sucursal" Association="Self.fk_venta_sucursal">
             <End Role="sucursales" EntitySet="sucursales" />
             <End Role="venta" EntitySet="venta" />
@@ -407,6 +424,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="papellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="sapellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ventas" Relationship="Self.fk_venta_clientes" FromRole="cliente" ToRole="venta" />
         </EntityType>
         <EntityType Name="empleado">
           <Key>
@@ -502,8 +520,10 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             <PropertyRef Name="idventa" />
           </Key>
           <Property Name="idventa" Type="Int32" Nullable="false" />
+          <Property Name="idcliente" Type="Int32" Nullable="false" />
           <Property Name="tpago" Type="Int32" Nullable="false" />
           <Property Name="idsucursal" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="cliente" Relationship="Self.fk_venta_clientes" FromRole="venta" ToRole="cliente" />
           <NavigationProperty Name="sucursale" Relationship="Self.fk_venta_sucursal" FromRole="venta" ToRole="sucursales" />
           <NavigationProperty Name="tipopago" Relationship="Self.fk_venta_tipopago" FromRole="venta" ToRole="tipopago" />
           <NavigationProperty Name="empleadoes" Relationship="Self.ventasxempleado" FromRole="venta" ToRole="empleado" />
@@ -518,6 +538,18 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             </Principal>
             <Dependent Role="caja">
               <PropertyRef Name="idempleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_venta_clientes">
+          <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+          <End Role="venta" Type="Self.venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="venta">
+              <PropertyRef Name="idcliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -625,7 +657,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <End Role="sucursales" Type="Self.sucursale" Multiplicity="*" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="gspEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="gspEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cajas" EntityType="Self.caja" />
           <EntitySet Name="clientes" EntityType="Self.cliente" />
           <EntitySet Name="empleadoes" EntityType="Self.empleado" />
@@ -640,6 +672,10 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <AssociationSet Name="fk_caja_empleados" Association="Self.fk_caja_empleados">
             <End Role="empleado" EntitySet="empleadoes" />
             <End Role="caja" EntitySet="cajas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_venta_clientes" Association="Self.fk_venta_clientes">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
           <AssociationSet Name="fk_idempleado_sucursal" Association="Self.fk_idempleado_sucursal">
             <End Role="empleado" EntitySet="empleadoes" />
@@ -687,7 +723,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="gasstationpharmacyModelStoreContainer" CdmEntityContainer="gspEntities">
+        <EntityContainerMapping StorageEntityContainer="gasstationpharmacyModelStoreContainer" CdmEntityContainer="gspEntity">
           <EntitySetMapping Name="cajas">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.caja">
               <MappingFragment StoreEntitySet="caja">
@@ -790,6 +826,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             <EntityTypeMapping TypeName="gasstationpharmacyModel.venta">
               <MappingFragment StoreEntitySet="venta">
                 <ScalarProperty Name="idventa" ColumnName="idventa" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
                 <ScalarProperty Name="tpago" ColumnName="tpago" />
                 <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
               </MappingFragment>

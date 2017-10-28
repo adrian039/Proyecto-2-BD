@@ -3,7 +3,7 @@ idCaja INT NOT NULL,
 Fecha Date,
 idEmpleado INT,
 Efectivo INT,
-  
+Tipo INT,  
 PRIMARY KEY (idCaja, Fecha)
 )
 

@@ -22,9 +22,11 @@ namespace RESTFUL
         }
     
         public int idventa { get; set; }
+        public int idcliente { get; set; }
         public int tpago { get; set; }
         public int idsucursal { get; set; }
     
+        public virtual cliente cliente { get; set; }
         public virtual sucursale sucursale { get; set; }
         public virtual tipopago tipopago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

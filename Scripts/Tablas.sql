@@ -14,6 +14,7 @@ pApellido VARCHAR (60),
 sApellido VARCHAR (60),
 Username VARCHAR (50),
 Password VARCHAR(100),
+Email VARCHAR (60),
 PRIMARY KEY (Cedula)
 )
 

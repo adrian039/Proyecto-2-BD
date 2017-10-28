@@ -12,7 +12,7 @@ namespace RESTFUL.Controllers
         [HttpGet]
         public IEnumerable<cliente> getAll()
         {
-            using (gspEntities entities = new gspEntities())
+            using (gspEntity entities = new gspEntity())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
                 return entities.clientes.ToList();
@@ -23,7 +23,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.clientes.FirstOrDefault(e => e.cedula == id);
@@ -49,7 +49,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     
                     entities.Configuration.LazyLoadingEnabled = false;
@@ -69,7 +69,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.clientes.FirstOrDefault(e => e.cedula == id);
@@ -99,7 +99,7 @@ namespace RESTFUL.Controllers
         {
             try
             {
-                using (gspEntities entities = new gspEntities())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var entity = entities.clientes.FirstOrDefault(e => e.cedula == id);

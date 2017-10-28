@@ -4,19 +4,20 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ed70d320c72b4315945b792fd5e72e3a" Name="Diagram1">
-        <EntityTypeShape EntityType="gasstationpharmacyModel.caja" Width="1.5" PointX="3" PointY="14.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.cliente" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.empleado" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+      <Diagram DiagramId="84113f047b0c4bec8f3dd67636935eb5" Name="Diagram1">
+        <EntityTypeShape EntityType="gasstationpharmacyModel.caja" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.cliente" Width="1.5" PointX="3.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.empleado" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="gasstationpharmacyModel.empleadosxsucursal" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="gasstationpharmacyModel.producto" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="gasstationpharmacyModel.productosxsucursal" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.proveedore" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.role" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.proveedore" Width="1.5" PointX="1.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.role" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="gasstationpharmacyModel.sucursale" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.tipopago" Width="1.5" PointX="0.75" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.venta" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.tipopago" Width="1.5" PointX="3.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.venta" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_caja_empleados" ManuallyRouted="false" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_venta_clientes" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_idempleado_sucursal" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_empleadosxsucursal_roles" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_idsucursal_sucursales" ManuallyRouted="false" />

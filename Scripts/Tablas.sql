@@ -2,9 +2,10 @@ CREATE TABLE CAJA(
 idCaja INT NOT NULL,
 Fecha Date,
 idEmpleado INT,
+idSucursal INT,
 Efectivo INT,
-Tipo INT,  
-PRIMARY KEY (idCaja, Fecha)
+Tipo INT, 
+PRIMARY KEY (idCaja, Fecha, Tipo, idSucursal)
 )
 
 CREATE TABLE EMPLEADO(
@@ -15,14 +16,16 @@ sApellido VARCHAR (60),
 Username VARCHAR (50),
 Password VARCHAR(100),
 Email VARCHAR (60),
+Estado INT,
 PRIMARY KEY (Cedula)
 )
 
 CREATE TABLE SUCURSALES(
-	idSucursal INT not null,
+	idSucursal SERIAL not null,
   Nombre VARCHAR(50),
   Direccion VARCHAR(150),
-  Imagen VARCHAR(9999),
+  Imagen TEXT,
+  Estado INT,
   
   PRIMARY KEY(idSucursal)
 )
@@ -32,12 +35,13 @@ Cedula INT NOT NULL,
 Nombre VARCHAR(50),
 pApellido VARCHAR (60),
 sApellido VARCHAR (60),
+Estado INT, 
   
 PRIMARY KEY (Cedula)
 )
 
 CREATE TABLE TIPOPAGO(
-idTipo INT NOT NULL,
+idTipo SERIAL NOT NULL,
   Nombre VARCHAR(50),
   Descripcion VARCHAR(150),
   
@@ -45,9 +49,11 @@ idTipo INT NOT NULL,
 )
 
 CREATE TABLE ROLES(
-idRol INT NOT NULL,
+idRol SERIAL NOT NULL,
 Nombre VARCHAR(50),
 Descripcion VARCHAR(150),
+Estado INT,
+
 PRIMARY KEY (idRol)
 )
 
@@ -55,12 +61,13 @@ CREATE TABLE PROVEEDORES(
 	idProveedor INT not null,
   Nombre VARCHAR(50),
   Telefono INT,
+  Estado INT,
   
   PRIMARY KEY (idProveedor)
 )
 
 CREATE TABLE VENTA(
-	idVenta INT not null,
+	idVenta SERIAL not null,
   idCliente INT not null,
   tPago INT not null,
   idSucursal INT not null,
@@ -72,8 +79,9 @@ CREATE TABLE PRODUCTOS(
 	EAN INT not null,
   idProveedor INT not null,
   Nombre VARCHAR(50),
-  Imagen VARCHAR(9999),
+  Imagen TEXT,
   Descripcion VARCHAR(100),
+  Estado INT,
   
   PRIMARY KEY (EAN)
 )
@@ -81,6 +89,7 @@ CREATE TABLE PRODUCTOSXSUCURSAL(
 	idSucursal INT not null,
   idProducto INT not null,
   Cantidad INT,
+  Precio INT,
   
   PRIMARY KEY (idSucursal, idProducto)
 )
@@ -125,6 +134,9 @@ ADD CONSTRAINT FK_VENTA_CLIENTES FOREIGN KEY (idCliente) REFERENCES CLIENTE(Cedu
 
 ALTER TABLE CAJA
 ADD CONSTRAINT FK_CAJA_EMPLEADOS FOREIGN KEY (idEmpleado) REFERENCES EMPLEADO(Cedula)
+
+ALTER TABLE CAJA
+ADD CONSTRAINT FK_CAJA_SUCURSAL FOREIGN KEY (idSucursal) REFERENCES SUCURSALES(idSucursal)
 
 ALTER TABLE PRODUCTOSXSUCURSAL
 ADD CONSTRAINT FK_IDSUCURSAL_SUCURSAL FOREIGN KEY (idSucursal) REFERENCES SUCURSALES(idSucursal)

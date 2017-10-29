@@ -37,3 +37,6 @@ RESTFUL/RESTFUL/RESTFUL/obj/Debug/RESTFUL.csproj.CoreCompileInputs.cache
 RESTFUL/RESTFUL/RESTFUL/bin/RESTFUL.pdb
 RESTFUL/RESTFUL/RESTFUL/bin/RESTFUL.dll.config
 RESTFUL/RESTFUL/RESTFUL/bin/RESTFUL.dll
+*.dll
+*.pdb
+*.cache

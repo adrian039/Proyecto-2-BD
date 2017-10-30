@@ -365,7 +365,9 @@
     <Content Include="databaseModel.edmx.diagram">
       <DependentUpon>databaseModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\ceteamgasstationpharmacy - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CETEAMRESTFUL2017 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\gsprest - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\RESTAPICETEAM2017 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

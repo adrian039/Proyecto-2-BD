@@ -64,6 +64,33 @@ namespace RESTFUL.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+        [HttpPost]
+        public HttpResponseMessage empleadoLogin([FromUri] string username, [FromUri] string pass)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.empleadoes.FirstOrDefault(e => e.username == username && e.password==pass);
+                    if (entity == null)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.Conflict, "false"); 
+                    }
+                    else
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.OK, "true");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
         [HttpPut]
         public HttpResponseMessage Put(int id, [FromBody]empleado empleado)
         {

@@ -17,6 +17,7 @@ namespace RESTFUL
         public int idsucursal { get; set; }
         public int idproducto { get; set; }
         public Nullable<int> cantidad { get; set; }
+        public Nullable<int> precio { get; set; }
     
         public virtual producto producto { get; set; }
         public virtual sucursale sucursale { get; set; }

@@ -4,16 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gasstationpharmacyModel.Store" Provider="Npgsql" ProviderManifestToken="9.6.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="gasstationpharmacyModel.Store" Provider="Npgsql" ProviderManifestToken="9.6.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="caja">
           <Key>
             <PropertyRef Name="idcaja" />
             <PropertyRef Name="fecha" />
+            <PropertyRef Name="idsucursal" />
+            <PropertyRef Name="tipo" />
           </Key>
           <Property Name="idcaja" Type="int4" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="idempleado" Type="int4" />
+          <Property Name="idsucursal" Type="int4" Nullable="false" />
           <Property Name="efectivo" Type="int4" />
+          <Property Name="tipo" Type="int4" Nullable="false" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -23,6 +27,7 @@
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="papellido" Type="varchar" MaxLength="60" />
           <Property Name="sapellido" Type="varchar" MaxLength="60" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="empleado">
           <Key>
@@ -34,6 +39,8 @@
           <Property Name="sapellido" Type="varchar" MaxLength="60" />
           <Property Name="username" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="60" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="empleadosxsucursal">
           <Key>
@@ -51,8 +58,9 @@
           <Property Name="ean" Type="int4" Nullable="false" />
           <Property Name="idproveedor" Type="int4" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
-          <Property Name="imagen" Type="varchar" MaxLength="9999" />
+          <Property Name="imagen" Type="text" />
           <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="productosxsucursal">
           <Key>
@@ -62,6 +70,7 @@
           <Property Name="idsucursal" Type="int4" Nullable="false" />
           <Property Name="idproducto" Type="int4" Nullable="false" />
           <Property Name="cantidad" Type="int4" />
+          <Property Name="precio" Type="int4" />
         </EntityType>
         <EntityType Name="proveedores">
           <Key>
@@ -70,29 +79,32 @@
           <Property Name="idproveedor" Type="int4" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="telefono" Type="int4" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="roles">
           <Key>
             <PropertyRef Name="idrol" />
           </Key>
-          <Property Name="idrol" Type="int4" Nullable="false" />
+          <Property Name="idrol" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="150" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="sucursales">
           <Key>
             <PropertyRef Name="idsucursal" />
           </Key>
-          <Property Name="idsucursal" Type="int4" Nullable="false" />
+          <Property Name="idsucursal" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="direccion" Type="varchar" MaxLength="150" />
-          <Property Name="imagen" Type="varchar" MaxLength="9999" />
+          <Property Name="imagen" Type="text" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="tipopago">
           <Key>
             <PropertyRef Name="idtipo" />
           </Key>
-          <Property Name="idtipo" Type="int4" Nullable="false" />
+          <Property Name="idtipo" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" />
           <Property Name="descripcion" Type="varchar" MaxLength="150" />
         </EntityType>
@@ -100,7 +112,7 @@
           <Key>
             <PropertyRef Name="idventa" />
           </Key>
-          <Property Name="idventa" Type="int4" Nullable="false" />
+          <Property Name="idventa" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idcliente" Type="int4" Nullable="false" />
           <Property Name="tpago" Type="int4" Nullable="false" />
           <Property Name="idsucursal" Type="int4" Nullable="false" />
@@ -121,46 +133,6 @@
           <Property Name="idsucursal" Type="int4" Nullable="false" />
           <Property Name="idventa" Type="int4" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6005: Actualmente, no se admite el tipo de datos 'oid' para la versión de Entity Framework de destino; se excluyó la columna 'relfilenode' de la tabla 'gasstationpharmacy.public.pg_buffercache'.
-advertencia 6005: Actualmente, no se admite el tipo de datos 'oid' para la versión de Entity Framework de destino; se excluyó la columna 'reltablespace' de la tabla 'gasstationpharmacy.public.pg_buffercache'.
-advertencia 6005: Actualmente, no se admite el tipo de datos 'oid' para la versión de Entity Framework de destino; se excluyó la columna 'reldatabase' de la tabla 'gasstationpharmacy.public.pg_buffercache'.
-advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_buffercache' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="pg_buffercache">
-          <Property Name="bufferid" Type="int4" />
-          <Property Name="relforknumber" Type="int2" />
-          <Property Name="relblocknumber" Type="int8" />
-          <Property Name="isdirty" Type="bool" />
-          <Property Name="usagecount" Type="int2" />
-          <Property Name="pinning_backends" Type="int4" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6005: Actualmente, no se admite el tipo de datos 'oid' para la versión de Entity Framework de destino; se excluyó la columna 'userid' de la tabla 'gasstationpharmacy.public.pg_stat_statements'.
-advertencia 6005: Actualmente, no se admite el tipo de datos 'oid' para la versión de Entity Framework de destino; se excluyó la columna 'dbid' de la tabla 'gasstationpharmacy.public.pg_stat_statements'.
-advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="pg_stat_statements">
-          <Property Name="queryid" Type="int8" />
-          <Property Name="query" Type="text" />
-          <Property Name="calls" Type="int8" />
-          <Property Name="total_time" Type="float8" />
-          <Property Name="min_time" Type="float8" />
-          <Property Name="max_time" Type="float8" />
-          <Property Name="mean_time" Type="float8" />
-          <Property Name="stddev_time" Type="float8" />
-          <Property Name="rows" Type="int8" />
-          <Property Name="shared_blks_hit" Type="int8" />
-          <Property Name="shared_blks_read" Type="int8" />
-          <Property Name="shared_blks_dirtied" Type="int8" />
-          <Property Name="shared_blks_written" Type="int8" />
-          <Property Name="local_blks_hit" Type="int8" />
-          <Property Name="local_blks_read" Type="int8" />
-          <Property Name="local_blks_dirtied" Type="int8" />
-          <Property Name="local_blks_written" Type="int8" />
-          <Property Name="temp_blks_read" Type="int8" />
-          <Property Name="temp_blks_written" Type="int8" />
-          <Property Name="blk_read_time" Type="float8" />
-          <Property Name="blk_write_time" Type="float8" />
-        </EntityType>-->
         <Association Name="fk_caja_empleados">
           <End Role="empleado" Type="Self.empleado" Multiplicity="0..1" />
           <End Role="caja" Type="Self.caja" Multiplicity="*" />
@@ -170,6 +142,18 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             </Principal>
             <Dependent Role="caja">
               <PropertyRef Name="idempleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_caja_sucursal">
+          <End Role="sucursales" Type="Self.sucursales" Multiplicity="1" />
+          <End Role="caja" Type="Self.caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursales">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="caja">
+              <PropertyRef Name="idsucursal" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -347,6 +331,10 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             <End Role="empleado" EntitySet="empleado" />
             <End Role="caja" EntitySet="caja" />
           </AssociationSet>
+          <AssociationSet Name="fk_caja_sucursal" Association="Self.fk_caja_sucursal">
+            <End Role="sucursales" EntitySet="sucursales" />
+            <End Role="caja" EntitySet="caja" />
+          </AssociationSet>
           <AssociationSet Name="fk_empleadosxsucursal_roles" Association="Self.fk_empleadosxsucursal_roles">
             <End Role="roles" EntitySet="roles" />
             <End Role="empleadosxsucursal" EntitySet="empleadosxsucursal" />
@@ -400,8 +388,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             <End Role="ventasxsucursal" EntitySet="ventasxsucursal" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gasstationpharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -409,12 +396,17 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Key>
             <PropertyRef Name="idcaja" />
             <PropertyRef Name="fecha" />
+            <PropertyRef Name="idsucursal" />
+            <PropertyRef Name="tipo" />
           </Key>
           <Property Name="idcaja" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="idempleado" Type="Int32" />
           <Property Name="efectivo" Type="Int32" />
           <NavigationProperty Name="empleado" Relationship="Self.fk_caja_empleados" FromRole="caja" ToRole="empleado" />
+          <Property Name="idsucursal" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sucursale" Relationship="gasstationpharmacyModel.fk_caja_sucursal" FromRole="caja" ToRole="sucursale" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -425,6 +417,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Property Name="papellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <Property Name="sapellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ventas" Relationship="Self.fk_venta_clientes" FromRole="cliente" ToRole="venta" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="empleado">
           <Key>
@@ -439,6 +432,8 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <NavigationProperty Name="cajas" Relationship="Self.fk_caja_empleados" FromRole="empleado" ToRole="caja" />
           <NavigationProperty Name="empleadosxsucursals" Relationship="Self.fk_idempleado_sucursal" FromRole="empleado" ToRole="empleadosxsucursal" />
           <NavigationProperty Name="ventas" Relationship="Self.ventasxempleado" FromRole="empleado" ToRole="venta" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="empleadosxsucursal">
           <Key>
@@ -463,6 +458,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="productosxsucursals" Relationship="Self.fk_idproductos_sucursal" FromRole="productos" ToRole="productosxsucursal" />
           <NavigationProperty Name="proveedore" Relationship="Self.fk_productos_proveedores" FromRole="productos" ToRole="proveedores" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="productosxsucursal">
           <Key>
@@ -474,6 +470,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Property Name="cantidad" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.fk_idproductos_sucursal" FromRole="productosxsucursal" ToRole="productos" />
           <NavigationProperty Name="sucursale" Relationship="Self.fk_idsucursal_sucursal" FromRole="productosxsucursal" ToRole="sucursales" />
+          <Property Name="precio" Type="Int32" />
         </EntityType>
         <EntityType Name="proveedore">
           <Key>
@@ -483,6 +480,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="telefono" Type="Int32" />
           <NavigationProperty Name="productos" Relationship="Self.fk_productos_proveedores" FromRole="proveedores" ToRole="productos" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -492,6 +490,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="empleadosxsucursals" Relationship="Self.fk_empleadosxsucursal_roles" FromRole="roles" ToRole="empleadosxsucursal" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="sucursale">
           <Key>
@@ -505,6 +504,8 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <NavigationProperty Name="productosxsucursals" Relationship="Self.fk_idsucursal_sucursal" FromRole="sucursales" ToRole="productosxsucursal" />
           <NavigationProperty Name="ventas" Relationship="Self.fk_venta_sucursal" FromRole="sucursales" ToRole="venta" />
           <NavigationProperty Name="ventas1" Relationship="Self.ventasxsucursal" FromRole="sucursales" ToRole="venta" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="cajas" Relationship="gasstationpharmacyModel.fk_caja_sucursal" FromRole="sucursale" ToRole="caja" />
         </EntityType>
         <EntityType Name="tipopago">
           <Key>
@@ -717,7 +718,23 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
             <End Role="sucursales" EntitySet="sucursales" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
+          <AssociationSet Name="fk_caja_sucursal" Association="gasstationpharmacyModel.fk_caja_sucursal">
+            <End Role="sucursale" EntitySet="sucursales" />
+            <End Role="caja" EntitySet="cajas" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="fk_caja_sucursal">
+          <End Type="gasstationpharmacyModel.sucursale" Role="sucursale" Multiplicity="1" />
+          <End Type="gasstationpharmacyModel.caja" Role="caja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursale">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="caja">
+              <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -727,6 +744,8 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="cajas">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.caja">
               <MappingFragment StoreEntitySet="caja">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
                 <ScalarProperty Name="idcaja" ColumnName="idcaja" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idempleado" ColumnName="idempleado" />
@@ -737,6 +756,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="papellido" ColumnName="papellido" />
@@ -747,6 +767,8 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="empleadoes">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.empleado">
               <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="papellido" ColumnName="papellido" />
@@ -768,6 +790,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="productos">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.producto">
               <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="ean" ColumnName="ean" />
                 <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -779,6 +802,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="productosxsucursals">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.productosxsucursal">
               <MappingFragment StoreEntitySet="productosxsucursal">
+                <ScalarProperty Name="precio" ColumnName="precio" />
                 <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
                 <ScalarProperty Name="idproducto" ColumnName="idproducto" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />
@@ -788,6 +812,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="proveedores">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.proveedore">
               <MappingFragment StoreEntitySet="proveedores">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idproveedor" ColumnName="idproveedor" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
@@ -797,6 +822,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="roles">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.role">
               <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idrol" ColumnName="idrol" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -806,6 +832,7 @@ advertencia 6013: La tabla o vista 'gasstationpharmacy.public.pg_stat_statements
           <EntitySetMapping Name="sucursales">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.sucursale">
               <MappingFragment StoreEntitySet="sucursales">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />

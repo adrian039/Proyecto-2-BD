@@ -24,6 +24,7 @@ namespace RESTFUL
         public string nombre { get; set; }
         public string papellido { get; set; }
         public string sapellido { get; set; }
+        public Nullable<int> estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<venta> ventas { get; set; }

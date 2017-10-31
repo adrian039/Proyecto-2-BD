@@ -28,6 +28,7 @@
         <AssociationConnector Association="gasstationpharmacyModel.fk_venta_tipopago" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.ventasxempleado" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.ventasxsucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_caja_sucursal" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

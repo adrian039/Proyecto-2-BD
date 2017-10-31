@@ -1,0 +1,40 @@
+<style>
+  img {
+    border-radius: 5px 5px 0 0;
+    max-height: 10vw;
+    min-height: 10vw;
+    max-width:  10vw;
+    min-width:  10vw;
+}
+</style>
+
+<section class="mainContent clearfix userProfile" ng-controller="pedidosStore" data-ng-init="init()">
+    <h1 style="align-content: center; text-align: center;">Order List</h1>
+
+    <div class="list-group container innerWrapper" ng-controller="pedidosStore" data-ng-init="init()">
+
+      <div ng-repeat="o in listOrders | orderBy:['horaRecojo','penalizacionCliente']">
+        <a class="list-group-item list-group-item-action flex-column align-items-start" >
+          <div class="d-flex justify-content-between">
+            <div style="align-content: center; text-align: center;">
+              <img class="img-fluid img" src="data:image/jpg;base64,{{o.Imagen}}" alt="Card image cap">
+              <h5 class="mb-1">Pedido #{{o.idPedido}} </h5>
+            </div>
+           <div class="form-group select">
+            <label>Estado: {{o.Estado}}</label>
+            <select class="form-control" id="cantidad" ng-model="state" required>
+              <option ng-repeat="s in statesId">{{s.id}} {{s.Estado}}</option>
+
+            </select>
+          </div>
+          <button type="button" class="btn btn-primary" ng-click="update(state,o.idPedido)">
+            Update
+          </button>
+          <button type="button" class="btn btn-primary" ng-click="see(o.idPedido)">
+            See
+          </button>
+          </div>
+        </a>
+    </div>
+  </div>
+</section>

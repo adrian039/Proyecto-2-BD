@@ -34,6 +34,10 @@ angular.module("mainModule").config(function ( $routeProvider, $locationProvider
       when('/Admin/nuevSuc', { templateUrl: '../Views/Admin/nuevSuc.html', controller: 'userController' }).
       when('/Stores/pedidosStore', { templateUrl: '../Views/Stores/pedidosStore.html', controller: 'userController' }).
       when('/Stores/ProductsxOrder', { templateUrl: '../Views/Stores/ProductsxOrder.html', controller: 'userController' }).
+    //----------------------Caja Views------------------------------------------------------------
+      when('/Caja/abrirCaja', { templateUrl: '../Views/Caja/abrirCaja.html', controller: 'userController' }).
+      when('/Caja/regVenta', { templateUrl: '../Views/Caja/regVenta.html', controller: 'userController' }).
+
   //----------------------Main View------------------------------------------------------------
       otherwise({ redirectTo: '/Home' });
     // $locationProvider.html5Mode(true);

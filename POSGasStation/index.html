@@ -82,6 +82,10 @@
 <script src="Scripts/Controllers/Stores/pedidosStore.js"></script>
 
 
+<!--Imports Caja app scripts -->
+<script src="Scripts/Controllers/Caja/contAbrirCaja.js"></script>
+<script src="Scripts/Controllers/Caja/contRegVenta.js"></script>
+
 
 
 
@@ -166,6 +170,14 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                   <a  class="dropdown-toggle" ng-click="goTo('home')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home</a>
+                </li>
+
+                <li class="dropdown">
+                    <a  class="dropdown-toggle" ng-click="goTo('abrirCaja')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Open Cash Register</a>
+                </li>
+
+                <li class="dropdown">
+                    <a  class="dropdown-toggle" ng-click="goTo('regVenta')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Sale</a>
                 </li>
 
                 <li class="dropdown">

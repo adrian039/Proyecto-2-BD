@@ -18,6 +18,7 @@ namespace RESTFUL.Controllers
                 return entities.empleadoes.ToList();
             }
         }
+
         [HttpGet]
         public empleado getbyid(int id)
         {

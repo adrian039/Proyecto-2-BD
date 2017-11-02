@@ -8,7 +8,7 @@ function($scope,$http,userService,$location) {
   };
 
       $scope.init = function(){
-      alert("hola");
+      alert("cerrado");
     };
 
 

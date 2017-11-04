@@ -14,8 +14,8 @@
 
             <div class="form-group">
                 <label for="sucursales">Cash Register</label>
-                <select class="form-control" id="Cash" ng-model="idCash" required>
-                <option ng-repeat="">Caja</option>
+                <select class="form-control" id="Cash" ng-model="idCash" ng-options="number for number in [1,2,3,4,5,6,7,8,9,10]" required>
+                
                 </select>
             </div>
   

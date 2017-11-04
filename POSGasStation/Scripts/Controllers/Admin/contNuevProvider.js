@@ -1,6 +1,8 @@
 angular.module("mainModule").controller("contNuevProvider", ["$scope","$http","userService",'$location',
 function($scope,$http,userService,$location) {
-
+  $scope.name;
+  $scope.id;
+  $scope.number;
 
   $scope.createRol=function(nme,descr){
     console.log('empresa: '+userService.getCompany());

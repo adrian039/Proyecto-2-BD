@@ -7,12 +7,21 @@ angular.module("mainModule").service('userService', function () {
 	var rol;
 	var admin;
 	var cash;
+	var state=false;
 
 	this.getCash=function (){
 		return cash;
 	}
 	this.setCash=function(csh){
 		cash=csh;
+	}
+
+	this.getState=function(){
+		return state;
+	}
+
+	this.setState=function(ste){
+		state=ste;
 	}
 
 	this.getUser = function () {

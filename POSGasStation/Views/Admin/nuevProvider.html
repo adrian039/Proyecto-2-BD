@@ -13,17 +13,21 @@
                           <form class="form-horizontal">
                               <div class="form-group">
                                   <label>Name</label>
-                                  <input type="text" class="form-control" name="nameProd" placeholder="Name of the role" ng-model="name" required>
+                                  <input type="text" class="form-control" name="nameProd" placeholder="Name of the provider" ng-model="name" required>
                               </div>
                               <div class="form-group">
-                                  <label>Description</label>
-                                  <textarea class="form-control" name="inputList" ng-model="desc"  required>
-                                  </textarea>
+                                  <label>ID</label>
+                                  <input type="text" class="form-control" name="nameProd" placeholder="ID of the provider" ng-model="id" required>
 
                               </div>
+                              <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" class="form-control" name="nameProd" placeholder="Phone" ng-model="number" required>
+
+                            </div>
                         <div class="form-group">
                           <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3">
-                                                            <button type="submit" class="btn btn-primary" ng-click="createRol(name,desc)" btn-block>Create Role</button><br>
+                                                            <button type="submit" class="btn btn-primary" ng-click="createRol(name,id,number)" btn-block>Create Provider</button><br>
                                                         </div>
                       </form>
                   </div>

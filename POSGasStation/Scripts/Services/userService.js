@@ -6,6 +6,15 @@ angular.module("mainModule").service('userService', function () {
 	var company;
 	var rol;
 	var admin;
+	var cash;
+
+	this.getCash=function (){
+		return cash;
+	}
+	this.setCash=function(csh){
+		cash=csh;
+	}
+
 	this.getUser = function () {
 	  return currentUser;
 	}

@@ -105,12 +105,21 @@ $scope.getDireccion=function(id){
     var url = 'http://gsprest.azurewebsites.net/api/Empleados?username='+username+'&pass='+password;
      $http.post(url).then(function (msg) {
        if (msg.data){
-        console.log("data "+msg.data);
         $scope.usernameEmp = username;
-        $scope.options = msg.data;
-        userService.setUser(data);
-        userService.serActive();
-        $location.path("/Home");
+        var cedulaEmp = msg.data.cedula;
+        userService.setUser(msg.data);
+        console.log("Cedula"+ cedulaEmp);
+        url='http://gsprest.azurewebsites.net/api/Empleados?cedula='+cedulaEmp;
+        $scope.getHttp(url,(data)=>{
+          $scope.options=data;
+          $('#myModal').modal({ show: false});
+          $('#myModal').modal("show");
+          userService.setEmpActive();
+          
+        })
+          
+        
+        
        }
        else{
          alert("Log in error");
@@ -125,15 +134,13 @@ $scope.getDireccion=function(id){
 
   $scope.setSucursal=function(options,username){
     console.log("options: "+options);
-    var url = 'http://'+getIp()+':58706/api/Empleados?username='+username;
-    $scope.getHttp(url,(data1)=>{
-      userService.setRol(options.idRol);
-      userService.setUser(data1);
-      userService.setSucursal(options.idSucursal);
-      userService.setCompany(options.idEmpresa);
-      userService.setEmpActive();
-      $location.path("/Home");
-    })
+    userService.setRol(options.idrol);
+    userService.setSucursal(options.idsucursal);
+    userService.setCompany(options.idEmpresa);
+    userService.setEmpActive();
+    console.log("Rol "+userService.getRol());
+    console.log("Sucursal "+userService.getSucursal());
+    $location.path("/Home");
   }
 
   $scope.deleteUser=function(id){

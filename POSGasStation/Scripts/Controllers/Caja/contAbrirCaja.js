@@ -4,12 +4,28 @@ function($scope,$http,userService,$location) {
   $scope.amount="";
 
   $scope.openCash=function(){
-    alert("Hola");
+    var url='';
+    $http.post(url).then(function (msg) {
+      if (msg.data){
+       
+      }
+      else{
+        alert("Error opening cash register");
+      }
+     });
   };
 
-      $scope.init = function(){
-      alert("hola");
-    };
+  $scope.init = function(){  
+    alert("Sucursal "+userService.getSucursal());
+    var url='http://gsprest.azurewebsites.net/api/Empleados?cedula='+cedulaEmp;
+    $scope.getHttp(url,(data)=>{
+      $scope.options=data;
+      $('#myModal').modal({ show: false});
+      $('#myModal').modal("show");
+      userService.setEmpActive();
+      
+    })
+  };
 
 
 }]);

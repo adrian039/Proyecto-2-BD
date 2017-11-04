@@ -77,6 +77,9 @@
   <script src="Scripts/Controllers/Admin/contSucAdmin.js"></script>
   <script src="Scripts/Controllers/Admin/contNuevEmp.js"></script>
   <script src="Scripts/Controllers/Admin/contEstAdmin.js"></script>
+  <script src="Scripts/Controllers/Admin/contProveedorAdmin.js"></script>
+  <script src="Scripts/Controllers/Admin/contNuevProvider.js"></script>
+  
 
 <!--Imports Stores app scripts -->
 <script src="Scripts/Controllers/Stores/pedidosStore.js"></script>
@@ -120,7 +123,7 @@
                 <ul class="list-inline pull-right top-right">
                   <li class="account-login"><span><a data-toggle="modal" ng-show="!isActive()&&!isEmpActive() " ng-click="goTo('login')">Log in</a>
                     <a data-toggle="modal" ng-show="!isActive()&&!isEmpActive()" ng-click="goTo('signup')">Create an account</a>
-                    <a data-toggle="modal" ng-click="goTo('userInfo')" ng-show="isActive()||isEmpActive()" >{{getUser().Nombre}} {{getUser().pApellido}}</a>
+                    <a data-toggle="modal" ng-click="goTo('userInfo')" ng-show="isActive()||isEmpActive()" >{{getUser().nombre}} {{getUser().papellido}}</a>
                     <a data-toggle="modal" ng-show="isActive()||isEmpActive()" data-ng-click = "logOutUser()"> Log Out</a>
                   </span></li>
 
@@ -178,6 +181,9 @@
                 </li>
                 <li class="dropdown">
                   <a  class="dropdown-toggle" ng-click="goTo('cerrarCaja')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Close Cash Register</a>
+                </li>
+                <li class="dropdown">
+                  <a  class="dropdown-toggle" ng-click="goTo('gproveedores')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Providers</a>
                 </li>
                 <li class="dropdown">
                     <a  class="dropdown-toggle" ng-click="goTo('regVenta')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Sale</a>

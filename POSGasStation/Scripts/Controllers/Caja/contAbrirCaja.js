@@ -28,7 +28,7 @@ function($scope,$http,userService,$location) {
         data = "0" + data;
       }
       return data;
-    }
+    } 
     
     today=(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
     console.log(today);

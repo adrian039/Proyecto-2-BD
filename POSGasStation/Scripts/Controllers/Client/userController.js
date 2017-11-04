@@ -4,6 +4,7 @@ function ($scope, $http, $location, $routeParams, userService, directionService,
   var states;
   var cities;
   var districts;
+  $scope.selected;
   $scope.EmployeeCheck=false;
   $scope.getHttp = function (url, callback) {
     var httpObject = $http.get(url);
@@ -108,7 +109,6 @@ $scope.getDireccion=function(id){
         $scope.usernameEmp = username;
         var cedulaEmp = msg.data.cedula;
         userService.setUser(msg.data);
-        console.log("Cedula"+ cedulaEmp);
         url='http://gsprest.azurewebsites.net/api/Empleados?cedula='+cedulaEmp;
         $scope.getHttp(url,(data)=>{
           $scope.options=data;
@@ -118,7 +118,7 @@ $scope.getDireccion=function(id){
           
         })
           
-        
+         
         
        }
        else{
@@ -142,6 +142,8 @@ $scope.getDireccion=function(id){
     console.log("Sucursal "+userService.getSucursal());
     $location.path("/Home");
   }
+
+
 
   $scope.deleteUser=function(id){
     if (confirm('Sure you want to delete?')) {

@@ -29,6 +29,9 @@
         <AssociationConnector Association="gasstationpharmacyModel.ventasxempleado" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.ventasxsucursal" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_caja_sucursal" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.cajasxsucursal" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_caja_cajasxsucursal" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_cajasxsucursal_sucursal" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

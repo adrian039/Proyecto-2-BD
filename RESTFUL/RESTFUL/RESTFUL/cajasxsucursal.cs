@@ -12,17 +12,19 @@ namespace RESTFUL
     using System;
     using System.Collections.Generic;
     
-    public partial class caja
+    public partial class cajasxsucursal
     {
-        public int idcaja { get; set; }
-        public System.DateTime fecha { get; set; }
-        public Nullable<int> idempleado { get; set; }
-        public Nullable<int> efectivo { get; set; }
-        public int idsucursal { get; set; }
-        public int tipo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public cajasxsucursal()
+        {
+            this.cajas = new HashSet<caja>();
+        }
     
-        public virtual empleado empleado { get; set; }
+        public int idcaja { get; set; }
+        public int idsucursal { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<caja> cajas { get; set; }
         public virtual sucursale sucursale { get; set; }
-        public virtual cajasxsucursal cajasxsucursal { get; set; }
     }
 }

@@ -1,11 +1,11 @@
 CREATE TABLE CAJA(
 idCaja INT NOT NULL,
 idSucursal INT NOT NULL,
-Fecha Date,
+Fecha timestamp,
 idEmpleado INT,
 Efectivo INT,
 Tipo INT, 
-PRIMARY KEY (idCaja, Fecha, Tipo)
+PRIMARY KEY (idCaja, Fecha, idSucursal)
 )
 
 CREATE TABLE EMPLEADO(

@@ -67,7 +67,7 @@ INSERT INTO tipopago (nombre, descripcion) VALUES ('Efectivo', 'pago mediante di
 INSERT INTO cajasxsucursal (idcaja, idsucursal) VALUES (1,1);
 INSERT INTO cajasxsucursal (idcaja, idsucursal) VALUES (1,2);
 
-INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12',1, 1,54500,0);
-INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12',1, 1,104000,1);
+INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12T00:00:00',1, 1,54500,0);
+INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (2,'2017-03-12T00:00:00',1, 1,104000,1);
 
 

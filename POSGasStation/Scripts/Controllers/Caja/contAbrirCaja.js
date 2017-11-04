@@ -2,6 +2,7 @@ angular.module("mainModule").controller("contAbrirCaja", ["$scope","$http","user
 function($scope,$http,userService,$location) {
   $scope.idCash = "";
   $scope.amount="";
+  $scope.cajaList;
 
   $scope.openCash=function(){
     var today = new Date();
@@ -62,13 +63,9 @@ function($scope,$http,userService,$location) {
 
   $scope.init = function(){  
     alert("Sucursal "+userService.getSucursal());
-    var url='http://gsprest.azurewebsites.net/api/Empleados?cedula='+cedulaEmp;
+    var url='http://gsprest.azurewebsites.net/api/Sucursales?idSucursal='+userService.getSucursal();
     $scope.getHttp(url,(data)=>{
-      $scope.options=data;
-      $('#myModal').modal({ show: false});
-      $('#myModal').modal("show");
-      userService.setEmpActive();
-      
+      this.cajaList=data;
     })
   };
 

@@ -19,7 +19,7 @@ namespace RESTFUL.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage Post([FromBody] caja cajalog)
+        public bool Post([FromBody] caja cajalog)
         {
             try
             {
@@ -30,12 +30,12 @@ namespace RESTFUL.Controllers
                     entities.cajas.Add(cajalog);
                     entities.SaveChanges();
                     var message = Request.CreateResponse(HttpStatusCode.Created, cajalog);
-                    return message;
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return false;
             }
         }
     }

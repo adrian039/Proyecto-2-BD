@@ -19,13 +19,7 @@
                     <button type="button" ng-if="!EmployeeCheck"  class="btn btn-primary btn-block"  ng-click="loginUser(username,password,gRecaptchaResponse)">log in</button>
                     <button type="button" ng-if="EmployeeCheck"  class="btn btn-primary btn-block"  ng-click="loginUser(username,password,gRecaptchaResponse)" data-toggle="modal" data-target="#myModal">log in</button>
                     <button type="button" class="btn btn-link btn-block">Forgot Password?</button>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox" ng-model="EmployeeCheck"> 
-                          Employee
-                        </label>
-                      </div>
-                      <br>
+                    <br>
                     <div
                     vc-recaptcha
                     ng-model="gRecaptchaResponse"

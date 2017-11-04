@@ -39,6 +39,6 @@ angular.module("mainModule").config(function ( $routeProvider, $locationProvider
       when('/Caja/regVenta', { templateUrl: '../Views/Caja/regVenta.html', controller: 'userController' }).
       when('/Caja/cerrarCaja', { templateUrl: '../Views/Caja/cerrarCaja.html', controller: 'userController' }).
   //----------------------Main View------------------------------------------------------------
-      otherwise({ redirectTo: '/Home' });
+      otherwise({ redirectTo: '/login' });
     // $locationProvider.html5Mode(true);
   });

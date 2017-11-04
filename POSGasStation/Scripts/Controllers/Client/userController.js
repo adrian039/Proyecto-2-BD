@@ -101,35 +101,22 @@ $scope.getDireccion=function(id){
       }
 
   $scope.loginUser = function (username, password, getCaptcha) {
-    if (!isBlank(username) && !isBlank(password)&& getCaptcha) {
-      console.log("state of checkbox: " + this.EmployeeCheck);
-      if(this.EmployeeCheck == false){
-        var url = 'http://'+getIp()+':58706/api/Clientes?username=' + username + '&pass=' + password;
-        $http.post(url).then(function (msg) {
-          if (msg.data) {
-            var url = 'http://'+getIp()+':58706/api/Clientes?username='+username;
-            $scope.getHttp(url,(data)=>{
-              userService.setUser(data);
-              userService.setActive();
-              
-              $location.path("/Home");
-            })
-            
-          }
-          else {
-            alert("Error(02): Can't sign in, username or password incorrect");
-          }
-        });
-      }
-      //else del empleyee check
-      else{
-        var url = 'http://'+getIp()+':58706/api/Empleados?username=' + username + '&pass=' + password;
-        $http.post(url).then(function (msg) {
-          console.log("data "+msg.data);
-            $scope.usernameEmp = username;
-            $scope.options = msg.data;
-        });
-      }
+    if (!isBlank(username) && !isBlank(password)) {
+    var url = 'http://gsprest.azurewebsites.net/api/Empleados?username='+username+'&pass='+password;
+     $http.post(url).then(function (msg) {
+       if (msg.data){
+        console.log("data "+msg.data);
+        $scope.usernameEmp = username;
+        $scope.options = msg.data;
+        userService.setUser(data);
+        userService.serActive();
+        $location.path("/Home");
+       }
+       else{
+         alert("Log in error");
+       }
+      });
+      
     }
     else {
       alert("Error(01): Can't sign in, space in blank or not getCaptcha");

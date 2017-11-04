@@ -17,8 +17,8 @@ namespace RESTFUL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public venta()
         {
-            this.empleadoes = new HashSet<empleado>();
             this.sucursales = new HashSet<sucursale>();
+            this.empleadoes = new HashSet<empleado>();
         }
     
         public int idventa { get; set; }
@@ -30,8 +30,8 @@ namespace RESTFUL
         public virtual sucursale sucursale { get; set; }
         public virtual tipopago tipopago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empleado> empleadoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sucursale> sucursales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<empleado> empleadoes { get; set; }
     }
 }

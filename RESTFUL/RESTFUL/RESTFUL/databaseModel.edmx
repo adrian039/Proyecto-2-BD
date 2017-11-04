@@ -418,23 +418,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gasstationpharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="caja">
-          <Key>
-            <PropertyRef Name="idcaja" />
-            <PropertyRef Name="fecha" />
-            <PropertyRef Name="idsucursal" />
-            <PropertyRef Name="tipo" />
-          </Key>
-          <Property Name="idcaja" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Precision="0" Nullable="false" />
-          <Property Name="idempleado" Type="Int32" />
-          <Property Name="efectivo" Type="Int32" />
-          <NavigationProperty Name="empleado" Relationship="Self.fk_caja_empleados" FromRole="caja" ToRole="empleado" />
-          <Property Name="idsucursal" Type="Int32" Nullable="false" />
-          <Property Name="tipo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="sucursale" Relationship="gasstationpharmacyModel.fk_caja_sucursal" FromRole="caja" ToRole="sucursale" />
-          <NavigationProperty Name="cajasxsucursal" Relationship="gasstationpharmacyModel.fk_caja_cajasxsucursal" FromRole="caja" ToRole="cajasxsucursal" />
-        </EntityType>
         <EntityType Name="cliente">
           <Key>
             <PropertyRef Name="cedula" />
@@ -446,22 +429,6 @@
           <NavigationProperty Name="ventas" Relationship="Self.fk_venta_clientes" FromRole="cliente" ToRole="venta" />
           <Property Name="estado" Type="Int32" />
         </EntityType>
-        <EntityType Name="empleado">
-          <Key>
-            <PropertyRef Name="cedula" />
-          </Key>
-          <Property Name="cedula" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="papellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="sapellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="cajas" Relationship="Self.fk_caja_empleados" FromRole="empleado" ToRole="caja" />
-          <NavigationProperty Name="empleadosxsucursals" Relationship="Self.fk_idempleado_sucursal" FromRole="empleado" ToRole="empleadosxsucursal" />
-          <NavigationProperty Name="ventas" Relationship="Self.ventasxempleado" FromRole="empleado" ToRole="venta" />
-          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="estado" Type="Int32" />
-        </EntityType>
         <EntityType Name="empleadosxsucursal">
           <Key>
             <PropertyRef Name="idempleado" />
@@ -470,9 +437,9 @@
           <Property Name="idempleado" Type="Int32" Nullable="false" />
           <Property Name="idsucursal" Type="Int32" Nullable="false" />
           <Property Name="idrol" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="empleado" Relationship="Self.fk_idempleado_sucursal" FromRole="empleadosxsucursal" ToRole="empleado" />
           <NavigationProperty Name="role" Relationship="Self.fk_empleadosxsucursal_roles" FromRole="empleadosxsucursal" ToRole="roles" />
           <NavigationProperty Name="sucursale" Relationship="Self.fk_idsucursal_sucursales" FromRole="empleadosxsucursal" ToRole="sucursales" />
+          <NavigationProperty Name="empleado" Relationship="gasstationpharmacyModel.fk_idempleado_sucursal" FromRole="empleadosxsucursal" ToRole="empleado" />
         </EntityType>
         <EntityType Name="producto">
           <Key>
@@ -532,7 +499,6 @@
           <NavigationProperty Name="ventas" Relationship="Self.fk_venta_sucursal" FromRole="sucursales" ToRole="venta" />
           <NavigationProperty Name="ventas1" Relationship="Self.ventasxsucursal" FromRole="sucursales" ToRole="venta" />
           <Property Name="estado" Type="Int32" />
-          <NavigationProperty Name="cajas" Relationship="gasstationpharmacyModel.fk_caja_sucursal" FromRole="sucursale" ToRole="caja" />
           <NavigationProperty Name="cajasxsucursals" Relationship="gasstationpharmacyModel.fk_cajasxsucursal_sucursal" FromRole="sucursale" ToRole="cajasxsucursal" />
         </EntityType>
         <EntityType Name="tipopago">
@@ -555,21 +521,9 @@
           <NavigationProperty Name="cliente" Relationship="Self.fk_venta_clientes" FromRole="venta" ToRole="cliente" />
           <NavigationProperty Name="sucursale" Relationship="Self.fk_venta_sucursal" FromRole="venta" ToRole="sucursales" />
           <NavigationProperty Name="tipopago" Relationship="Self.fk_venta_tipopago" FromRole="venta" ToRole="tipopago" />
-          <NavigationProperty Name="empleadoes" Relationship="Self.ventasxempleado" FromRole="venta" ToRole="empleado" />
           <NavigationProperty Name="sucursales" Relationship="Self.ventasxsucursal" FromRole="venta" ToRole="sucursales" />
+          <NavigationProperty Name="empleadoes" Relationship="gasstationpharmacyModel.ventasxempleado" FromRole="venta" ToRole="empleado" />
         </EntityType>
-        <Association Name="fk_caja_empleados">
-          <End Role="empleado" Type="Self.empleado" Multiplicity="0..1" />
-          <End Role="caja" Type="Self.caja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empleado">
-              <PropertyRef Name="cedula" />
-            </Principal>
-            <Dependent Role="caja">
-              <PropertyRef Name="idempleado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_venta_clientes">
           <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
@@ -579,18 +533,6 @@
             </Principal>
             <Dependent Role="venta">
               <PropertyRef Name="idcliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_idempleado_sucursal">
-          <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
-          <End Role="empleadosxsucursal" Type="Self.empleadosxsucursal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empleado">
-              <PropertyRef Name="cedula" />
-            </Principal>
-            <Dependent Role="empleadosxsucursal">
-              <PropertyRef Name="idempleado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -678,18 +620,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ventasxempleado">
-          <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
-          <End Role="venta" Type="Self.venta" Multiplicity="*" />
-        </Association>
         <Association Name="ventasxsucursal">
           <End Role="sucursales" Type="Self.sucursale" Multiplicity="*" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
         </Association>
         <EntityContainer Name="gspEntity" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="cajas" EntityType="Self.caja" />
           <EntitySet Name="clientes" EntityType="Self.cliente" />
-          <EntitySet Name="empleadoes" EntityType="Self.empleado" />
           <EntitySet Name="empleadosxsucursals" EntityType="Self.empleadosxsucursal" />
           <EntitySet Name="productos" EntityType="Self.producto" />
           <EntitySet Name="productosxsucursals" EntityType="Self.productosxsucursal" />
@@ -698,17 +634,9 @@
           <EntitySet Name="sucursales" EntityType="Self.sucursale" />
           <EntitySet Name="tipopagoes" EntityType="Self.tipopago" />
           <EntitySet Name="ventas" EntityType="Self.venta" />
-          <AssociationSet Name="fk_caja_empleados" Association="Self.fk_caja_empleados">
-            <End Role="empleado" EntitySet="empleadoes" />
-            <End Role="caja" EntitySet="cajas" />
-          </AssociationSet>
           <AssociationSet Name="fk_venta_clientes" Association="Self.fk_venta_clientes">
             <End Role="cliente" EntitySet="clientes" />
             <End Role="venta" EntitySet="ventas" />
-          </AssociationSet>
-          <AssociationSet Name="fk_idempleado_sucursal" Association="Self.fk_idempleado_sucursal">
-            <End Role="empleado" EntitySet="empleadoes" />
-            <End Role="empleadosxsucursal" EntitySet="empleadosxsucursals" />
           </AssociationSet>
           <AssociationSet Name="fk_empleadosxsucursal_roles" Association="Self.fk_empleadosxsucursal_roles">
             <End Role="roles" EntitySet="roles" />
@@ -738,40 +666,34 @@
             <End Role="tipopago" EntitySet="tipopagoes" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
-          <AssociationSet Name="ventasxempleado" Association="Self.ventasxempleado">
-            <End Role="empleado" EntitySet="empleadoes" />
-            <End Role="venta" EntitySet="ventas" />
-          </AssociationSet>
           <AssociationSet Name="ventasxsucursal" Association="Self.ventasxsucursal">
             <End Role="sucursales" EntitySet="sucursales" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
-          <AssociationSet Name="fk_caja_sucursal" Association="gasstationpharmacyModel.fk_caja_sucursal">
-            <End Role="sucursale" EntitySet="sucursales" />
-            <End Role="caja" EntitySet="cajas" />
-          </AssociationSet>
           <EntitySet Name="cajasxsucursals" EntityType="gasstationpharmacyModel.cajasxsucursal" />
-          <AssociationSet Name="fk_caja_cajasxsucursal" Association="gasstationpharmacyModel.fk_caja_cajasxsucursal">
-            <End Role="cajasxsucursal" EntitySet="cajasxsucursals" />
-            <End Role="caja" EntitySet="cajas" />
-          </AssociationSet>
           <AssociationSet Name="fk_cajasxsucursal_sucursal" Association="gasstationpharmacyModel.fk_cajasxsucursal_sucursal">
             <End Role="sucursale" EntitySet="sucursales" />
             <End Role="cajasxsucursal" EntitySet="cajasxsucursals" />
           </AssociationSet>
+          <EntitySet Name="cajas" EntityType="gasstationpharmacyModel.caja" />
+          <EntitySet Name="empleadoes" EntityType="gasstationpharmacyModel.empleado" />
+          <AssociationSet Name="fk_caja_cajasxsucursal" Association="gasstationpharmacyModel.fk_caja_cajasxsucursal">
+            <End Role="cajasxsucursal" EntitySet="cajasxsucursals" />
+            <End Role="caja" EntitySet="cajas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_caja_empleados" Association="gasstationpharmacyModel.fk_caja_empleados">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="caja" EntitySet="cajas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_idempleado_sucursal" Association="gasstationpharmacyModel.fk_idempleado_sucursal">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="empleadosxsucursal" EntitySet="empleadosxsucursals" />
+          </AssociationSet>
+          <AssociationSet Name="ventasxempleado" Association="gasstationpharmacyModel.ventasxempleado">
+            <End Role="empleado" EntitySet="empleadoes" />
+            <End Role="venta" EntitySet="ventas" />
+          </AssociationSet>
         </EntityContainer>
-        <Association Name="fk_caja_sucursal">
-          <End Type="gasstationpharmacyModel.sucursale" Role="sucursale" Multiplicity="1" />
-          <End Type="gasstationpharmacyModel.caja" Role="caja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sucursale">
-              <PropertyRef Name="idsucursal" />
-            </Principal>
-            <Dependent Role="caja">
-              <PropertyRef Name="idsucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="cajasxsucursal">
           <Key>
             <PropertyRef Name="idcaja" />
@@ -779,8 +701,51 @@
           </Key>
           <Property Name="idcaja" Type="Int32" Nullable="false" />
           <Property Name="idsucursal" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="cajas" Relationship="gasstationpharmacyModel.fk_caja_cajasxsucursal" FromRole="cajasxsucursal" ToRole="caja" />
           <NavigationProperty Name="sucursale" Relationship="gasstationpharmacyModel.fk_cajasxsucursal_sucursal" FromRole="cajasxsucursal" ToRole="sucursale" />
+          <NavigationProperty Name="cajas" Relationship="gasstationpharmacyModel.fk_caja_cajasxsucursal" FromRole="cajasxsucursal" ToRole="caja" />
+        </EntityType>
+        <Association Name="fk_cajasxsucursal_sucursal">
+          <End Type="gasstationpharmacyModel.sucursale" Role="sucursale" Multiplicity="1" />
+          <End Type="gasstationpharmacyModel.cajasxsucursal" Role="cajasxsucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursale">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="cajasxsucursal">
+              <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="caja">
+          <Key>
+            <PropertyRef Name="idcaja" />
+            <PropertyRef Name="idsucursal" />
+            <PropertyRef Name="fecha" />
+          </Key>
+          <Property Name="idcaja" Type="Int32" Nullable="false" />
+          <Property Name="idsucursal" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="6" />
+          <Property Name="idempleado" Type="Int32" />
+          <Property Name="efectivo" Type="Int32" />
+          <Property Name="tipo" Type="Int32" />
+          <NavigationProperty Name="cajasxsucursal" Relationship="gasstationpharmacyModel.fk_caja_cajasxsucursal" FromRole="caja" ToRole="cajasxsucursal" />
+          <NavigationProperty Name="empleado" Relationship="gasstationpharmacyModel.fk_caja_empleados" FromRole="caja" ToRole="empleado" />
+        </EntityType>
+        <EntityType Name="empleado">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="cedula" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="papellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="sapellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="cajas" Relationship="gasstationpharmacyModel.fk_caja_empleados" FromRole="empleado" ToRole="caja" />
+          <NavigationProperty Name="empleadosxsucursals" Relationship="gasstationpharmacyModel.fk_idempleado_sucursal" FromRole="empleado" ToRole="empleadosxsucursal" />
+          <NavigationProperty Name="ventas" Relationship="gasstationpharmacyModel.ventasxempleado" FromRole="empleado" ToRole="venta" />
         </EntityType>
         <Association Name="fk_caja_cajasxsucursal">
           <End Type="gasstationpharmacyModel.cajasxsucursal" Role="cajasxsucursal" Multiplicity="1" />
@@ -796,17 +761,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_cajasxsucursal_sucursal">
-          <End Type="gasstationpharmacyModel.sucursale" Role="sucursale" Multiplicity="1" />
-          <End Type="gasstationpharmacyModel.cajasxsucursal" Role="cajasxsucursal" Multiplicity="*" />
+        <Association Name="fk_caja_empleados">
+          <End Type="gasstationpharmacyModel.empleado" Role="empleado" Multiplicity="0..1" />
+          <End Type="gasstationpharmacyModel.caja" Role="caja" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="sucursale">
-              <PropertyRef Name="idsucursal" />
+            <Principal Role="empleado">
+              <PropertyRef Name="cedula" />
             </Principal>
-            <Dependent Role="cajasxsucursal">
-              <PropertyRef Name="idsucursal" />
+            <Dependent Role="caja">
+              <PropertyRef Name="idempleado" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_idempleado_sucursal">
+          <End Type="gasstationpharmacyModel.empleado" Role="empleado" Multiplicity="1" />
+          <End Type="gasstationpharmacyModel.empleadosxsucursal" Role="empleadosxsucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empleado">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="empleadosxsucursal">
+              <PropertyRef Name="idempleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ventasxempleado">
+          <End Type="gasstationpharmacyModel.empleado" Role="empleado" Multiplicity="*" />
+          <End Type="gasstationpharmacyModel.venta" Role="venta" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -814,18 +795,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gasstationpharmacyModelStoreContainer" CdmEntityContainer="gspEntity">
-          <EntitySetMapping Name="cajas">
-            <EntityTypeMapping TypeName="gasstationpharmacyModel.caja">
-              <MappingFragment StoreEntitySet="caja">
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
-                <ScalarProperty Name="idcaja" ColumnName="idcaja" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="idempleado" ColumnName="idempleado" />
-                <ScalarProperty Name="efectivo" ColumnName="efectivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.cliente">
               <MappingFragment StoreEntitySet="cliente">
@@ -834,20 +803,6 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="papellido" ColumnName="papellido" />
                 <ScalarProperty Name="sapellido" ColumnName="sapellido" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="empleadoes">
-            <EntityTypeMapping TypeName="gasstationpharmacyModel.empleado">
-              <MappingFragment StoreEntitySet="empleado">
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="papellido" ColumnName="papellido" />
-                <ScalarProperty Name="sapellido" ColumnName="sapellido" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -932,14 +887,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ventasxempleado" TypeName="gasstationpharmacyModel.ventasxempleado" StoreEntitySet="ventasxempleado">
-            <EndProperty Name="empleado">
-              <ScalarProperty Name="cedula" ColumnName="idempleado" />
-            </EndProperty>
-            <EndProperty Name="venta">
-              <ScalarProperty Name="idventa" ColumnName="idventa" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="ventasxsucursal" TypeName="gasstationpharmacyModel.ventasxsucursal" StoreEntitySet="ventasxsucursal">
             <EndProperty Name="sucursales">
               <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
@@ -956,6 +903,40 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="cajas">
+            <EntityTypeMapping TypeName="gasstationpharmacyModel.caja">
+              <MappingFragment StoreEntitySet="caja">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="efectivo" ColumnName="efectivo" />
+                <ScalarProperty Name="idempleado" ColumnName="idempleado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+                <ScalarProperty Name="idcaja" ColumnName="idcaja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empleadoes">
+            <EntityTypeMapping TypeName="gasstationpharmacyModel.empleado">
+              <MappingFragment StoreEntitySet="empleado">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="sapellido" ColumnName="sapellido" />
+                <ScalarProperty Name="papellido" ColumnName="papellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ventasxempleado" TypeName="gasstationpharmacyModel.ventasxempleado" StoreEntitySet="ventasxempleado">
+            <EndProperty Name="venta">
+              <ScalarProperty Name="idventa" ColumnName="idventa" />
+            </EndProperty>
+            <EndProperty Name="empleado">
+              <ScalarProperty Name="cedula" ColumnName="idempleado" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

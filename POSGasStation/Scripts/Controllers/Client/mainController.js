@@ -117,6 +117,12 @@ angular.module("mainModule").controller("mainController", ["$scope", "$http", "$
         case 'cerrarCaja':
           $location.path("/Caja/cerrarCaja");
           break;
+        case 'gproveedores':
+          $location.path("/Admin/gproveedores");
+          break;
+        case 'nuevProvider':
+          $location.path("/Admin/nuevProvider");
+          break;
         default:
       }
     };

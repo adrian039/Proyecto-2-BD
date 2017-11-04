@@ -43,6 +43,31 @@ namespace RESTFUL.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        public IEnumerable<cajasxsucursal> getCajas([FromUri]int idSucursal)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.cajasxsucursals.Where(e => e.idsucursal == idSucursal);
+                    if (entity == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return entity.ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         [HttpPost]
         public HttpResponseMessage Post([FromBody] sucursale sucursal)

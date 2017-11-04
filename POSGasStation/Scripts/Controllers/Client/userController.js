@@ -108,12 +108,12 @@ $scope.getDireccion=function(id){
        if (msg.data){
         $scope.usernameEmp = username;
         var cedulaEmp = msg.data.cedula;
-        userService.setUser(msg.data);
         url='http://gsprest.azurewebsites.net/api/Empleados?cedula='+cedulaEmp;
         $scope.getHttp(url,(data)=>{
           $scope.options=data;
           $('#myModal').modal({ show: false});
           $('#myModal').modal("show");
+          userService.setUser(msg.data);
           userService.setEmpActive();
           
         })

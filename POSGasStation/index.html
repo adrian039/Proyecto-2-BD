@@ -177,16 +177,16 @@
                 </li>
 
                 <li class="dropdown">
-                    <a  class="dropdown-toggle" ng-click="goTo('abrirCaja')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Open Cash Register</a>
+                    <a  class="dropdown-toggle" ng-show="isEmpActive()&&!isAdmin()" ng-click="goTo('abrirCaja')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Open Cash Register</a>
                 </li>
                 <li class="dropdown">
-                  <a  class="dropdown-toggle" ng-click="goTo('cerrarCaja')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Close Cash Register</a>
+                  <a  class="dropdown-toggle" ng-show="isEmpActive()&&!isAdmin()" ng-click="goTo('cerrarCaja')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Close Cash Register</a>
                 </li>
                 <li class="dropdown">
-                  <a  class="dropdown-toggle" ng-click="goTo('gproveedores')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Providers</a>
+                  <a  class="dropdown-toggle" ng-show="isEmpActive()&&isAdmin()" ng-click="goTo('gproveedores')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Providers</a>
                 </li>
                 <li class="dropdown">
-                    <a  class="dropdown-toggle" ng-click="goTo('regVenta')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Sale</a>
+                    <a  class="dropdown-toggle" ng-show="isEmpActive()&&!isAdmin()" ng-click="goTo('regVenta')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">New Sale</a>
                 </li>
 
                 <li class="dropdown">
@@ -215,15 +215,6 @@
                   </li>
                   <li class="dropdown">
                     <a  class="dropdown-toggle" ng-show="isEmpActive()&&isAdmin()" ng-click="goTo('gsucursales')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stores Managment</a>
-                  </li>
-                <li class="dropdown ">
-                  <a  class="dropdown-toggle" ng-show="isActive()" ng-click= "goTo('allOrders')" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">My Orders</b></a>
-                </li>
-                <li class="dropdown ">
-                    <a  class="dropdown-toggle"  ng-show="isActive()" ng-click= "goTo('allForms')" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">My Forms</b></a>
-                  </li>
-                  <li class="dropdown ">
-                    <a  class="dropdown-toggle"  ng-show="isActive()" ng-click= "goTo('illnesses')" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-close-others="true" aria-expanded="false">My Illnesses</b></a>
                   </li>
               </ul>
             </div><!-- /.navbar-collapse -->

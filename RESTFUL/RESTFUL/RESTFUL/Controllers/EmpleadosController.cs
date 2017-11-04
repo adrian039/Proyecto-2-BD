@@ -20,7 +20,32 @@ namespace RESTFUL.Controllers
         }
 
         [HttpGet]
-        public empleado getbyid(int id)
+        public Models.EmployeeInfo getbyid([FromUri]int idemp)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.empleadoes.Join(entities.empleadosxsucursals,c => c.cedula, cm => cm.idempleado, (c, cm) => new Models.EmployeeInfo{ nombre = c.nombre, idsucursal = cm.idsucursal, cedula = c.cedula}).FirstOrDefault(e => e.cedula == idemp);
+                    if (entity == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return entity;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        [HttpGet]
+        public empleado getUserLoginInfo(int id)
         {
             try
             {
@@ -67,7 +92,7 @@ namespace RESTFUL.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage empleadoLogin([FromUri] string username, [FromUri] string pass)
+        public Models.EmployeeInfo empleadoLogin([FromUri] string username, [FromUri] string pass)
         {
             try
             {
@@ -75,20 +100,31 @@ namespace RESTFUL.Controllers
                 {
 
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.empleadoes.FirstOrDefault(e => e.username == username && e.password==pass);
+                    var entity = entities.empleadoes.Join(
+                        entities.empleadosxsucursals, 
+                        c => c.cedula, cm => cm.idempleado, 
+                        (c, cm) => new Models.EmployeeInfo {
+                            cedula = c.cedula,
+                            email = c.email,
+                            username = c.username,
+                            nombre = c.nombre,
+                            papellido = c.papellido,
+                            sapellido = c.sapellido,
+                            idrol = cm.idrol,
+                            idsucursal = cm.idsucursal }).FirstOrDefault(e => e.username == username);
                     if (entity == null)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.Conflict, "false"); 
+                        return null; 
                     }
                     else
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.OK, "true");
+                        return entity;
                     }
                 }
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+                return null;
             }
         }
 

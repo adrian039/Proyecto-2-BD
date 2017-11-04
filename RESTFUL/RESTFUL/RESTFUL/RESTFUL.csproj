@@ -259,6 +259,9 @@
     <Compile Include="caja.cs">
       <DependentUpon>databaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="cajasxsucursal.cs">
+      <DependentUpon>databaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="cliente.cs">
       <DependentUpon>databaseModel.tt</DependentUpon>
     </Compile>

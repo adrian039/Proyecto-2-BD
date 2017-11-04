@@ -64,6 +64,9 @@ INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES 
 INSERT INTO tipopago (nombre, descripcion) VALUES ('Tarjeta', 'pago mediante tarjeta de credito o debito');
 INSERT INTO tipopago (nombre, descripcion) VALUES ('Efectivo', 'pago mediante dinero en efectivo');
 
+INSERT INTO cajasxsucursal (idcaja, idsucursal) VALUES (1,1);
+INSERT INTO cajasxsucursal (idcaja, idsucursal) VALUES (1,2);
+
 INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12',1, 1,54500,0);
 INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12',1, 1,104000,1);
 

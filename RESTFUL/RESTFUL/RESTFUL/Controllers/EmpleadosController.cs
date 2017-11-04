@@ -20,32 +20,7 @@ namespace RESTFUL.Controllers
         }
 
         [HttpGet]
-        public Models.EmployeeInfo getbyid([FromUri]int idemp)
-        {
-            try
-            {
-                using (gspEntity entities = new gspEntity())
-                {
-                    entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.empleadoes.Join(entities.empleadosxsucursals,c => c.cedula, cm => cm.idempleado, (c, cm) => new Models.EmployeeInfo{ nombre = c.nombre, idsucursal = cm.idsucursal, cedula = c.cedula}).FirstOrDefault(e => e.cedula == idemp);
-                    if (entity == null)
-                    {
-                        return null;
-                    }
-                    else
-                    {
-                        return entity;
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
-        [HttpGet]
-        public empleado getUserLoginInfo(int id)
+        public empleado getbyid(int id)
         {
             try
             {
@@ -92,7 +67,7 @@ namespace RESTFUL.Controllers
         }
 
         [HttpPost]
-        public Models.EmployeeInfo empleadoLogin([FromUri] string username, [FromUri] string pass)
+        public empleado empleadoLogin([FromUri] string username, [FromUri] string pass)
         {
             try
             {
@@ -100,18 +75,7 @@ namespace RESTFUL.Controllers
                 {
 
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.empleadoes.Join(
-                        entities.empleadosxsucursals, 
-                        c => c.cedula, cm => cm.idempleado, 
-                        (c, cm) => new Models.EmployeeInfo {
-                            cedula = c.cedula,
-                            email = c.email,
-                            username = c.username,
-                            nombre = c.nombre,
-                            papellido = c.papellido,
-                            sapellido = c.sapellido,
-                            idrol = cm.idrol,
-                            idsucursal = cm.idsucursal }).FirstOrDefault(e => e.username == username);
+                    var entity = entities.empleadoes.FirstOrDefault(e => e.username == username && e.password==pass);
                     if (entity == null)
                     {
                         return null; 
@@ -127,6 +91,59 @@ namespace RESTFUL.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        public IEnumerable<Models.RolesxSucursal> getRol([FromUri]int cedula)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var temp = entities.empleadosxsucursals.Join(
+                         entities.sucursales,
+                         c => c.idsucursal, cm => cm.idsucursal,
+                         (c, cm) => new
+                         {
+                             sucursal = cm.nombre,
+                             idsucursal = c.idsucursal,
+                             idrol = c.idrol,
+                             cedula = c.idempleado
+                         }).Where(e => e.cedula == cedula);
+                    var entity = temp.Join(entities.roles, c => c.idrol, cm => cm.idrol, (c, cm) => new Models.RolesxSucursal
+                    {
+                        rol = cm.nombre,
+                        idrol = c.idrol,
+                        sucursal = c.sucursal,
+                        idsucursal = c.idsucursal
+                    });
+                    if (entity == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return entity.ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        /*var entity = entities.empleadoes.Join(
+                        entities.empleadosxsucursals, 
+                        c => c.cedula, cm => cm.idempleado, 
+                        (c, cm) => new Models.EmployeeInfo {
+                            cedula = c.cedula,
+                            email = c.email,
+                            username = c.username,
+                            nombre = c.nombre,
+                            papellido = c.papellido,
+                            sapellido = c.sapellido,
+                            idrol = cm.idrol,
+                            idsucursal = cm.idsucursal }).FirstOrDefault(e => e.username == username);*/
 
         [HttpPut]
         public HttpResponseMessage Put(int id, [FromBody]empleado empleado)

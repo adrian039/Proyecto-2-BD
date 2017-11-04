@@ -9,17 +9,8 @@ namespace RESTFUL.Controllers
 {
     public class CajaController : ApiController
     {
-        [HttpGet]
-        public IEnumerable<caja> getAll()
-        {
-            using (gspEntity entities = new gspEntity())
-            {
-                entities.Configuration.LazyLoadingEnabled = false;
-                return entities.cajas.ToList();
-            }
-        }
         [HttpPost]
-        public bool Post([FromBody] caja cajalog)
+        public HttpResponseMessage Post([FromBody] caja caja)
         {
             try
             {
@@ -27,15 +18,15 @@ namespace RESTFUL.Controllers
                 {
 
                     entities.Configuration.LazyLoadingEnabled = false;
-                    entities.cajas.Add(cajalog);
+                    entities.cajas.Add(caja);
                     entities.SaveChanges();
-                    var message = Request.CreateResponse(HttpStatusCode.Created, cajalog);
-                    return true;
+                    var message = Request.CreateResponse(HttpStatusCode.Created, caja);
+                    return message;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
     }

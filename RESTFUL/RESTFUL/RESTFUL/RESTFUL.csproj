@@ -265,6 +265,7 @@
     <Compile Include="cliente.cs">
       <DependentUpon>databaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

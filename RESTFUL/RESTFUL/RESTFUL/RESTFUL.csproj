@@ -270,6 +270,7 @@
     <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\ProductosSucursalController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -298,6 +299,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JSONSerializer.cs" />
+    <Compile Include="Models\consultaCant.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\RolesxSucursal.cs" />
     <Compile Include="producto.cs">

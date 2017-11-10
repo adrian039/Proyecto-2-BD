@@ -12,7 +12,7 @@ namespace RESTFUL.Controllers
     {
         
 
-       [HttpGet]
+       [HttpPost]
         public producto hayDisponible([FromBody]productosxsucursal prod)
         {
             try

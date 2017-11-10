@@ -299,7 +299,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JSONSerializer.cs" />
-    <Compile Include="Models\consultaCant.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="Models\RolesxSucursal.cs" />
     <Compile Include="producto.cs">

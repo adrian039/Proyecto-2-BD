@@ -18,6 +18,7 @@ namespace RESTFUL.Controllers
                 return entities.productos.ToList();
             }
         }
+
         [HttpGet]
         public producto getbyid(int id)
         {
@@ -64,6 +65,7 @@ namespace RESTFUL.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
         [HttpPut]
         public HttpResponseMessage Put(int id, [FromBody]producto producto)
         {
@@ -94,6 +96,7 @@ namespace RESTFUL.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {

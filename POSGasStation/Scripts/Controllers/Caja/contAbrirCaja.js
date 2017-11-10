@@ -61,8 +61,7 @@ function($scope,$http,userService,$location) {
 
   };
 
-  $scope.init = function(){  
-    alert("Sucursal "+userService.getSucursal());
+  $scope.init = function(){
     var url='http://gsprest.azurewebsites.net/api/Sucursales?idSucursal='+userService.getSucursal();
     $scope.getHttp(url,(data)=>{
       this.cajaList=data;

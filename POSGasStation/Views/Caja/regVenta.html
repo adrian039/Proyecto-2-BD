@@ -1,6 +1,7 @@
  
 <!-- MAIN CONTENT SECTION -->
-<section class="mainContent clearfix userProfile" ng-controller="contRegVenta" data-ng-init="init()">
+<div ng-controller="contRegVenta">
+<section class="mainContent clearfix userProfile" data-ng-init="init()">
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
@@ -17,9 +18,12 @@
                             <label>Client ID</label>
                             <input type="text" class="form-control" placeholder="ID" ng-model="idClient" required>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-1">
                             <br>
-                                <button type="submit" class="btn btn-primary" ng-click="openCash()" btn-block>Verify User</button>
+                                <button type="submit" class="btn btn-primary" ng-click="verifyUser()" btn-block>Verify User</button>
                         </div>
     
                 </div>
@@ -31,10 +35,10 @@
                     </div>
                     <div class="col-md-2">
                     <label>Quantity</label><br>
-                    <select ng-model="quantity" ng-value="qty" ng-options="number for number in [1,2,3,4,5,6,7,8,9,10]"></select>
+                    <select ng-model="qty" ng-options="number for number in [1,2,3,4,5,6,7,8,9,10]"></select>
                     </div>
                     <div class="col-md-1">
-                            <button type="submit" class="btn btn-primary" ng-click="openCash()" btn-block>Add Product</button> 
+                            <button type="submit" class="btn btn-primary" ng-click="addProduct()" btn-block>Add Product</button> 
                     </div>
                 
     
@@ -42,6 +46,10 @@
 
                 <div class="form-group">
                     <div style="overflow-y:scroll; overflow-x:hidden; height:300px; width:900px">
+                            <div class="list-group">
+                                <a class="list-group-item" ng-repeat="p in prodList"><h4>{{p.nombre}}</h4></a>
+                                
+                            </div>
                         
                     </div>
 
@@ -52,7 +60,7 @@
                 <div class="form-group">
                 <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3">
                    
-                        <button type="submit" class="btn btn-primary" ng-click="openCash()" btn-block>Register Sale</button>
+                        <button type="submit" class="btn btn-primary" ng-click="registerSale()" btn-block>Register Sale</button>
                    
                     
                 </div>
@@ -66,3 +74,34 @@
         </div>
         </div>
     </section>
+    <div class="modal fade"  id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">The client does not exist</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label>Choose an option</label><br>
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <button type="button" class="btn btn-primary" ng-click="goTo('signup')" data-dismiss="modal">Create Client</button> 
+                    </div>
+                
+                    <div class="col-md-5">
+                        <button type="button" class="btn btn-primary" ng-click="generic()" data-dismiss="modal">Generic Client</button>
+                    </div>
+                </div>
+                <br>
+                <br>
+               
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>

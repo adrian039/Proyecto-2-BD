@@ -50,12 +50,12 @@ function($scope,$http,userService,$location) {
       })
     }
     else{
-      alert("This cash register is has not been opened");
+      alert("This cash register has not been opened");
     }
   };
 
       $scope.init = function(){
-      alert("cerrado");
+
     };
 
 

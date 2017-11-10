@@ -44,6 +44,31 @@ namespace RESTFUL.Controllers
             }
         }
 
+        [HttpGet]
+        public cliente verifCliente(int cedula)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var resp = entities.clientes.FirstOrDefault(e => e.cedula == cedula);
+                    if (resp != null)
+                    {
+                        return  resp;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         [HttpPost]
         public HttpResponseMessage Post([FromBody] cliente cliente)
         {

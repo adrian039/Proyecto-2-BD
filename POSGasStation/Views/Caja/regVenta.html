@@ -47,7 +47,21 @@
                 <div class="form-group">
                     <div style="overflow-y:scroll; overflow-x:hidden; height:300px; width:900px">
                             <div class="list-group">
-                                <a class="list-group-item" ng-repeat="p in prodList"><h4>{{p.nombre}}</h4></a>
+                                <a class="list-group-item" ng-repeat="p in prodList"><h4>
+                                        <div class="form-group">
+                                                <div class="col-md-5">
+                                                    <label>{{p.nombre}}</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label>{{p.qty}}</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <br>
+                                                        <button type="submit" class="btn btn-danger" ng-click="deleteElement(p.nombre)" btn-block>Delete Product</button>
+                                                </div>
+                            
+                                        </div>
+                                </h4></a>
                                 
                             </div>
                         

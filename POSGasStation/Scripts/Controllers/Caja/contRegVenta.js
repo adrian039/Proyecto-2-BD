@@ -34,7 +34,18 @@ function($scope,$http,clientService,userService,$location) {
       "idsucursal": parseInt(userService.getSucursal())
     };
     $scope.postHttp(url,sendData,(data)=>{
-      this.prodList.push(data);
+      if(data){
+        data["qty"]=parseInt(this.qty);
+        var productos={
+          "nombre": data.nombre,
+          "qty":parseInt(this.qty)
+        };
+
+        this.prodList.push(productos);
+      }
+      else{
+        alert("The product does not exist or is not available");
+      }
     });
   };
 
@@ -44,6 +55,12 @@ function($scope,$http,clientService,userService,$location) {
     clientService.setDefaultClient();
     console.log("Current: "+clientService.getName());
     
+  }
+  $scope.deleteElement=function(prod){
+    for(var i=0;i<this.prodList.length;i++){
+      this.prodList.splice(i,1);
+      i--;
+    }
   }
   
   $scope.registerSale=function(){

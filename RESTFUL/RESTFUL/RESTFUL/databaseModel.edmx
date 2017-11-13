@@ -36,6 +36,15 @@
           <Property Name="sapellido" Type="varchar" MaxLength="60" />
           <Property Name="estado" Type="int4" />
         </EntityType>
+        <EntityType Name="detalleventa">
+          <Key>
+            <PropertyRef Name="idventa" />
+            <PropertyRef Name="idproducto" />
+          </Key>
+          <Property Name="idventa" Type="int4" Nullable="false" />
+          <Property Name="idproducto" Type="int4" Nullable="false" />
+          <Property Name="cantidad" Type="int4" />
+        </EntityType>
         <EntityType Name="empleado">
           <Key>
             <PropertyRef Name="cedula" />
@@ -175,6 +184,30 @@
             </Principal>
             <Dependent Role="cajasxsucursal">
               <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleventa_productos">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="detalleventa" Type="Self.detalleventa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="ean" />
+            </Principal>
+            <Dependent Role="detalleventa">
+              <PropertyRef Name="idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleventa_venta">
+          <End Role="venta" Type="Self.venta" Multiplicity="1" />
+          <End Role="detalleventa" Type="Self.detalleventa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="venta">
+              <PropertyRef Name="idventa" />
+            </Principal>
+            <Dependent Role="detalleventa">
+              <PropertyRef Name="idventa" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -338,6 +371,7 @@
           <EntitySet Name="caja" EntityType="Self.caja" Schema="public" store:Type="Tables" />
           <EntitySet Name="cajasxsucursal" EntityType="Self.cajasxsucursal" Schema="public" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="public" store:Type="Tables" />
+          <EntitySet Name="detalleventa" EntityType="Self.detalleventa" Schema="public" store:Type="Tables" />
           <EntitySet Name="empleado" EntityType="Self.empleado" Schema="public" store:Type="Tables" />
           <EntitySet Name="empleadosxsucursal" EntityType="Self.empleadosxsucursal" Schema="public" store:Type="Tables" />
           <EntitySet Name="productos" EntityType="Self.productos" Schema="public" store:Type="Tables" />
@@ -360,6 +394,14 @@
           <AssociationSet Name="fk_cajasxsucursal_sucursal" Association="Self.fk_cajasxsucursal_sucursal">
             <End Role="sucursales" EntitySet="sucursales" />
             <End Role="cajasxsucursal" EntitySet="cajasxsucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleventa_productos" Association="Self.fk_detalleventa_productos">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="detalleventa" EntitySet="detalleventa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleventa_venta" Association="Self.fk_detalleventa_venta">
+            <End Role="venta" EntitySet="venta" />
+            <End Role="detalleventa" EntitySet="detalleventa" />
           </AssociationSet>
           <AssociationSet Name="fk_empleadosxsucursal_roles" Association="Self.fk_empleadosxsucursal_roles">
             <End Role="roles" EntitySet="roles" />
@@ -453,6 +495,7 @@
           <NavigationProperty Name="productosxsucursals" Relationship="Self.fk_idproductos_sucursal" FromRole="productos" ToRole="productosxsucursal" />
           <NavigationProperty Name="proveedore" Relationship="Self.fk_productos_proveedores" FromRole="productos" ToRole="proveedores" />
           <Property Name="estado" Type="Int32" />
+          <NavigationProperty Name="detalleventas" Relationship="gasstationpharmacyModel.fk_detalleventa_productos" FromRole="producto" ToRole="detalleventa" />
         </EntityType>
         <EntityType Name="productosxsucursal">
           <Key>
@@ -523,6 +566,7 @@
           <NavigationProperty Name="tipopago" Relationship="Self.fk_venta_tipopago" FromRole="venta" ToRole="tipopago" />
           <NavigationProperty Name="sucursales" Relationship="Self.ventasxsucursal" FromRole="venta" ToRole="sucursales" />
           <NavigationProperty Name="empleadoes" Relationship="gasstationpharmacyModel.ventasxempleado" FromRole="venta" ToRole="empleado" />
+          <NavigationProperty Name="detalleventas" Relationship="gasstationpharmacyModel.fk_detalleventa_venta" FromRole="venta" ToRole="detalleventa" />
         </EntityType>
         <Association Name="fk_venta_clientes">
           <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
@@ -693,6 +737,15 @@
             <End Role="empleado" EntitySet="empleadoes" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
+          <EntitySet Name="detalleventas" EntityType="gasstationpharmacyModel.detalleventa" />
+          <AssociationSet Name="fk_detalleventa_productos" Association="gasstationpharmacyModel.fk_detalleventa_productos">
+            <End Role="producto" EntitySet="productos" />
+            <End Role="detalleventa" EntitySet="detalleventas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_detalleventa_venta" Association="gasstationpharmacyModel.fk_detalleventa_venta">
+            <End Role="venta" EntitySet="ventas" />
+            <End Role="detalleventa" EntitySet="detalleventas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="cajasxsucursal">
           <Key>
@@ -788,6 +841,41 @@
         <Association Name="ventasxempleado">
           <End Type="gasstationpharmacyModel.empleado" Role="empleado" Multiplicity="*" />
           <End Type="gasstationpharmacyModel.venta" Role="venta" Multiplicity="*" />
+        </Association>
+        <EntityType Name="detalleventa">
+          <Key>
+            <PropertyRef Name="idventa" />
+            <PropertyRef Name="idproducto" />
+          </Key>
+          <Property Name="idventa" Type="Int32" Nullable="false" />
+          <Property Name="idproducto" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" />
+          <NavigationProperty Name="producto" Relationship="gasstationpharmacyModel.fk_detalleventa_productos" FromRole="detalleventa" ToRole="producto" />
+          <NavigationProperty Name="venta" Relationship="gasstationpharmacyModel.fk_detalleventa_venta" FromRole="detalleventa" ToRole="venta" />
+        </EntityType>
+        <Association Name="fk_detalleventa_productos">
+          <End Type="gasstationpharmacyModel.producto" Role="producto" Multiplicity="1" />
+          <End Type="gasstationpharmacyModel.detalleventa" Role="detalleventa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="producto">
+              <PropertyRef Name="ean" />
+            </Principal>
+            <Dependent Role="detalleventa">
+              <PropertyRef Name="idproducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_detalleventa_venta">
+          <End Type="gasstationpharmacyModel.venta" Role="venta" Multiplicity="1" />
+          <End Type="gasstationpharmacyModel.detalleventa" Role="detalleventa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="venta">
+              <PropertyRef Name="idventa" />
+            </Principal>
+            <Dependent Role="detalleventa">
+              <PropertyRef Name="idventa" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -937,6 +1025,15 @@
               <ScalarProperty Name="cedula" ColumnName="idempleado" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="detalleventas">
+            <EntityTypeMapping TypeName="gasstationpharmacyModel.detalleventa">
+              <MappingFragment StoreEntitySet="detalleventa">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idproducto" ColumnName="idproducto" />
+                <ScalarProperty Name="idventa" ColumnName="idventa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

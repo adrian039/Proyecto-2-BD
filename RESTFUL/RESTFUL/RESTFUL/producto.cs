@@ -18,6 +18,7 @@ namespace RESTFUL
         public producto()
         {
             this.productosxsucursals = new HashSet<productosxsucursal>();
+            this.detalleventas = new HashSet<detalleventa>();
         }
     
         public int ean { get; set; }
@@ -30,5 +31,7 @@ namespace RESTFUL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productosxsucursal> productosxsucursals { get; set; }
         public virtual proveedore proveedore { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<detalleventa> detalleventas { get; set; }
     }
 }

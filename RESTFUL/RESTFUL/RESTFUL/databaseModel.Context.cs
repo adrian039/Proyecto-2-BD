@@ -37,5 +37,6 @@ namespace RESTFUL
         public virtual DbSet<cajasxsucursal> cajasxsucursals { get; set; }
         public virtual DbSet<caja> cajas { get; set; }
         public virtual DbSet<empleado> empleadoes { get; set; }
+        public virtual DbSet<detalleventa> detalleventas { get; set; }
     }
 }

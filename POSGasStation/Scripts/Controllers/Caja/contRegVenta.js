@@ -3,6 +3,7 @@ function($scope,$http,clientService,userService,$location) {
   $scope.idClient = "";
   $scope.ean="";
   $scope.qty="";
+  $scope.type="";
   $scope.prodList=[];
 
   $scope.init = function(){
@@ -38,7 +39,8 @@ function($scope,$http,clientService,userService,$location) {
         data["qty"]=parseInt(this.qty);
         var productos={
           "nombre": data.nombre,
-          "qty":parseInt(this.qty)
+          "qty":parseInt(this.qty),
+          "ean":this.ean
         };
 
         this.prodList.push(productos);
@@ -64,6 +66,38 @@ function($scope,$http,clientService,userService,$location) {
   }
   
   $scope.registerSale=function(){
+    var url="http://gsprest.azurewebsites.net/api/Ventas";
+    var prodVenta=[];
+    for (var i=0;i<this.prodList.length;i++){
+      var productos={
+        "ean":parseInt(this.prodList[i].ean),
+        "cantidad":this.prodList[i].qty
+      };
+      prodVenta.push(productos);
+    }
+    var payType=this.type.split(":",1);
+    var sendData = {
+      "idCliente": clientService.getID(),
+      "idEmpleado":userService.getUser().cedula,
+      "idSucursal": parseInt(userService.getSucursal()),
+      "tipoPago": parseInt(payType),
+      "productos":prodVenta
+    };
+    console.log(prodVenta);
+    if(prodVenta.length>0){
+      $scope.postHttp(url,sendData,(data)=>{
+        console.log("Data: "+data);
+        if(data!="null"){
+          alert("Order completed");
+        }
+        else{
+          alert("Error, check that the information is complete");
+        }
+      });
+    }else{
+      alert("You must add products");
+    }
+    
 
   };
 

@@ -29,7 +29,7 @@ angular.module("mainModule").service('clientService', function () {
         return ID;
     }
     this.setID=function(ced){
-        Id=ced;
+        ID=ced;
     }
 
 	this.reset = function () {

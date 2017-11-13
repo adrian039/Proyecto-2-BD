@@ -274,6 +274,7 @@
     <Compile Include="Controllers\ProveedoresController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VentasController.cs" />
     <Compile Include="databaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -303,6 +304,7 @@
     </Compile>
     <Compile Include="JSONSerializer.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\regVentaModel.cs" />
     <Compile Include="Models\RolesxSucursal.cs" />
     <Compile Include="producto.cs">
       <DependentUpon>databaseModel.tt</DependentUpon>

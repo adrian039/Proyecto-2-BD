@@ -14,6 +14,7 @@ namespace RESTFUL.Controllers
         {
             using (gspEntity entities = new gspEntity())
             {
+                //var prueba = entities.Database.SqlQuery<productosxsucursal>("BEGIN; Select * from sucursal(); COMMIT;");
                 entities.Configuration.LazyLoadingEnabled = false;
                 return entities.empleadoes.ToList();
             }

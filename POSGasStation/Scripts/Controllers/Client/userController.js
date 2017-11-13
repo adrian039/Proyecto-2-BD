@@ -4,6 +4,13 @@ function ($scope, $http, $location, $routeParams, userService, directionService,
   var states;
   var cities;
   var districts;
+
+  $scope.name;
+  $scope.surname;
+  $scope.sSurname;
+  $scope.id;
+
+
   $scope.selected;
   $scope.EmployeeCheck=false;
   $scope.getHttp = function (url, callback) {
@@ -91,7 +98,7 @@ else { alert("Error(01): Can't sign in, space in blank"); }
      );
     }
 
- 
+
 $scope.getDireccion=function(id){
     console.log("id: "+id);
     var url = 'http://'+getIp()+':58706/api/Direcciones?id='+id;
@@ -131,6 +138,20 @@ $scope.getDireccion=function(id){
       alert("Error(01): Can't sign in, space in blank or not getCaptcha");
     }
   };
+
+  $scope.createClient=function(){
+    var url='http://gsprest.azurewebsites.net/api/Clientes';
+    var sendData = {
+      "cedula": parseInt(this.id),
+      "nombre": this.name,
+      "papellido": this.surname,
+      "sapellido": this.sSurname,
+      "estado":1,
+    };
+    $scope.postHttp(url,sendData,(data)=>{
+     
+     });
+  }
 
   $scope.setSucursal=function(options,username){
     console.log("options: "+options);

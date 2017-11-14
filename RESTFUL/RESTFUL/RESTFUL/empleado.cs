@@ -19,6 +19,7 @@ namespace RESTFUL
         {
             this.empleadosxsucursals = new HashSet<empleadosxsucursal>();
             this.cajas = new HashSet<caja>();
+            this.ventas = new HashSet<venta>();
         }
     
         public int cedula { get; set; }
@@ -34,5 +35,7 @@ namespace RESTFUL
         public virtual ICollection<empleadosxsucursal> empleadosxsucursals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<caja> cajas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<venta> ventas { get; set; }
     }
 }

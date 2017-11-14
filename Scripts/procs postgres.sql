@@ -3,7 +3,8 @@ CREATE OR REPLACE FUNCTION REGVENTA (
     idEmpleado int,
     productos text,
     idSuc int,
-    tipoPago int
+    tipoPago int,
+    fech date
                                     )
 RETURNS TEXT AS $state$
     DECLARE p2 text;
@@ -15,7 +16,7 @@ RETURNS TEXT AS $state$
 BEGIN
 	cont:=0;
 	tam:=json_array_length(CAST(productos AS json));
-    INSERT INTO venta(idcliente, tpago, idsucursal) VALUES (idCliente, tipoPago, idSuc) RETURNING venta.idventa into idVenta;
+    INSERT INTO venta(idcliente, tpago, idsucursal, fecha) VALUES (idCliente, tipoPago, idSuc, fech) RETURNING venta.idventa into idVenta;
     INSERT INTO ventasxempleado(idventa, idempleado) VALUES (idVenta, idEmpleado);
 	WHILE cont<tam LOOP
         p2:=productos::json->cont;

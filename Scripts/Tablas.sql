@@ -71,6 +71,7 @@ CREATE TABLE VENTA(
   idCliente INT not null,
   tPago INT not null,
   idSucursal INT not null,
+  fecha DATE,
   
   PRIMARY KEY (idVenta)
 )

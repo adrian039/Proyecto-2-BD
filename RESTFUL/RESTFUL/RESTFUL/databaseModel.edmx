@@ -132,6 +132,7 @@
           <Property Name="idcliente" Type="int4" Nullable="false" />
           <Property Name="tpago" Type="int4" Nullable="false" />
           <Property Name="idsucursal" Type="int4" Nullable="false" />
+          <Property Name="fecha" Type="date" />
         </EntityType>
         <EntityType Name="ventasxempleado">
           <Key>
@@ -567,6 +568,7 @@
           <NavigationProperty Name="sucursales" Relationship="Self.ventasxsucursal" FromRole="venta" ToRole="sucursales" />
           <NavigationProperty Name="empleadoes" Relationship="gasstationpharmacyModel.ventasxempleado" FromRole="venta" ToRole="empleado" />
           <NavigationProperty Name="detalleventas" Relationship="gasstationpharmacyModel.fk_detalleventa_venta" FromRole="venta" ToRole="detalleventa" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
         </EntityType>
         <Association Name="fk_venta_clientes">
           <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
@@ -968,6 +970,7 @@
           <EntitySetMapping Name="ventas">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.venta">
               <MappingFragment StoreEntitySet="venta">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="idventa" ColumnName="idventa" />
                 <ScalarProperty Name="idcliente" ColumnName="idcliente" />
                 <ScalarProperty Name="tpago" ColumnName="tpago" />

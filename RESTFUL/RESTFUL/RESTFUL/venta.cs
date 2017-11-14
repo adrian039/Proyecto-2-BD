@@ -26,6 +26,7 @@ namespace RESTFUL
         public int idcliente { get; set; }
         public int tpago { get; set; }
         public int idsucursal { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
     
         public virtual cliente cliente { get; set; }
         public virtual sucursale sucursale { get; set; }

@@ -13,5 +13,6 @@ namespace RESTFUL.Models
        public JArray productos { get; set; }
        public int idSucursal {get; set;}
        public int tipoPago { get; set; }
+        public System.DateTime fecha { get; set; }
     }
 }

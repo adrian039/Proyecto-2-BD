@@ -49,7 +49,7 @@ namespace RESTFUL.Controllers
                         com.Parameters.Add(new NpgsqlParameter("P2", NpgsqlDbType.Text));
                         com.Parameters.Add(new NpgsqlParameter("P3", NpgsqlDbType.Integer));
                         com.Parameters.Add(new NpgsqlParameter("P4", NpgsqlDbType.Integer));
-                        com.Parameters.Add(new NpgsqlParameter("P5", NpgsqlDbType.Date));
+                        com.Parameters.Add(new NpgsqlParameter("P5", NpgsqlDbType.Timestamp));
                         com.Prepare();
                         com.Parameters[0].Value = venta.idCliente;
                         com.Parameters[1].Value = venta.idEmpleado;

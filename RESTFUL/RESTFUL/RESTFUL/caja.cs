@@ -19,7 +19,7 @@ namespace RESTFUL
         public System.DateTime fecha { get; set; }
         public Nullable<int> idempleado { get; set; }
         public Nullable<int> efectivo { get; set; }
-        public Nullable<int> tipo { get; set; }
+        public int tipo { get; set; }
     
         public virtual cajasxsucursal cajasxsucursal { get; set; }
         public virtual empleado empleado { get; set; }

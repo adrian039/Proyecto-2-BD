@@ -770,13 +770,14 @@
             <PropertyRef Name="idcaja" />
             <PropertyRef Name="idsucursal" />
             <PropertyRef Name="fecha" />
+            <PropertyRef Name="tipo" />
           </Key>
           <Property Name="idcaja" Type="Int32" Nullable="false" />
           <Property Name="idsucursal" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="6" />
           <Property Name="idempleado" Type="Int32" />
           <Property Name="efectivo" Type="Int32" />
-          <Property Name="tipo" Type="Int32" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="cajasxsucursal" Relationship="gasstationpharmacyModel.fk_caja_cajasxsucursal" FromRole="caja" ToRole="cajasxsucursal" />
           <NavigationProperty Name="empleado" Relationship="gasstationpharmacyModel.fk_caja_empleados" FromRole="caja" ToRole="empleado" />
         </EntityType>

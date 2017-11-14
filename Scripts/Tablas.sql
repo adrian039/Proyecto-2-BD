@@ -5,7 +5,7 @@ Fecha timestamp,
 idEmpleado INT,
 Efectivo INT,
 Tipo INT, 
-PRIMARY KEY (idCaja, Fecha, idSucursal)
+PRIMARY KEY (idCaja, Fecha, idSucursal, Tipo)
 )
 
 CREATE TABLE EMPLEADO(

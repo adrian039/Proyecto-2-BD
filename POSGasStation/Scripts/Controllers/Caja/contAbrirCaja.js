@@ -31,10 +31,9 @@ function($scope,$http,userService,$location) {
       return data;
     } 
     
-    today=(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
+    today=(year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds);
     console.log(today);
     if(!userService.getState()){
-    console.log(this.idCash);
     var url='http://gsprest.azurewebsites.net/api/Caja';
     var sendData = {
       "idcaja": this.idCash,

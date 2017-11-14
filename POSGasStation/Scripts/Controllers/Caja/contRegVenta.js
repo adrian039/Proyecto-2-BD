@@ -76,6 +76,28 @@ function($scope,$http,clientService,userService,$location) {
   
   $scope.registerSale=function(){
     if(userService.getState()){
+      var fecha = new Date();
+      var day = fecha.getDate() + "";
+      var month = (fecha.getMonth() + 1) + "";
+      var year = fecha.getFullYear() + "";
+      var hour = fecha.getHours() + "";
+      var minutes = fecha.getMinutes() + "";
+      var seconds = fecha.getSeconds() + "";
+      
+      day = checkZero(day);
+      month = checkZero(month);
+      year = checkZero(year);
+      hour = checkZero(hour);
+      mintues = checkZero(minutes);
+      seconds = checkZero(seconds);
+  
+      function checkZero(data){
+        if(data.length == 1){
+          data = "0" + data;
+        }
+        return data;
+      }
+      fecha=(year + "-" + month + "-" + day);
       var url="http://gsprest.azurewebsites.net/api/Ventas";
       var prodVenta=[];
       for (var i=0;i<this.prodList.length;i++){
@@ -91,7 +113,8 @@ function($scope,$http,clientService,userService,$location) {
         "idEmpleado":userService.getUser().cedula,
         "idSucursal": parseInt(userService.getSucursal()),
         "tipoPago": parseInt(payType),
-        "productos":prodVenta
+        "productos":prodVenta,
+        "fecha":fecha
       };
       console.log(prodVenta);
       if(prodVenta.length>0){

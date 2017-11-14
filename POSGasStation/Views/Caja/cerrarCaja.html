@@ -17,7 +17,24 @@
                 <input type="text" class="form-control" placeholder="Amount recieved" ng-model="amount" required>
                 <label>Summary of cashier</label> 
                 <div style="overflow-y:scroll; overflow-x:hidden; height:300px; width:900px">
+                    <div class="list-group">
+                        <a class="list-group-item" ng-repeat="r in resumen"><h4>
+                                <div class="form-group">
+                                        <div class="col-md-5">
+                                            <label>{{r.idventa}}</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>{{r.idcliente}}</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>{{r.tpago}}</label>
+                                        </div>
                     
+                                </div>
+                        </h4></a>
+                        
+                    </div>
+
                 </div>
     
                 </div>

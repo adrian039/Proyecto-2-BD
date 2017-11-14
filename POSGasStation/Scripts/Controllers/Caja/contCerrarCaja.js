@@ -2,6 +2,7 @@ angular.module("mainModule").controller("contCerrarCaja", ["$scope","$http","use
 function($scope,$http,userService,$location) {
   $scope.idCash = "";
   $scope.amount="";
+  $scope.resumen=[];
 
   $scope.closeCash=function(){
     var today = new Date();
@@ -29,7 +30,7 @@ function($scope,$http,userService,$location) {
       }
       return data;
     }
-    today=(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
+    today=(year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds);
 
     console.log(this.amount);
     if(userService.getState()){
@@ -54,7 +55,36 @@ function($scope,$http,userService,$location) {
     }
   };
 
-      $scope.init = function(){
+    $scope.init = function(){
+      if(userService.getState()){
+        var fecha = new Date();
+        var day = fecha.getDate() + "";
+        var month = (fecha.getMonth() + 1) + "";
+        var year = fecha.getFullYear() + "";
+        var hour = fecha.getHours() + "";
+        var minutes = fecha.getMinutes() + "";
+        var seconds = fecha.getSeconds() + "";
+        
+        day = checkZero(day);
+        month = checkZero(month);
+        year = checkZero(year);
+        hour = checkZero(hour);
+        mintues = checkZero(minutes);
+        seconds = checkZero(seconds);
+    
+        function checkZero(data){
+          if(data.length == 1){
+            data = "0" + data;
+          }
+          return data;
+        }
+        fecha=(year + "-" + month + "-" + day);
+        var url = 'http://gsprest.azurewebsites.net/api/Ventas?fecha='+fecha;
+        $scope.getHttp(url,(data)=>{
+          this.resumen=data;
+        })
+      }
+
 
     };
 

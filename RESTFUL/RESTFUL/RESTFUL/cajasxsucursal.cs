@@ -23,8 +23,8 @@ namespace RESTFUL
         public int idcaja { get; set; }
         public int idsucursal { get; set; }
     
-        public virtual sucursale sucursale { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<caja> cajas { get; set; }
+        public virtual sucursale sucursale { get; set; }
     }
 }

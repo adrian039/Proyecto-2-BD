@@ -18,7 +18,6 @@ namespace RESTFUL
         public venta()
         {
             this.sucursales = new HashSet<sucursale>();
-            this.empleadoes = new HashSet<empleado>();
             this.detalleventas = new HashSet<detalleventa>();
         }
     
@@ -33,8 +32,6 @@ namespace RESTFUL
         public virtual tipopago tipopago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sucursale> sucursales { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empleado> empleadoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<detalleventa> detalleventas { get; set; }
     }

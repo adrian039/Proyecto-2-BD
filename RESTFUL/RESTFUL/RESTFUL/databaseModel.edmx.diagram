@@ -23,17 +23,16 @@
         <AssociationConnector Association="gasstationpharmacyModel.fk_venta_sucursal" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_venta_tipopago" ManuallyRouted="false" />
         <AssociationConnector Association="gasstationpharmacyModel.ventasxsucursal" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.cajasxsucursal" Width="1.5" PointX="6.125" PointY="0.75" />
-        <AssociationConnector Association="gasstationpharmacyModel.fk_cajasxsucursal_sucursal" />
-        <EntityTypeShape EntityType="gasstationpharmacyModel.caja" Width="1.5" PointX="10.625" PointY="1.125" />
         <EntityTypeShape EntityType="gasstationpharmacyModel.empleado" Width="1.5" PointX="8.375" PointY="1" />
-        <AssociationConnector Association="gasstationpharmacyModel.fk_caja_cajasxsucursal" />
-        <AssociationConnector Association="gasstationpharmacyModel.fk_caja_empleados" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_idempleado_sucursal" />
-        <AssociationConnector Association="gasstationpharmacyModel.ventasxempleado" />
         <EntityTypeShape EntityType="gasstationpharmacyModel.detalleventa" Width="1.5" PointX="8.25" PointY="5.125" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_detalleventa_productos" />
         <AssociationConnector Association="gasstationpharmacyModel.fk_detalleventa_venta" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.caja" Width="1.5" PointX="10.625" PointY="2" />
+        <EntityTypeShape EntityType="gasstationpharmacyModel.cajasxsucursal" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_caja_cajasxsucursal" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_caja_empleados" />
+        <AssociationConnector Association="gasstationpharmacyModel.fk_cajasxsucursal_sucursal" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

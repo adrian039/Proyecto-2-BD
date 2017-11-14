@@ -34,9 +34,9 @@ namespace RESTFUL
         public virtual DbSet<sucursale> sucursales { get; set; }
         public virtual DbSet<tipopago> tipopagoes { get; set; }
         public virtual DbSet<venta> ventas { get; set; }
-        public virtual DbSet<cajasxsucursal> cajasxsucursals { get; set; }
-        public virtual DbSet<caja> cajas { get; set; }
         public virtual DbSet<empleado> empleadoes { get; set; }
         public virtual DbSet<detalleventa> detalleventas { get; set; }
+        public virtual DbSet<caja> cajas { get; set; }
+        public virtual DbSet<cajasxsucursal> cajasxsucursals { get; set; }
     }
 }

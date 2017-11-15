@@ -11,5 +11,6 @@ namespace RESTFUL.Models
         public int idrol { get; set; }
         public string sucursal { get; set; }
         public int idsucursal { get; set; }
+        public int idempresa { get; set; }
     }
 }

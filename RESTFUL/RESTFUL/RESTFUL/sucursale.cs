@@ -17,11 +17,12 @@ namespace RESTFUL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public sucursale()
         {
+            this.cajasxsucursals = new HashSet<cajasxsucursal>();
             this.empleadosxsucursals = new HashSet<empleadosxsucursal>();
             this.productosxsucursals = new HashSet<productosxsucursal>();
             this.ventas = new HashSet<venta>();
+            this.empresas = new HashSet<empresa>();
             this.ventas1 = new HashSet<venta>();
-            this.cajasxsucursals = new HashSet<cajasxsucursal>();
         }
     
         public int idsucursal { get; set; }
@@ -31,14 +32,16 @@ namespace RESTFUL
         public Nullable<int> estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<cajasxsucursal> cajasxsucursals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empleadosxsucursal> empleadosxsucursals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<productosxsucursal> productosxsucursals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<venta> ventas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<venta> ventas1 { get; set; }
+        public virtual ICollection<empresa> empresas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cajasxsucursal> cajasxsucursals { get; set; }
+        public virtual ICollection<venta> ventas1 { get; set; }
     }
 }

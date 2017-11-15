@@ -12,29 +12,17 @@ namespace RESTFUL
     using System;
     using System.Collections.Generic;
     
-    public partial class venta
+    public partial class empresa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public venta()
+        public empresa()
         {
-            this.detalleventas = new HashSet<detalleventa>();
-            this.empleadoes = new HashSet<empleado>();
             this.sucursales = new HashSet<sucursale>();
         }
     
-        public int idventa { get; set; }
-        public int idcliente { get; set; }
-        public int tpago { get; set; }
-        public int idsucursal { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
+        public int idempresa { get; set; }
+        public string nombre { get; set; }
     
-        public virtual cliente cliente { get; set; }
-        public virtual tipopago tipopago { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<detalleventa> detalleventas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empleado> empleadoes { get; set; }
-        public virtual sucursale sucursale { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<sucursale> sucursales { get; set; }
     }

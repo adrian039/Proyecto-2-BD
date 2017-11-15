@@ -38,6 +38,39 @@ namespace RESTFUL.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        public IEnumerable<ProductosModel> getProductos([FromUri] int idSucursal)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.productosxsucursals.Join(entities.productos,c=>c.idproducto,cm=>cm.ean,(c, cm) => new ProductosModel
+                    {
+                        ean = cm.ean,
+                        idproveedor = cm.idproveedor,
+                        nombre = cm.nombre,
+                        imagen = cm.imagen,
+                        descripcion = cm.descripcion,
+                        Sucursal = c.idsucursal
+                    }).Where(e => e.Sucursal == idSucursal);
+                    if (entity != null)
+                    {
+                        return entity.ToList();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
     }
 }

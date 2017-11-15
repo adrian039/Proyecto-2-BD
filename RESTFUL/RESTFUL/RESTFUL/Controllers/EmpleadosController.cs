@@ -115,7 +115,8 @@ namespace RESTFUL.Controllers
                         rol = cm.nombre,
                         idrol = c.idrol,
                         sucursal = c.sucursal,
-                        idsucursal = c.idsucursal
+                        idsucursal = c.idsucursal,
+                        idempresa = 1
                     });
                     if (entity == null)
                     {

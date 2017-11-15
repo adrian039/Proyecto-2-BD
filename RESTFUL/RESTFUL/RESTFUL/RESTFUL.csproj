@@ -299,11 +299,15 @@
     <Compile Include="empleadosxsucursal.cs">
       <DependentUpon>databaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="empresa.cs">
+      <DependentUpon>databaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="JSONSerializer.cs" />
     <Compile Include="Models\EmployeeInfo.cs" />
+    <Compile Include="Models\ProductosModel.cs" />
     <Compile Include="Models\regVentaModel.cs" />
     <Compile Include="Models\RolesxSucursal.cs" />
     <Compile Include="producto.cs">

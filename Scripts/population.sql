@@ -70,4 +70,10 @@ INSERT INTO cajasxsucursal (idcaja, idsucursal) VALUES (1,2);
 INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12T10:00:00',1, 1,54500,0);
 INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES (1,'2017-03-12T09:00:00',1, 1,104000,1);
 
+INSERT INTO EMPRESA (nombre) VALUES ('Phischel');
+INSERT INTO EMPRESA (nombre) VALUES ('BombaTica');
 
+INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (1,3);
+INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (1,4);
+INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (2,1);
+INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (2,2);

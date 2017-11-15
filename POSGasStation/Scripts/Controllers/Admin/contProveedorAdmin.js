@@ -5,8 +5,8 @@ function($scope,$http,userService) {
       $scope.init = function(){
         console.log(userService.getCompany());
         var url='http://gsprest.azurewebsites.net/api/Proveedores?id='+userService.getCompany();
-        $http.get(url).then(function(msg){
-          console.log(msg);
+        $scope.getHttp(url,(data)=>{
+          this.providerList=data;
         });
 
       };
@@ -16,24 +16,7 @@ function($scope,$http,userService) {
       }
 
       $scope.delete=function(id,nme){
-        var url = 'http://'+getIp()+':58706/api/Empleados';
-        var data={
-          "idEmpleado":id
-        };
-        $http({
-          method: 'DELETE',
-          url: url,
-          data: data,
-          headers: {
-              'Content-type': 'application/json;charset=utf-8'
-          }
-      })
-      .then(function(response) {
-        alert("Employee "+nme+" fired");
-        $scope.init();
-      }, function(rejection) {
-          console.log(rejection.data);
-      });
+        \
       }
       
 

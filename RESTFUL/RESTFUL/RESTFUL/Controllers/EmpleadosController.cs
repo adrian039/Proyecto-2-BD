@@ -108,7 +108,8 @@ namespace RESTFUL.Controllers
                              sucursal = cm.nombre,
                              idsucursal = c.idsucursal,
                              idrol = c.idrol,
-                             cedula = c.idempleado
+                             cedula = c.idempleado,
+                             idempresa = cm.idempresa
                          }).Where(e => e.cedula == cedula);
                     var entity = temp.Join(entities.roles, c => c.idrol, cm => cm.idrol, (c, cm) => new Models.RolesxSucursal
                     {
@@ -116,7 +117,7 @@ namespace RESTFUL.Controllers
                         idrol = c.idrol,
                         sucursal = c.sucursal,
                         idsucursal = c.idsucursal,
-                        idempresa = 1
+                        idempresa = c.idempresa.Value
                     });
                     if (entity == null)
                     {
@@ -134,18 +135,47 @@ namespace RESTFUL.Controllers
                 return null;
             }
         }
-        /*var entity = entities.empleadoes.Join(
-                        entities.empleadosxsucursals, 
-                        c => c.cedula, cm => cm.idempleado, 
-                        (c, cm) => new Models.EmployeeInfo {
-                            cedula = c.cedula,
-                            email = c.email,
-                            username = c.username,
-                            nombre = c.nombre,
-                            papellido = c.papellido,
-                            sapellido = c.sapellido,
-                            idrol = cm.idrol,
-                            idsucursal = cm.idsucursal }).FirstOrDefault(e => e.username == username);*/
+        [HttpGet]
+        public IEnumerable<Models.EmployeeInfo> getEmpleadosxEmpresa([FromUri]int idEmpresa)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var temp = entities.sucursales.Join(
+                         entities.empleadosxsucursals,
+                         c => c.idsucursal, cm => cm.idsucursal,
+                         (c, cm) => new
+                         {
+                             idempleado = cm.idempleado,
+                             idempresa = c.idempresa.Value
+                         }).Where(e => e.idempresa == idEmpresa);
+                    var entity = temp.Join(entities.empleadoes, c => c.idempleado, cm => cm.cedula, (c, cm) => new Models.EmployeeInfo
+                    {
+                        cedula = cm.cedula,
+                        email = cm.email,
+                        username = cm.username,
+                        nombre = cm.nombre,
+                        papellido = cm.papellido,
+                        sapellido = cm.sapellido
+                    });
+                    if (entity == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return entity.Distinct().ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         [HttpPut]
         public HttpResponseMessage Put(int id, [FromBody]empleado empleado)

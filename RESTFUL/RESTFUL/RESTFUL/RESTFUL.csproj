@@ -310,6 +310,7 @@
     <Compile Include="Models\ProductosModel.cs" />
     <Compile Include="Models\regVentaModel.cs" />
     <Compile Include="Models\RolesxSucursal.cs" />
+    <Compile Include="Models\test.cs" />
     <Compile Include="producto.cs">
       <DependentUpon>databaseModel.tt</DependentUpon>
     </Compile>

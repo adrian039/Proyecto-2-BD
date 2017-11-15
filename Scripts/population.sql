@@ -10,10 +10,10 @@ INSERT INTO empleado (cedula, email, nombre, papellido, sapellido, password, use
 INSERT INTO empleado (cedula, email, nombre, papellido, sapellido, password, username, estado) VALUES (4,'adriansanchez2015101969@gmail.com','Adrian','Sanchez','Anderson','pato123', 'asanchez',1);
 INSERT INTO empleado (cedula, email, nombre, papellido, sapellido, password, username, estado) VALUES (5,'afelipe.vargas.r@gmail.com','Andres','Vargas','Rivera','123', 'avargas', 1);
 
-INSERT INTO sucursales ( nombre, direccion, estado, imagen) VALUES ('Centro Escazu', 'Bomba Escazu',1,'');
-INSERT INTO sucursales ( nombre, direccion, estado, imagen) VALUES ('Centro de Desamparados', 'Bomba Alajuela',1,'');
-INSERT INTO sucursales ( nombre, direccion, estado, imagen) VALUES ('Phischel Mall', 'Phischel Mall San Pedro',1,'');
-INSERT INTO sucursales ( nombre, direccion, estado, imagen) VALUES ('Phischel Central', 'Phischel San Jose', 1,'');
+INSERT INTO sucursales ( nombre, direccion, estado, imagen, idempresa) VALUES ('Centro Escazu', 'Bomba Escazu',1,'',2);
+INSERT INTO sucursales ( nombre, direccion, estado, imagen, idempresa) VALUES ('Centro de Desamparados', 'Bomba Alajuela',1,'',2);
+INSERT INTO sucursales ( nombre, direccion, estado, imagen, idempresa) VALUES ('Phischel Mall', 'Phischel Mall San Pedro',1,'',1);
+INSERT INTO sucursales ( nombre, direccion, estado, imagen, idempresa) VALUES ('Phischel Central', 'Phischel San Jose', 1,'',1);
 
 INSERT INTO roles (nombre, descripcion, estado) VALUES ('Administrador','Admin de la farmacia', 1);
 INSERT INTO roles (nombre, descripcion, estado) VALUES ('Cajero','Maneja diner en la farmacia', 1);

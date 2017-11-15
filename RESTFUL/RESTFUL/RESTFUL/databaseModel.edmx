@@ -123,14 +123,7 @@
           <Property Name="direccion" Type="varchar" MaxLength="150" />
           <Property Name="imagen" Type="text" />
           <Property Name="estado" Type="int4" />
-        </EntityType>
-        <EntityType Name="sucursalxempresa">
-          <Key>
-            <PropertyRef Name="idempresa" />
-            <PropertyRef Name="idsucursal" />
-          </Key>
-          <Property Name="idempresa" Type="int4" Nullable="false" />
-          <Property Name="idsucursal" Type="int4" Nullable="false" />
+          <Property Name="idempresa" Type="int4" />
         </EntityType>
         <EntityType Name="tipopago">
           <Key>
@@ -324,30 +317,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_sucursal_empresa">
-          <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
-          <End Role="sucursalxempresa" Type="Self.sucursalxempresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empresa">
-              <PropertyRef Name="idempresa" />
-            </Principal>
-            <Dependent Role="sucursalxempresa">
-              <PropertyRef Name="idempresa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_sucursal_sucursalxempresa">
-          <End Role="sucursales" Type="Self.sucursales" Multiplicity="1" />
-          <End Role="sucursalxempresa" Type="Self.sucursalxempresa" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sucursales">
-              <PropertyRef Name="idsucursal" />
-            </Principal>
-            <Dependent Role="sucursalxempresa">
-              <PropertyRef Name="idsucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_venta_clientes">
           <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
@@ -421,7 +390,6 @@
           <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="public" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="public" store:Type="Tables" />
           <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="public" store:Type="Tables" />
-          <EntitySet Name="sucursalxempresa" EntityType="Self.sucursalxempresa" Schema="public" store:Type="Tables" />
           <EntitySet Name="tipopago" EntityType="Self.tipopago" Schema="public" store:Type="Tables" />
           <EntitySet Name="venta" EntityType="Self.venta" Schema="public" store:Type="Tables" />
           <EntitySet Name="ventasxempleado" EntityType="Self.ventasxempleado" Schema="public" store:Type="Tables" />
@@ -477,14 +445,6 @@
           <AssociationSet Name="fk_productos_proveedores" Association="Self.fk_productos_proveedores">
             <End Role="proveedores" EntitySet="proveedores" />
             <End Role="productos" EntitySet="productos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_sucursal_empresa" Association="Self.fk_sucursal_empresa">
-            <End Role="empresa" EntitySet="empresa" />
-            <End Role="sucursalxempresa" EntitySet="sucursalxempresa" />
-          </AssociationSet>
-          <AssociationSet Name="fk_sucursal_sucursalxempresa" Association="Self.fk_sucursal_sucursalxempresa">
-            <End Role="sucursales" EntitySet="sucursales" />
-            <End Role="sucursalxempresa" EntitySet="sucursalxempresa" />
           </AssociationSet>
           <AssociationSet Name="fk_venta_clientes" Association="Self.fk_venta_clientes">
             <End Role="cliente" EntitySet="cliente" />
@@ -604,7 +564,7 @@
           <NavigationProperty Name="empleadoes" Relationship="gasstationpharmacyModel.ventasxempleado" FromRole="venta" ToRole="empleado" />
           <NavigationProperty Name="sucursale" Relationship="gasstationpharmacyModel.fk_venta_sucursal" FromRole="venta" ToRole="sucursale" />
           <NavigationProperty Name="sucursales" Relationship="gasstationpharmacyModel.ventasxsucursal" FromRole="venta" ToRole="sucursale" />
-        </EntityType>
+          </EntityType>
         <Association Name="fk_venta_clientes">
           <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
@@ -740,15 +700,11 @@
             <End Role="sucursale" EntitySet="sucursales" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
-          <AssociationSet Name="sucursalxempresa" Association="gasstationpharmacyModel.sucursalxempresa">
-            <End Role="empresa" EntitySet="empresas" />
-            <End Role="sucursale" EntitySet="sucursales" />
-          </AssociationSet>
           <AssociationSet Name="ventasxsucursal" Association="gasstationpharmacyModel.ventasxsucursal">
             <End Role="sucursale" EntitySet="sucursales" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="empleado">
           <Key>
             <PropertyRef Name="cedula" />
@@ -874,7 +830,6 @@
           </Key>
           <Property Name="idempresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="sucursales" Relationship="gasstationpharmacyModel.sucursalxempresa" FromRole="empresa" ToRole="sucursale" />
         </EntityType>
         <EntityType Name="sucursale">
           <Key>
@@ -885,11 +840,11 @@
           <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="estado" Type="Int32" />
+          <Property Name="idempresa" Type="Int32" />
           <NavigationProperty Name="cajasxsucursals" Relationship="gasstationpharmacyModel.fk_cajasxsucursal_sucursal" FromRole="sucursale" ToRole="cajasxsucursal" />
           <NavigationProperty Name="empleadosxsucursals" Relationship="gasstationpharmacyModel.fk_idsucursal_sucursales" FromRole="sucursale" ToRole="empleadosxsucursal" />
           <NavigationProperty Name="productosxsucursals" Relationship="gasstationpharmacyModel.fk_idsucursal_sucursal" FromRole="sucursale" ToRole="productosxsucursal" />
           <NavigationProperty Name="ventas" Relationship="gasstationpharmacyModel.fk_venta_sucursal" FromRole="sucursale" ToRole="venta" />
-          <NavigationProperty Name="empresas" Relationship="gasstationpharmacyModel.sucursalxempresa" FromRole="sucursale" ToRole="empresa" />
           <NavigationProperty Name="ventas1" Relationship="gasstationpharmacyModel.ventasxsucursal" FromRole="sucursale" ToRole="venta" />
         </EntityType>
         <Association Name="fk_cajasxsucursal_sucursal">
@@ -940,15 +895,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="sucursalxempresa">
-          <End Type="gasstationpharmacyModel.empresa" Role="empresa" Multiplicity="*" />
-          <End Type="gasstationpharmacyModel.sucursale" Role="sucursale" Multiplicity="*" />
-        </Association>
         <Association Name="ventasxsucursal">
           <End Type="gasstationpharmacyModel.sucursale" Role="sucursale" Multiplicity="*" />
           <End Type="gasstationpharmacyModel.venta" Role="venta" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1098,6 +1049,7 @@
           <EntitySetMapping Name="sucursales">
             <EntityTypeMapping TypeName="gasstationpharmacyModel.sucursale">
               <MappingFragment StoreEntitySet="sucursales">
+                <ScalarProperty Name="idempresa" ColumnName="idempresa" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="imagen" ColumnName="imagen" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
@@ -1106,14 +1058,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="sucursalxempresa" TypeName="gasstationpharmacyModel.sucursalxempresa" StoreEntitySet="sucursalxempresa">
-            <EndProperty Name="sucursale">
-              <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
-            </EndProperty>
-            <EndProperty Name="empresa">
-              <ScalarProperty Name="idempresa" ColumnName="idempresa" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="ventasxsucursal" TypeName="gasstationpharmacyModel.ventasxsucursal" StoreEntitySet="ventasxsucursal">
             <EndProperty Name="venta">
               <ScalarProperty Name="idventa" ColumnName="idventa" />
@@ -1122,7 +1066,7 @@
               <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
             </EndProperty>
           </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

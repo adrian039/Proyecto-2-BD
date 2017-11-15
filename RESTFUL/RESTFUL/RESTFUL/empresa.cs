@@ -14,16 +14,7 @@ namespace RESTFUL
     
     public partial class empresa
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public empresa()
-        {
-            this.sucursales = new HashSet<sucursale>();
-        }
-    
         public int idempresa { get; set; }
         public string nombre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sucursale> sucursales { get; set; }
     }
 }

@@ -1,27 +1,12 @@
 angular.module("mainModule").controller("contProveedorAdmin",["$scope","$http","userService",
 function($scope,$http,userService) {
-  $scope.employeelist;
-  $scope. idAdmin=empresaAdmin;
-  var emp;
-
-
-  $scope.getHttp= function(url , callback){
-    var httpObject = $http.get(url);
-    httpObject.then(function(promise){
-      callback(promise.data);
-    }, function(error){ console.log(error);})}
-
-    $scope.postHttp = function(url,data,callback){
-      var httpObject = $http.post(url,data);
-      httpObject.then(function(promise){
-        callback(promise.data);
-      }, function(error){ console.log(error);})}
+  $scope.providerList
 
       $scope.init = function(){
-        var url = 'http://'+getIp()+':58706/api/Empleados?idSuc='+userService.getSucursal();
+        console.log(userService.getCompany());
+        var url='http://gsprest.azurewebsites.net/api/Proveedores?id='+userService.getCompany();
         $http.get(url).then(function(msg){
-          emp= msg.data;
-          $scope.employeelist = emp;
+          console.log(msg);
         });
 
       };

@@ -1,19 +1,7 @@
 angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","directionService",'storeService','$location','userService',
 
   function($scope,$http,directionService,storeService,$location,userService) {
-    var states;
-    var cities;
-    var districts;
-
-    $scope.id;
-    $scope.name;
-    $scope.empEmail;
-    $scope.empUser;
-    $scope.userPass;
-    $scope.empSur;
-    $scope.empSecSur;
-    $scope.empDate;
-    $scope.dirSpec;
+  
     var rol;
 
 
@@ -27,59 +15,7 @@ angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","direct
           rol = pRol;
       }
 
-      $scope.UpdateDirection = function () {
-        console.log("direction update");
-        var url = 'http://'+getIp()+':58706/api/Provincias';
-        $http.get(url)
-        .then(function successCallback(data) {
-          console.log(data);
-          $scope.states = data.data;
-          $scope.getRols();
-        },
-        function errorCallback(response) {
-          alert(response);
-        });
-      };
-      $scope.UpdateCities = function (_id) {
-        directionService.setState(_id);
-        var url = 'http://'+getIp()+':58706/api/Cantones?idProvincia=' + _id;
-        $http.get(url)
-        .then(function successCallback(data) {
-          console.log(data);
-          $scope.cities = data.data;
-        },
-        function errorCallback(response) {
-          alert(response);
-        });
-      };
-      $scope.UpdateDistricts = function (_id) {
-        directionService.setCity(_id);
-        var url = 'http://'+getIp()+':58706/api/Distrito?idCanton=' + _id;
-        $http.get(url)
-        .then(function successCallback(data) {
-          console.log(data);
-          $scope.districts = data.data;
-        },
-        function errorCallback(response) {
-          alert(response);
-        });
-      };
-      $scope.setDistrict = function (_id) {
-        directionService.setDisctrict(_id);
-      };
-      $scope.setDirection = function (username, password, conPassword, name, surname, sSurname, id, dirSpec, date, email,admin,sucAd) {
-        var url = 'http://'+getIp()+':58706/api/Direcciones';
-        var sendData = {
-          "Provincia": directionService.getState(),
-          "Canton": directionService.getCity(),
-          "Distrito": directionService.getDistrict(),
-          "Descripcion": dirSpec
-        };
-        $scope.postHttp(url,sendData,(data)=>{
-          console.log("dir: "+data.idDireccion);
-          $scope.createEmployee(username, password, conPassword, name, surname, sSurname, id, data.idDireccion, date, email,admin,sucAd);
-        })
-      };
+      
 
       $scope.createEmployee = function (username, password, conPassword, name, surname, sSurname, id, dir, date, email,admin,sucAd) {
         if(admin){rol=1;} 

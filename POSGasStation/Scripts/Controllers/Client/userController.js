@@ -11,6 +11,8 @@ function ($scope, $http, $location, $routeParams, userService, directionService,
   $scope.id;
 
 
+
+
   $scope.selected;
   $scope.EmployeeCheck=false;
   $scope.getHttp = function (url, callback) {
@@ -154,13 +156,13 @@ $scope.getDireccion=function(id){
   }
 
   $scope.setSucursal=function(options,username){
-    console.log("options: "+options);
     userService.setRol(options.idrol);
     userService.setSucursal(options.idsucursal);
-    userService.setCompany(options.idEmpresa);
+    userService.setCompany(options.idempresa);
     userService.setEmpActive();
     console.log("Rol "+userService.getRol());
     console.log("Sucursal "+userService.getSucursal());
+    console.log("Empresa "+userService.getCompany())
     $location.path("/Home");
   }
 

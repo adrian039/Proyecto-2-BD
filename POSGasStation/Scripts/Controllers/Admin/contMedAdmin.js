@@ -1,33 +1,13 @@
 angular.module("mainModule").controller("contMedAdmin",["$scope","$http","userService",
 function($scope,$http,userService) {
   $scope.medList;
-  $scope.idAdmin=empresaAdmin;
-  var client;
-  $scope.getHttp= function(url , callback){
-    var httpObject = $http.get(url);
-    httpObject.then(function(promise){
-      callback(promise.data);
-    }, function(error){ console.log(error);})}
 
-    $scope.postHttp = function(url,data,callback){
-      var httpObject = $http.post(url,data);
-      httpObject.then(function(promise){
-        callback(promise.data);
-      }, function(error){ console.log(error);})}
-
-      $scope.provedores = function(){
-        var url = 'http://'+getIp()+':58706/api/Proveedores';
-        $http.get(url).then(function(msg){
-          $scope.provList = msg.data;
-        });
-      }
 
       $scope.init = function(){
-        var url = 'http://'+getIp()+':58706/api/Productos?idSucursal='+userService.getSucursal();
-        $http.get(url).then(function(msg){
-          client = msg.data;
-          $scope.medList = client;
-        });
+        var url='http://gsprest.azurewebsites.net/api/ProductosSucursal?idSucursal='+userService.getSucursal();
+        $scope.getHttp(url,(data)=>{
+          this.medList=data;
+        })
 
       }
 

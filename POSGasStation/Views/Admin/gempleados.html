@@ -12,19 +12,19 @@
                     <tr>
                       <th>Employee Name</th>
                       <th>User & Email</th>
-                      <th>Employee ID</th>
+											<th>Employee ID</th>
                       <th></th>
                       <th></th>
                   </tr>
               </thead>
               <tbody>
               	<tr   ng-repeat="s in employeelist">
-              		<td>  {{s.Nombre}} {{s.pApellido}} </td>
-              		<td> <p>{{s.Username}} </p>
-              		<p>{{s.Email}}</p></td>
+              		<td>  {{s.nombre}} {{s.papellido}} </td>
+              		<td> <p>{{s.usernamo}} </p>
+              		<p>{{s.email}}</p></td>
               		<td> 
-              		{{s.idEmpleado}}
-              		</td>
+              		{{s.idempleado}}
+									</td>
               		<td><a class="btn btn-info" data-toggle="modal" data-target="#myModal">Edit</a></td>
               		<td><a class="btn btn-danger" ng-click="delete(s.idEmpleado,s.Nombre)">delete</a></td>
                     </tr>

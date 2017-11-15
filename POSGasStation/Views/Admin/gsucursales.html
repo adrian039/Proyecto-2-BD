@@ -19,9 +19,9 @@
                   </thead>
                   <tbody>
                     <tr   ng-repeat="s in sucList" >
-                      <td><i class="fa fa-medkit" aria-hidden="true"></i>  {{s.Nombre}}</td>
-                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.idSucursal}}</td>
-                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.detalleDireccion}}</td>
+                      <td><i class="fa fa-medkit" aria-hidden="true"></i>  {{s.nombre}}</td>
+                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.idsucursal}}</td>
+                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.direccion}}</td>
                       <td><a class="btn btn-info" ng-click="setSuc(s.idSucursal)" data-toggle="modal" data-target="#myModal">Edit</a></td>
                       <td><a class="btn btn-danger" ng-click="delete(s.idSucursal)">delete</a></td>
                     </tr>

@@ -10,6 +10,7 @@
                 <table class="table" >
                   <thead>
                     <tr>
+                      <th>Image</th>
                       <th>Product Name</th>
                       <th>Prodcut ID</th>
                       <th>Description</th>
@@ -19,6 +20,8 @@
                   </thead>
                   <tbody>
                     <tr ng-repeat="s in medList">
+                      <td><i></i> <img  src="{{s.imagen}}" style="width: 50px; height: 50px;" alt="image"></span></td>
+                      <td><i></i>  {{s.nombre}} </td>
                       <td><i></i>  {{s.nombre}} </td>
                       <td><i></i> {{s.ean}}</td>
                       <td><i></i> {{s.descripcion}}</td>

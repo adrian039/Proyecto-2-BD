@@ -4,7 +4,7 @@ CREATE OR REPLACE FUNCTION REGVENTA (
     productos text,
     idSuc int,
     tipoPago int,
-    fech date
+    fech timestamp
                                     )
 RETURNS TEXT AS $state$
     DECLARE p2 text;

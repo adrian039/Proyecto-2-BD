@@ -20,6 +20,15 @@ namespace RESTFUL.Controllers
             }
         }
 
+       /* [HttpGet]
+        public HttpResponseMessage getRolbySucursal([FromUri]int suc)
+        {
+            using (gspEntity entitie=new )
+            {
+
+            }
+        }
+        */
         [HttpPost]
         public HttpResponseMessage regRol([FromBody] role rol)
         {

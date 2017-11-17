@@ -27,8 +27,9 @@ angular.module("mainModule").controller("contNuevSucAdmin", ["$scope","$http","d
 
      $scope.postHttp(url,sendData,(data)=>{
         console.log("Data: "+data);
+        alert("Store created");
       });
-
+      
     }
 
   }]);

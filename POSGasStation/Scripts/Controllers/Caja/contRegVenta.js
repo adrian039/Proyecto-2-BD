@@ -97,7 +97,7 @@ function($scope,$http,clientService,userService,$location) {
         }
         return data;
       }
-      fecha=(year + "-" + month + "-" + day);
+      fecha=(year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds);
       var url="http://gsprest.azurewebsites.net/api/Ventas";
       var prodVenta=[];
       for (var i=0;i<this.prodList.length;i++){

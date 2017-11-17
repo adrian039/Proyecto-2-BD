@@ -18,8 +18,8 @@ namespace RESTFUL
         public int idsucursal { get; set; }
         public int idrol { get; set; }
     
-        public virtual role role { get; set; }
         public virtual empleado empleado { get; set; }
+        public virtual role role { get; set; }
         public virtual sucursale sucursale { get; set; }
     }
 }

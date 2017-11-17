@@ -48,25 +48,21 @@ function($scope,$http,userService) {
 
       }
 
-      $scope.delete=function(id,nme){
-        var url = 'http://'+getIp()+':58706/api/Productos/';
-        var data={
-          "idProducto":id,
-        };
-        $http({
-          method: 'DELETE',
-          url: url,
-          data: data,
-          headers: {
-              'Content-type': 'application/json;charset=utf-8'
-          }
-      })
-      .then(function(response) {
-        alert("Product "+nme+" deleted");
-        $scope.init();
-      }, function(rejection) {
-          console.log(rejection.data);
-      });
+      $scope.delete=function(id){
+        var url = 'http://gsprest.azurewebsites.net/api/ProductosSucursal?prod='+id+'&suc='+userService.getSucursal();
+        
+        $http.delete(url)
+        .then(
+            function(response){
+              // success callback
+              console.log("se elimino");
+              $scope.init();
+
+            }, 
+            function(response){
+              // failure callback
+            }
+         );
       
     }
 

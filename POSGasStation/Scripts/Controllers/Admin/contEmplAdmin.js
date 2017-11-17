@@ -44,17 +44,16 @@ function($scope,$http,userService) {
             );
       }
 
-      $scope.delete=function(){
+      $scope.delete=function(id){
 
-        var url = 'http://gsprest.azurewebsites.net/api/Clientes/'+id;
+        var url = 'http://gsprest.azurewebsites.net/api/Empleados/'+id;
         
-        $http.delete(url,data)
+        $http.delete(url)
         .then(
             function(response){
               // success callback
-              console.log("erase");
-              animation();
-
+              console.log("Se elimino");
+              $scope.init();
             }, 
             function(response){
               // failure callback

@@ -72,7 +72,7 @@ namespace RESTFUL.Controllers
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                return message;
             }
         }
     }

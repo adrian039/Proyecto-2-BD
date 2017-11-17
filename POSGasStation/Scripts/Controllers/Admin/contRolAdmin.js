@@ -4,20 +4,47 @@ function($scope,$http,userService) {
   
 
       $scope.init = function(){
-        var url='http://gsprest.azurewebsites.net/api/Sucursales?idSucxRol='+userService.getSucursal();
+        var url='http://gsprest.azurewebsites.net/api/Roles';
         $scope.getHttp(url,(data)=>{
           this.rolList=data;
         });
 
       };
 
+      $scope.updateRol = function(id,desc,name){
+        var url='http://gsprest.azurewebsites.net/api/Roles';
+        var send={
+          "idrol": id,
+          "nombre": name,
+          "descripcion": desc,
+          "estado": 1
+        }
+        $http.put(url,send)
+        .then(
+            function(response){
+              // success callback
+              console.log("update");
+              $scope.init();
+            }, 
+            function(response){
+              // failure callback
+            }
+         );
+      };
 
-
-
-      $scope.edit=function(id,name,desc){
-    
-      }
-      $scope.delete=function(id,nme,desc){
-
+      $scope.deleteRol=function(id){
+        console.log("id rol: "+id);
+        var url='http://gsprest.azurewebsites.net/api/Roles?idRol='+id;
+        $http.delete(url)
+        .then(
+            function(response){
+              // success callback
+              alert("Rol Deleted");
+              $scope.init();
+            }, 
+            function(response){
+              // failure callback
+            }
+         );
       }
     }]);

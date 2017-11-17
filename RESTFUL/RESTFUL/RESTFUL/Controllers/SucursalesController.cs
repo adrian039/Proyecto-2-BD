@@ -68,6 +68,65 @@ namespace RESTFUL.Controllers
                 return null;
             }
         }
+        [HttpGet]
+        public IEnumerable<sucursale> getSucursalesxEmpresa([FromUri]int idEmpresa)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.sucursales.Where(e => e.idempresa == idEmpresa);
+                    if (entity == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return entity.ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        [HttpGet]
+        public IEnumerable<Models.Roles> getRoles([FromUri]int idSucxRol)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.empleadosxsucursals.Join(
+                         entities.roles,
+                         c => c.idrol, cm => cm.idrol,
+                         (c, cm) => new Models.Roles
+                         {
+                             idrol = c.idrol,
+                             nombre = cm.nombre,
+                             descripcion = cm.descripcion,
+                             idsucursal = c.idsucursal
+                         }).Where(e => e.idsucursal == idSucxRol);
+                    if (entity == null)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return entity.ToList();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         [HttpPost]
         public HttpResponseMessage Post([FromBody] sucursale sucursal)

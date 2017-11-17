@@ -390,14 +390,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="regventa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="public" ReturnType="text">
-          <Parameter Name="idcliente" Type="int4" Mode="In" />
-          <Parameter Name="idempleado" Type="int4" Mode="In" />
-          <Parameter Name="productos" Type="text" Mode="In" />
-          <Parameter Name="idsuc" Type="int4" Mode="In" />
-          <Parameter Name="tipopago" Type="int4" Mode="In" />
-          <Parameter Name="fech" Type="date" Mode="In" />
-        </Function>
         <EntityContainer Name="GasStationPharmacyModelStoreContainer">
           <EntitySet Name="caja" EntityType="Self.caja" Schema="public" store:Type="Tables" />
           <EntitySet Name="cajasxsucursal" EntityType="Self.cajasxsucursal" Schema="public" store:Type="Tables" />
@@ -1125,7 +1117,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

@@ -10,13 +10,13 @@
         <EntityTypeShape EntityType="GasStationPharmacyModel.cliente" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.detalleventa" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.empleado" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GasStationPharmacyModel.empleadosxsucursal" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GasStationPharmacyModel.empleadosxsucursal" Width="1.5" PointX="6.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.empresa" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.producto" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.productosxsucursal" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.proveedore" Width="1.5" PointX="0.75" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.role" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GasStationPharmacyModel.sucursale" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GasStationPharmacyModel.sucursale" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.tipopago" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.venta" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="GasStationPharmacyModel.fk_caja_cajasxsucursal" ManuallyRouted="false" />
@@ -36,6 +36,10 @@
         <AssociationConnector Association="GasStationPharmacyModel.fk_venta_tipopago" ManuallyRouted="false" />
         <AssociationConnector Association="GasStationPharmacyModel.ventasxempleado" ManuallyRouted="false" />
         <AssociationConnector Association="GasStationPharmacyModel.ventasxsucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="GasStationPharmacyModel.rolesxsucursal1" />
+        <EntityTypeShape EntityType="GasStationPharmacyModel.rolesxsucursal" Width="1.5" PointX="6" PointY="9.5" />
+        <AssociationConnector Association="GasStationPharmacyModel.fk_rolesxsucursal_roles" />
+        <AssociationConnector Association="GasStationPharmacyModel.fk_rolesxsucursal_sucursal" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

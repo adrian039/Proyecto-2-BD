@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using RESTFUL.Models;
 
 namespace RESTFUL.Controllers
 {
@@ -20,15 +21,33 @@ namespace RESTFUL.Controllers
             }
         }
 
-       /* [HttpGet]
+        [HttpGet]
         public HttpResponseMessage getRolbySucursal([FromUri]int suc)
         {
-            using (gspEntity entitie=new )
+            try
             {
-
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var temp = entities.roles.Join(
+                          entities.rolesxsucursals,
+                          c => c.idrol, cm => cm.idrol,
+                          (c, cm) => new rolSucursal
+                          {
+                              idrol = c.idrol,
+                              nombre = c.nombre,
+                              descripcion = c.descripcion,
+                              estado = c.estado,
+                              idsucursal= cm.idsucursal,
+                          }).Where(e => e.idsucursal == suc).ToList();
+                    return Request.CreateResponse(HttpStatusCode.OK, temp);
+                }
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
-        */
+        
         [HttpPost]
         public HttpResponseMessage regRol([FromBody] role rol)
         {

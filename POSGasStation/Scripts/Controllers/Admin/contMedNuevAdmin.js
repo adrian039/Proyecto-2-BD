@@ -12,8 +12,8 @@ function($scope,$http,$location,userService) {
 
       $scope.init = function(){
         var url = "http://gsprest.azurewebsites.net/api/Proveedores";
-        $scope.postHttp(url,sendData,(data)=>{
-          console.log("Data: "+data);
+        $scope.getHttp(url,(data)=>{
+          this.providerList=data;
         });
       }
 

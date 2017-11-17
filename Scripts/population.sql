@@ -49,17 +49,17 @@ INSERT INTO productos(ean, idproveedor, nombre, descripcion, estado, imagen) VAL
 INSERT INTO productos(ean, idproveedor, nombre, descripcion, estado, imagen) VALUES (9,2,'chicles','N/A',1,'');
 INSERT INTO productos(ean, idproveedor, nombre, descripcion, estado, imagen) VALUES (10,0,'cataflan','para el dolor',1,'');
 
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,1,10,500);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,2,10,1200);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,3,10,250);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,4,10,2200);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,5,10,100);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,6,10,400);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,7,10,120);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,8,10,875);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,9,10,525);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (1,10,10,330);
-INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio) VALUES (2,0,10,1200);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,1,10,500,1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,2,10,1200, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,3,10,250, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,4,10,2200, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,5,10,100, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,6,10,400, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,7,10,120, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,8,10,875, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,9,10,525, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (1,10,10,330, 1);
+INSERT INTO productosxsucursal (idsucursal,idproducto, cantidad, precio, estado) VALUES (2,0,10,1200, 1);
 
 INSERT INTO tipopago (nombre, descripcion) VALUES ('Tarjeta', 'pago mediante tarjeta de credito o debito');
 INSERT INTO tipopago (nombre, descripcion) VALUES ('Efectivo', 'pago mediante dinero en efectivo');
@@ -72,8 +72,3 @@ INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES 
 
 INSERT INTO EMPRESA (nombre) VALUES ('Phischel');
 INSERT INTO EMPRESA (nombre) VALUES ('BombaTica');
-
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (1,3);
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (1,4);
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (2,1);
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (2,2);

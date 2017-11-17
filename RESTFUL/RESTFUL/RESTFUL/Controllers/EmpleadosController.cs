@@ -117,7 +117,7 @@ namespace RESTFUL.Controllers
                         idrol = c.idrol,
                         sucursal = c.sucursal,
                         idsucursal = c.idsucursal,
-                        idempresa = c.idempresa.Value
+                        idempresa = c.idempresa
                     });
                     if (entity == null)
                     {
@@ -149,7 +149,7 @@ namespace RESTFUL.Controllers
                          (c, cm) => new
                          {
                              idempleado = cm.idempleado,
-                             idempresa = c.idempresa.Value
+                             idempresa = c.idempresa
                          }).Where(e => e.idempresa == idEmpresa);
                     var entity = temp.Join(entities.empleadoes, c => c.idempleado, cm => cm.cedula, (c, cm) => new Models.EmployeeInfo
                     {
@@ -224,7 +224,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.empleadoes.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Empleado Deleted");
                     }

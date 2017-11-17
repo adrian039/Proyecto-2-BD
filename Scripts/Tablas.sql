@@ -92,6 +92,7 @@ CREATE TABLE PRODUCTOSXSUCURSAL(
   idProducto INT not null,
   Cantidad INT,
   Precio INT,
+  Estado INT,
   
   PRIMARY KEY (idSucursal, idProducto)
 )

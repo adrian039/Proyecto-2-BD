@@ -21,6 +21,12 @@ INSERT INTO roles (nombre, descripcion, estado) VALUES ('Farmaceutico','Vendedor
 INSERT INTO roles (nombre, descripcion, estado) VALUES ('Ingeniero','Administra de la app', 1);
 INSERT INTO roles (nombre, descripcion, estado) VALUES ('Doctor','Medico general', 1);
 
+INSERT INTO rolesxsucursal (idrol, idsucursal) VALUES (1,1);
+INSERT INTO rolesxsucursal (idrol, idsucursal) VALUES (2,1);
+INSERT INTO rolesxsucursal (idrol, idsucursal) VALUES (3,1);
+INSERT INTO rolesxsucursal (idrol, idsucursal) VALUES (4,2);
+INSERT INTO rolesxsucursal (idrol, idsucursal) VALUES (5,2);
+
 INSERT INTO empleadosxsucursal (idsucursal, idempleado, idrol) VALUES (1, 1, 1);
 INSERT INTO empleadosxsucursal (idsucursal, idempleado, idrol) VALUES (2, 2, 2);
 INSERT INTO empleadosxsucursal (idsucursal, idempleado, idrol) VALUES (3, 3, 3);

@@ -115,6 +115,15 @@
           <Property Name="descripcion" Type="varchar" MaxLength="150" />
           <Property Name="estado" Type="int4" />
         </EntityType>
+        <EntityType Name="rolesxsucursal">
+          <Key>
+            <PropertyRef Name="idrol" />
+            <PropertyRef Name="idsucursal" />
+          </Key>
+          <Property Name="idrol" Type="int4" Nullable="false" />
+          <Property Name="idsucursal" Type="int4" Nullable="false" />
+          <Property Name="idempresa" Type="int4" />
+        </EntityType>
         <EntityType Name="sucursales">
           <Key>
             <PropertyRef Name="idsucursal" />
@@ -318,6 +327,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_rolesxsucursal_roles">
+          <End Role="roles" Type="Self.roles" Multiplicity="1" />
+          <End Role="rolesxsucursal" Type="Self.rolesxsucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="roles">
+              <PropertyRef Name="idrol" />
+            </Principal>
+            <Dependent Role="rolesxsucursal">
+              <PropertyRef Name="idrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rolesxsucursal_sucursal">
+          <End Role="sucursales" Type="Self.sucursales" Multiplicity="1" />
+          <End Role="rolesxsucursal" Type="Self.rolesxsucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursales">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="rolesxsucursal">
+              <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_sucursal_empresa">
           <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
           <End Role="sucursales" Type="Self.sucursales" Multiplicity="*" />
@@ -402,6 +435,7 @@
           <EntitySet Name="productosxsucursal" EntityType="Self.productosxsucursal" Schema="public" store:Type="Tables" />
           <EntitySet Name="proveedores" EntityType="Self.proveedores" Schema="public" store:Type="Tables" />
           <EntitySet Name="roles" EntityType="Self.roles" Schema="public" store:Type="Tables" />
+          <EntitySet Name="rolesxsucursal" EntityType="Self.rolesxsucursal" Schema="public" store:Type="Tables" />
           <EntitySet Name="sucursales" EntityType="Self.sucursales" Schema="public" store:Type="Tables" />
           <EntitySet Name="tipopago" EntityType="Self.tipopago" Schema="public" store:Type="Tables" />
           <EntitySet Name="venta" EntityType="Self.venta" Schema="public" store:Type="Tables" />
@@ -458,6 +492,14 @@
           <AssociationSet Name="fk_productos_proveedores" Association="Self.fk_productos_proveedores">
             <End Role="proveedores" EntitySet="proveedores" />
             <End Role="productos" EntitySet="productos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rolesxsucursal_roles" Association="Self.fk_rolesxsucursal_roles">
+            <End Role="roles" EntitySet="roles" />
+            <End Role="rolesxsucursal" EntitySet="rolesxsucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rolesxsucursal_sucursal" Association="Self.fk_rolesxsucursal_sucursal">
+            <End Role="sucursales" EntitySet="sucursales" />
+            <End Role="rolesxsucursal" EntitySet="rolesxsucursal" />
           </AssociationSet>
           <AssociationSet Name="fk_sucursal_empresa" Association="Self.fk_sucursal_empresa">
             <End Role="empresa" EntitySet="empresa" />
@@ -618,7 +660,7 @@
           <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="estado" Type="Int32" />
           <NavigationProperty Name="empleadosxsucursals" Relationship="Self.fk_empleadosxsucursal_roles" FromRole="roles" ToRole="empleadosxsucursal" />
-        </EntityType>
+          <NavigationProperty Name="rolesxsucursals" Relationship="GasStationPharmacyModel.fk_rolesxsucursal_roles" FromRole="role" ToRole="rolesxsucursal" /> </EntityType>
         <EntityType Name="sucursale">
           <Key>
             <PropertyRef Name="idsucursal" />
@@ -635,6 +677,7 @@
           <NavigationProperty Name="productosxsucursals" Relationship="Self.fk_idsucursal_sucursal" FromRole="sucursales" ToRole="productosxsucursal" />
           <NavigationProperty Name="ventas" Relationship="Self.fk_venta_sucursal" FromRole="sucursales" ToRole="venta" />
           <NavigationProperty Name="ventas1" Relationship="Self.ventasxsucursal" FromRole="sucursales" ToRole="venta" />
+          <NavigationProperty Name="rolesxsucursals" Relationship="GasStationPharmacyModel.fk_rolesxsucursal_sucursal" FromRole="sucursale" ToRole="rolesxsucursal" />
         </EntityType>
         <EntityType Name="tipopago">
           <Key>
@@ -934,7 +977,51 @@
             <End Role="sucursales" EntitySet="sucursales" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
+          <EntitySet Name="rolesxsucursals" EntityType="GasStationPharmacyModel.rolesxsucursal" />
+          <AssociationSet Name="fk_rolesxsucursal_roles" Association="GasStationPharmacyModel.fk_rolesxsucursal_roles">
+            <End Role="role" EntitySet="roles" />
+            <End Role="rolesxsucursal" EntitySet="rolesxsucursals" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rolesxsucursal_sucursal" Association="GasStationPharmacyModel.fk_rolesxsucursal_sucursal">
+            <End Role="sucursale" EntitySet="sucursales" />
+            <End Role="rolesxsucursal" EntitySet="rolesxsucursals" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="rolesxsucursal">
+          <Key>
+            <PropertyRef Name="idrol" />
+            <PropertyRef Name="idsucursal" />
+          </Key>
+          <Property Name="idrol" Type="Int32" Nullable="false" />
+          <Property Name="idsucursal" Type="Int32" Nullable="false" />
+          <Property Name="idempresa" Type="Int32" />
+          <NavigationProperty Name="role" Relationship="GasStationPharmacyModel.fk_rolesxsucursal_roles" FromRole="rolesxsucursal" ToRole="role" />
+          <NavigationProperty Name="sucursale" Relationship="GasStationPharmacyModel.fk_rolesxsucursal_sucursal" FromRole="rolesxsucursal" ToRole="sucursale" />
+        </EntityType>
+        <Association Name="fk_rolesxsucursal_roles">
+          <End Type="GasStationPharmacyModel.role" Role="role" Multiplicity="1" />
+          <End Type="GasStationPharmacyModel.rolesxsucursal" Role="rolesxsucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="idrol" />
+            </Principal>
+            <Dependent Role="rolesxsucursal">
+              <PropertyRef Name="idrol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rolesxsucursal_sucursal">
+          <End Type="GasStationPharmacyModel.sucursale" Role="sucursale" Multiplicity="1" />
+          <End Type="GasStationPharmacyModel.rolesxsucursal" Role="rolesxsucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sucursale">
+              <PropertyRef Name="idsucursal" />
+            </Principal>
+            <Dependent Role="rolesxsucursal">
+              <PropertyRef Name="idsucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1103,6 +1190,15 @@
               <ScalarProperty Name="idventa" ColumnName="idventa" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="rolesxsucursals">
+            <EntityTypeMapping TypeName="GasStationPharmacyModel.rolesxsucursal">
+              <MappingFragment StoreEntitySet="rolesxsucursal">
+                <ScalarProperty Name="idempresa" ColumnName="idempresa" />
+                <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
+                <ScalarProperty Name="idrol" ColumnName="idrol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1117,7 +1213,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />

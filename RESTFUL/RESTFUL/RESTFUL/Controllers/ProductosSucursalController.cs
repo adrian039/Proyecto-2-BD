@@ -11,8 +11,27 @@ namespace RESTFUL.Controllers
     public class ProductosSucursalController : ApiController
     {
 
-
         [HttpPost]
+        public HttpResponseMessage regProductoxSucursal([FromBody] productosxsucursal prod)
+        {
+            try
+            {
+                using (gspEntity entities=new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    entities.productosxsucursals.Add(prod);
+                    entities.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, prod);
+                }
+
+            }catch(Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+
+        }
+
+        [HttpGet]
         public producto hayDisponible([FromBody]productosxsucursal prod)
         {
             try

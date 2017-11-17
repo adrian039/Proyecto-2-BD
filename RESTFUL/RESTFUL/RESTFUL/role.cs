@@ -18,6 +18,7 @@ namespace RESTFUL
         public role()
         {
             this.empleadosxsucursals = new HashSet<empleadosxsucursal>();
+            this.rolesxsucursals = new HashSet<rolesxsucursal>();
         }
     
         public int idrol { get; set; }
@@ -27,5 +28,7 @@ namespace RESTFUL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empleadosxsucursal> empleadosxsucursals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rolesxsucursal> rolesxsucursals { get; set; }
     }
 }

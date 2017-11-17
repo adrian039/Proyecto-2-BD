@@ -312,6 +312,7 @@
     <Compile Include="Models\regVentaModel.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\RolesxSucursal.cs" />
+    <Compile Include="Models\rolSucursal.cs" />
     <Compile Include="Models\test.cs" />
     <Compile Include="producto.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
@@ -324,6 +325,9 @@
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="role.cs">
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rolesxsucursal.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sucursale.cs">

@@ -51,7 +51,55 @@ CREATE OR REPLACE FUNCTION process_raid() RETURNS TRIGGER AS $raid$
                 PERFORM dblink_exec('raid_server','INSERT INTO productos VALUES ('|| NEW.ean ||','|| NEW.idproveedor ||','|| '''' || NEW.nombre || '''' ||','|| '''' || NEW.imagen || '''' ||','|| '''' || NEW.descripcion || '''' ||','|| NEW.estado||');');
                 RETURN NEW;
             ELSEIF (TG_OP = 'UPDATE') THEN
-            
+            	PERFORM dblink_exec('raid_server','UPDATE productos SET idproveedor='|| NEW.idproveedor ||',nombre='|| '''' || NEW.nombre || '''' ||',imagen='|| '''' || NEW.imagen || '''' ||',descripcion='|| '''' || NEW.descripcion || '''' ||',estado='|| NEW.estado||' WHERE ean='|| OLD.ean ||';');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'productosxsucursal') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO productosxsucursal VALUES ('|| NEW.idsucursal ||','|| NEW.idproducto ||','|| NEW.cantidad ||','|| NEW.precio ||');');
+                RETURN NEW;
+            ELSEIF (TG_OP = 'UPDATE') THEN
+            	PERFORM dblink_exec('raid_server','UPDATE productosxsucursal SET idsucursal='|| NEW.idsucursal ||',idproducto='|| NEW.idproducto ||',cantidad='|| NEW.cantidad ||',precio='|| NEW.precio ||' WHERE idsucursal='|| OLD.idsucursal ||' AND idproducto='|| OLD.idproducto ||';');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'proveedores') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO proveedores VALUES ('|| NEW.idproveedor ||','|| '''' || NEW.nombre || '''' ||','|| NEW.telefono ||','|| NEW.estado ||');');
+                RETURN NEW;
+            ELSEIF (TG_OP = 'UPDATE') THEN
+            	PERFORM dblink_exec('raid_server','UPDATE proveedores SET idproveedor='|| NEW.idproveedor ||',nombre='|| '''' || NEW.nombre || '''' ||',telefono='|| NEW.telefono ||',estado='|| NEW.estado ||' WHERE idproveedor='|| OLD.idproveedor ||';');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'roles') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO roles VALUES ('|| NEW.idrol ||','|| '''' || NEW.nombre || '''' ||','|| '''' || NEW.descripcion || '''' ||','|| NEW.estado ||');');
+                RETURN NEW;
+            ELSEIF (TG_OP = 'UPDATE') THEN
+            	PERFORM dblink_exec('raid_server','UPDATE roles SET idrol='|| NEW.idrol ||',nombre='|| '''' || NEW.nombre || '''' ||',descripcion='|| '''' || NEW.descripcion || '''' ||',estado='|| NEW.estado ||' WHERE idrol='|| OLD.idrol ||';');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'sucursales') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO sucursales VALUES ('|| NEW.idsucursal ||','|| NEW.idempresa ||','|| '''' || NEW.nombre || '''' ||','|| '''' || NEW.direccion || '''' ||','|| '''' ||NEW.imagen || '''' ||',' || NEW.estado ||');');
+                RETURN NEW;
+            ELSEIF (TG_OP = 'UPDATE') THEN
+            	PERFORM dblink_exec('raid_server','UPDATE sucursales SET idempresa='|| NEW.idempresa ||',nombre='|| '''' || NEW.nombre || '''' ||',direccion='|| '''' || NEW.direccion || '''' ||',imagen='|| '''' || NEW.imagen|| '''' ||',estado='|| NEW.estado ||' WHERE idsucursal='|| OLD.idsucursal ||';');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'tipopago') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO tipopago VALUES ('|| NEW.idtipo ||','|| '''' || NEW.nombre || '''' ||','|| '''' || NEW.descripcion || '''' ||');');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'ventasxempleado') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO ventasxempleado VALUES ('|| NEW.idventa ||','|| NEW.idempleado ||');');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'ventasxsucursal') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO ventasxsucursal VALUES ('|| NEW.idsucursal ||','|| NEW.idventa ||');');
+                RETURN NEW;
             END IF;
         END IF;
         RETURN NULL; -- result is ignored since this is an AFTER trigger
@@ -85,8 +133,28 @@ BEFORE INSERT OR UPDATE OR DELETE ON empresa
 CREATE TRIGGER raid_productos
 BEFORE INSERT OR UPDATE OR DELETE ON productos
     FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_productosxsucursal
+BEFORE INSERT OR UPDATE OR DELETE ON productosxsucursal
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_proveedores
+BEFORE INSERT OR UPDATE OR DELETE ON proveedores
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_roles
+BEFORE INSERT OR UPDATE OR DELETE ON roles
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_sucursales
+BEFORE INSERT OR UPDATE OR DELETE ON sucursales
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_tipopago
+BEFORE INSERT OR UPDATE OR DELETE ON tipopago
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_ventasxempleado
+BEFORE INSERT OR UPDATE OR DELETE ON ventasxempleado
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_ventasxsucursal
+BEFORE INSERT OR UPDATE OR DELETE ON ventasxsucursal
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
 */
-
 
 
 

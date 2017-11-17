@@ -26,7 +26,7 @@ namespace RESTFUL.Controllers
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
+                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id && e.estado!=0);
                     if (entity == null)
                     {
                         return null;

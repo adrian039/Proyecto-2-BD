@@ -45,13 +45,11 @@ function($scope,$http) {
 
         var url = 'http://gsprest.azurewebsites.net/api/Clientes/'+id;
         
-        $http.delete(url,data)
+        $http.delete(url)
         .then(
             function(response){
-              // success callback
-              console.log("erase");
-              animation();
-
+              // success callbac
+              $scope.init();
             }, 
             function(response){
               // failure callback

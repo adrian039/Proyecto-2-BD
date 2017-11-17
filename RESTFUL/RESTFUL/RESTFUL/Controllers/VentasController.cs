@@ -39,7 +39,7 @@ namespace RESTFUL.Controllers
             try
             {
                 using (gspEntity entities = new gspEntity())
-                {/*
+                {
                     NpgsqlConnection conn = new NpgsqlConnection(entities.Database.Connection.ConnectionString);
                     conn.Open();
                     using (NpgsqlCommand com = new NpgsqlCommand("BEGIN; SELECT * FROM regventa(:P0, :P1, :P2, :P3, :P4, :P5); COMMIT;", conn))
@@ -67,9 +67,7 @@ namespace RESTFUL.Controllers
                         
                     };
                     conn.Close();
-                    return message;*/
-                 //return entities.regventa(venta.idCliente, venta.idCliente, venta.productos.ToString(), venta.idSucursal, venta.tipoPago, venta.fecha).ToString();
-                    return "hola";
+                    return message;
                 }
             }
             catch (Exception ex)

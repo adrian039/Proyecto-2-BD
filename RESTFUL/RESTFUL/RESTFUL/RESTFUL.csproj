@@ -272,6 +272,7 @@
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProductosSucursalController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VentasController.cs" />

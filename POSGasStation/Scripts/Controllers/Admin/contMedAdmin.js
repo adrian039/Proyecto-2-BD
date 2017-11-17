@@ -34,13 +34,12 @@ function($scope,$http,userService) {
         "idproveedor":parseInt(this.idProveedor.split(":",1)),
         "estado":1
       };
-      console.log("data: "+10, parseInt(this.ean), this.nombre, this.descripcion, parseInt(this.idProveedor.split(":",1)));
-      console.log(globalImage);
       $http.put(url,sendData)
       .then(
         function(response){
             // success callback
             $scope.init();
+            
           }, 
           function(response){
             // failure callback

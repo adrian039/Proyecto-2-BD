@@ -43,7 +43,19 @@ function($scope,$http,$location,userService,directionService) {
     
 
       $scope.delete=function(id){
-       
+        var url = 'http://gsprest.azurewebsites.net/api/Sucursales/'+id;
+        
+        $http.delete(url)
+        .then(
+            function(response){
+              // success callback
+              console.log("Se elimino");
+              $scope.init();
+            }, 
+            function(response){
+              // failure callback
+            }
+         );
       
     }
 

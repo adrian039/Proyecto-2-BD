@@ -49,49 +49,34 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body"  >
-
-            <label>Store ID</label>
-            <input type="text" class="form-control" name="nameProd" placeholder="Name of the Store" ng-model="id"  required>
-
-          <label>Name</label>
-          <input type="text" class="form-control" name="nameProd" placeholder="Name of the Store" ng-model="newName"  required>
-
-          <div class="form-group">
-            <label>State</label>
-            <select multiple class="form-control" id="sucursales"  >
-                    <option ng-repeat="state in states" ng-click="UpdateCities(state.idProvincia)">{{state.Nombre}}</option>
-                </select>
-
-                </div>
-
-                <div class="form-group">
-                <label>City</label>
-                        <select multiple class="form-control" id="sucursales"  >
-                                <option ng-repeat="city in cities" ng-click="UpdateDistricts(city.idCanton)">{{city.Nombre}}</option>
-                            </select>
-
-                </div>
+        <div class="modal-body">
 
 
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="nameProd" placeholder="Name of the Store" ng-model="nombre" required>
+            </div>
+            <div class="form-group">
+              <label>ID</label>
+              <input type="text" class="form-control" name="nameProd" placeholder="ID of the Store" ng-model="idSucursal" required>
+            </div>
+            <div class="form-group">
+              <label>Direction Detail</label>
+              <input type="text" class="form-control" name="nameProd" placeholder="Direction Detail" ng-model="direccion" required>
+            </div>
+            <div class="form-group">
+              <label> Choose Image</label>
+              <input type="file" class="form-control-file" id="inputFile" onchange="openFile(event)" >
+              <small id="fileHelp" class="form-text text-muted">Select an image for the store</small>
 
-                <div class="form-group">
-                <label for="exampleInputEmail1">District</label>
-                        <select multiple class="form-control" id="sucursales"  >
-                                <option ng-repeat="district in districts" ng-click="setDistrict(district.idDistrito)">{{district.Nombre}}</option>
-                            </select>
-                </div>
-
-          <label>Direction</label>
-          <textarea class="form-control" name="inputList" ng-model="newDir" ng-pattern="/^[A-Za-z0-9]/" required>
-          </textarea>
-
+              <img id="output" style="width:100px; height:100px">
+            </div>
 
 
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" >Close</button>
-            <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="edit(id,newDir,newName)">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="edit()" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

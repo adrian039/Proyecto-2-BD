@@ -21,7 +21,7 @@ function($scope,$http,userService) {
 
 
       $scope.edit=function(){
-        var url = "http://gsprest.azurewebsites.net/api/Empleados";
+        var url = "http://gsprest.azurewebsites.net/api/Empleados/"+this.cedula;
         var sendData = {
           "cedula": parseInt(this.cedula),
           "nombre": this.nombre,

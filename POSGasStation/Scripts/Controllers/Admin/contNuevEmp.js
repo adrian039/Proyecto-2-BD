@@ -24,7 +24,6 @@ angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","direct
                   "email":this.email,
                   "estado":1
                 }
-
                $scope.postHttp(url,sendData,(data)=>{
                   console.log("Data: "+data);
                 });

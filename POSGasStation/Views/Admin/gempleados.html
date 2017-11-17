@@ -44,95 +44,78 @@
     </div>
   </section>
   
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" ng-controller="contNuevEmp" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  	<div class="modal-dialog" role="document">
-  		<div class="modal-content">
-  			<div class="modal-header">
-  				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-  					<span aria-hidden="true">&times;</span>
-  				</button>
-  			</div>
-  			<section class="mainContent clearfix userProfile" ng-controller="contNuevEmp" ng-init="UpdateDirection()" >
-						<div class="container" >
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="innerWrapper profile">
-									 <div class="orderBox">
-										<h4>Update Employee Info</h4>
-									</div>
-									<div class="row">
-										<div class="col-md-10 col-sm-9 col-xs-12">
-										 <form class="form-horizontal">
-											<div class="form-group">
-												<label> Employee ID</label>
-												<input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="cedula" required>
-					 
-											</div>
-											<div class="form-group">
-												<label>Name</label>
-												<input type="text" class="form-control" name="nameProd" placeholder="Name" ng-model="nombre" required>
-					 
-											</div>
-											<div class="form-group">
-												<label>Email</label>
-												<input type="text" class="form-control" name="empEmail" placeholder="Email" ng-model="email" required>
-					 
-					 
-											</div>
-					 
-											<div class="form-group">
-											 <label for="sucursales">Username</label>
-											 <input type="text" class="form-control" name="empUser" placeholder="Username" ng-model="username" required>
-										 </div>
-					 
-										 <div class="form-group">
-											 <label>Password</label>
-											 <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
-					 
-										 </div>
-										 <div class="form-group">
-												 <label>Confirm Password</label>
-												 <input type="password" class="form-control" placeholder="Confirm Password" ng-model="conPassword" required>
-						 
-											 </div>
-					 
-										 <div class="form-group">
-											 <label>Surname</label>
-											 <input type="text" class="form-control" placeholder="Surname" ng-model="pApellido" required>
-					 
-										 </div>
-					 
-										 <div class="form-group">
-											 <label>Second Surname</label>
-											 <input type="text" class="form-control" placeholder="Second Surname" ng-model="sApellido" required>
-					 
-										 </div>
-										 <label>Rol</label>
-										 <select multiple class="form-control" id="sucursales"  >
-											 <option ng-repeat="rol in rolList" ng-click="setRol(rol.idRol)">{{rol.Nombre}}</option>
-										 </select>
-										 <div class="form-group">
-											 <label>Birth Date</label><br>
-											 <input type="datetime-local" ng-model="empDate" name="empDate" required>
-										 </div>
-									</form>
-								</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Update Employee Info</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+						<div class="form-group">
+								<label> Employee ID</label>
+								<input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="cedula" required>
+	 
 							</div>
-						</div>
-					</div>
-					</div>
-					</div>
-					</section>
+							<div class="form-group">
+								<label>Name</label>
+								<input type="text" class="form-control" name="nameProd" placeholder="Name" ng-model="nombre" required>
+	 
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<input type="text" class="form-control" name="empEmail" placeholder="Email" ng-model="email" required>
+	 
+	 
+							</div>
+	 
+							<div class="form-group">
+							 <label for="sucursales">Username</label>
+							 <input type="text" class="form-control" name="empUser" placeholder="Username" ng-model="username" required>
+						 </div>
+	 
+						 <div class="form-group">
+							 <label>Password</label>
+							 <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
+	 
+						 </div>
+	 
+						 <div class="form-group">
+							 <label>Surname</label>
+							 <input type="text" class="form-control" placeholder="Surname" ng-model="pApellido" required>
+	 
+						 </div>
+	 
+						 <div class="form-group">
+							 <label>Second Surname</label>
+							 <input type="text" class="form-control" placeholder="Second Surname" ng-model="sApellido" required>
+	 
+						 </div>
+						 <div class="form-group">
+						 <label>Rol</label>
+						 <select multiple class="form-control" id="sucursales"  >
+							 <option ng-repeat="rol in rolList" ng-click="setRol(rol.idRol)">{{rol.Nombre}}</option>
+						 </select>
+						 </div>
+						 <div class="form-group">
+							 <label>Birth Date</label><br>
+							 <input type="datetime-local" ng-model="empDate" name="empDate" required>
+						 </div>
 
 
-  			<div class="modal-footer">
-  				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  				<button type="button" class="btn btn-primary"  ng-click="edit()" data-dismiss="modal">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-e
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="edit()" data-dismiss="modal">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </div>

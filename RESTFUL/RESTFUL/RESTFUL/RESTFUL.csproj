@@ -257,13 +257,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="caja.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cajasxsucursal.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="cliente.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\CajaController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
@@ -272,35 +272,36 @@
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProductosSucursalController.cs" />
     <Compile Include="Controllers\ProveedoresController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SucursalesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Controllers\VentasController.cs" />
-    <Compile Include="databaseModel.Context.cs">
+    <Compile Include="DataBaseModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>databaseModel.Context.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="databaseModel.cs">
+    <Compile Include="DataBaseModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="databaseModel.Designer.cs">
+    <Compile Include="DataBaseModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>databaseModel.edmx</DependentUpon>
+      <DependentUpon>DataBaseModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="detalleventa.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="empleado.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="empleadosxsucursal.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="empresa.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -313,41 +314,41 @@
     <Compile Include="Models\RolesxSucursal.cs" />
     <Compile Include="Models\test.cs" />
     <Compile Include="producto.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="productosxsucursal.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="proveedore.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="role.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sucursale.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tipopago.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="venta.cs">
-      <DependentUpon>databaseModel.tt</DependentUpon>
+      <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="databaseModel.Context.tt">
+    <Content Include="DataBaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>databaseModel.edmx</DependentUpon>
-      <LastGenOutput>databaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+      <LastGenOutput>DataBaseModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="databaseModel.tt">
+    <Content Include="DataBaseModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>databaseModel.edmx</DependentUpon>
-      <LastGenOutput>databaseModel.cs</LastGenOutput>
+      <DependentUpon>DataBaseModel.edmx</DependentUpon>
+      <LastGenOutput>DataBaseModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -376,12 +377,12 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="databaseModel.edmx">
+    <EntityDeploy Include="DataBaseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>databaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataBaseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="databaseModel.edmx.diagram">
-      <DependentUpon>databaseModel.edmx</DependentUpon>
+    <Content Include="DataBaseModel.edmx.diagram">
+      <DependentUpon>DataBaseModel.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\ceteamgasstationpharmacy - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CETEAMRESTFUL2017 - Web Deploy.pubxml" />

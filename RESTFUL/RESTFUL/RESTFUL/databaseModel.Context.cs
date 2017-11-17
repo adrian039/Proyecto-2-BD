@@ -25,19 +25,19 @@ namespace RESTFUL
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<caja> cajas { get; set; }
+        public virtual DbSet<cajasxsucursal> cajasxsucursals { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
+        public virtual DbSet<detalleventa> detalleventas { get; set; }
+        public virtual DbSet<empleado> empleadoes { get; set; }
         public virtual DbSet<empleadosxsucursal> empleadosxsucursals { get; set; }
+        public virtual DbSet<empresa> empresas { get; set; }
         public virtual DbSet<producto> productos { get; set; }
         public virtual DbSet<productosxsucursal> productosxsucursals { get; set; }
         public virtual DbSet<proveedore> proveedores { get; set; }
         public virtual DbSet<role> roles { get; set; }
+        public virtual DbSet<sucursale> sucursales { get; set; }
         public virtual DbSet<tipopago> tipopagoes { get; set; }
         public virtual DbSet<venta> ventas { get; set; }
-        public virtual DbSet<empleado> empleadoes { get; set; }
-        public virtual DbSet<detalleventa> detalleventas { get; set; }
-        public virtual DbSet<caja> cajas { get; set; }
-        public virtual DbSet<cajasxsucursal> cajasxsucursals { get; set; }
-        public virtual DbSet<empresa> empresas { get; set; }
-        public virtual DbSet<sucursale> sucursales { get; set; }
     }
 }

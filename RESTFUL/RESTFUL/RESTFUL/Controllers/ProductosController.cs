@@ -13,7 +13,7 @@ namespace RESTFUL.Controllers
         public IEnumerable<producto> getAll()
         {
             using (gspEntity entities = new gspEntity())
-            {
+            { 
                 entities.Configuration.LazyLoadingEnabled = false;
                 return entities.productos.ToList();
             }

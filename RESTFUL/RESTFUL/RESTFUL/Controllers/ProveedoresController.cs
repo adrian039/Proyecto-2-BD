@@ -26,7 +26,7 @@ namespace RESTFUL.Controllers
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id);
+                    var entity = entities.proveedores.FirstOrDefault(e => e.idproveedor == id && e.estado!=0);
                     if (entity == null)
                     {
                         return null;
@@ -108,7 +108,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.proveedores.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Proveedor Deleted");
                     }

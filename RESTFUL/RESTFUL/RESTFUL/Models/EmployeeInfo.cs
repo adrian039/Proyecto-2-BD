@@ -15,6 +15,7 @@ namespace RESTFUL.Models
         public string sapellido { get; set; }
         public int idrol { get; set; }
         public int idsucursal { get; set; }
+        public int estado { get; set; }
 
     }
 }

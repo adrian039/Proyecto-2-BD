@@ -16,7 +16,7 @@ namespace RESTFUL.Controllers
             {
                 //var prueba = entities.Database.SqlQuery<productosxsucursal>("BEGIN; Select * from sucursal(); COMMIT;");
                 entities.Configuration.LazyLoadingEnabled = false;
-                return entities.empleadoes.ToList();
+                return entities.empleadoes.ToList().Where(e=>e.estado!=0);
             }
         }
 
@@ -28,7 +28,7 @@ namespace RESTFUL.Controllers
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.empleadoes.FirstOrDefault(e => e.cedula == id);
+                    var entity = entities.empleadoes.FirstOrDefault(e => e.cedula == id && e.estado!=0);
                     if (entity == null)
                     {
                         return null;
@@ -109,15 +109,15 @@ namespace RESTFUL.Controllers
                              idsucursal = c.idsucursal,
                              idrol = c.idrol,
                              cedula = c.idempleado,
-                             idempresa = cm.idempresa
-                         }).Where(e => e.cedula == cedula);
+                             idempresa = cm.idempresa,
+                         }).Where(e => e.cedula == cedula );
                     var entity = temp.Join(entities.roles, c => c.idrol, cm => cm.idrol, (c, cm) => new Models.RolesxSucursal
                     {
                         rol = cm.nombre,
                         idrol = c.idrol,
                         sucursal = c.sucursal,
                         idsucursal = c.idsucursal,
-                        idempresa = c.idempresa.Value
+                        idempresa = c.idempresa
                     });
                     if (entity == null)
                     {
@@ -149,7 +149,7 @@ namespace RESTFUL.Controllers
                          (c, cm) => new
                          {
                              idempleado = cm.idempleado,
-                             idempresa = c.idempresa.Value
+                             idempresa = c.idempresa
                          }).Where(e => e.idempresa == idEmpresa);
                     var entity = temp.Join(entities.empleadoes, c => c.idempleado, cm => cm.cedula, (c, cm) => new Models.EmployeeInfo
                     {
@@ -158,8 +158,9 @@ namespace RESTFUL.Controllers
                         username = cm.username,
                         nombre = cm.nombre,
                         papellido = cm.papellido,
-                        sapellido = cm.sapellido
-                    });
+                        sapellido = cm.sapellido,
+                        estado = cm.estado.Value
+                    }).Where(e=>e.estado!=0);
                     if (entity == null)
                     {
                         return null;
@@ -224,7 +225,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.empleadoes.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Empleado Deleted");
                     }

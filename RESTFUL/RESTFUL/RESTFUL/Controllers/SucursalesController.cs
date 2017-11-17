@@ -76,7 +76,7 @@ namespace RESTFUL.Controllers
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.sucursales.Where(e => e.idempresa == idEmpresa);
+                    var entity = entities.sucursales.Where(e => e.idempresa == idEmpresa && e.estado!=0);
                     if (entity == null)
                     {
                         return null;
@@ -110,7 +110,7 @@ namespace RESTFUL.Controllers
                              nombre = cm.nombre,
                              descripcion = cm.descripcion,
                              idsucursal = c.idsucursal
-                         }).Where(e => e.idsucursal == idSucxRol);
+                         }).Where(e => e.idsucursal == idSucxRol );
                     if (entity == null)
                     {
                         return null;
@@ -192,7 +192,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.sucursales.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Proveedor Deleted");
                     }

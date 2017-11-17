@@ -10,22 +10,22 @@ namespace RESTFUL.Controllers
 {
     public class ProductosSucursalController : ApiController
     {
-        
 
-       [HttpPost]
+
+        [HttpPost]
         public producto hayDisponible([FromBody]productosxsucursal prod)
         {
             try
             {
-                using (gspEntity entities= new gspEntity())
+                using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var resp = entities.productosxsucursals.FirstOrDefault(e => (e.idproducto == prod.idproducto) && (e.idsucursal == prod.idsucursal)
                      && (e.cantidad >= prod.cantidad));
-                    if (resp!=null)
+                    if (resp != null)
                     {
                         var product = entities.productos.FirstOrDefault(e => e.ean == prod.idproducto);
-                        return  product;
+                        return product;
                     }
                     else
                     {
@@ -33,11 +33,12 @@ namespace RESTFUL.Controllers
                     }
                 }
 
-            }catch (Exception ex)
+            } catch (Exception ex)
             {
                 return null;
             }
         }
+
         [HttpGet]
         public IEnumerable<ProductosModel> getProductos([FromUri] int idSucursal)
         {
@@ -46,15 +47,16 @@ namespace RESTFUL.Controllers
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.productosxsucursals.Join(entities.productos,c=>c.idproducto,cm=>cm.ean,(c, cm) => new ProductosModel
+                    var entity = entities.productosxsucursals.Join(entities.productos, c => c.idproducto, cm => cm.ean, (c, cm) => new ProductosModel
                     {
                         ean = cm.ean,
                         idproveedor = cm.idproveedor,
                         nombre = cm.nombre,
                         imagen = cm.imagen,
                         descripcion = cm.descripcion,
-                        Sucursal = c.idsucursal
-                    }).Where(e => e.Sucursal == idSucursal);
+                        Sucursal = c.idsucursal,
+                        estado = c.estado.Value
+                    }).Where(e => (e.Sucursal == idSucursal) && (e.estado==1));
                     if (entity != null)
                     {
                         return entity.ToList();
@@ -69,6 +71,34 @@ namespace RESTFUL.Controllers
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        [HttpDelete]
+        public HttpResponseMessage deleteProduct(int prod, int suc)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    entities.Configuration.LazyLoadingEnabled = false;
+                    var entity = entities.productosxsucursals.FirstOrDefault(e => e.idproducto == prod && e.idsucursal==suc);
+                    if (entity == null)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, "Error eliminando producto");
+                    }
+                    else
+                    {
+                        entity.estado = 0;
+                        entities.SaveChanges();
+                        return Request.CreateResponse(HttpStatusCode.OK, "Producto Deleted");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 

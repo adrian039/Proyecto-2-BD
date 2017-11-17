@@ -15,7 +15,7 @@ namespace RESTFUL.Controllers
             using (gspEntity entities = new gspEntity())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
-                return entities.clientes.ToList();
+                return entities.clientes.ToList().Where(e=>e.estado!=0);
             }
         }
         [HttpGet]
@@ -134,7 +134,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.clientes.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Client Deleted");
                     }

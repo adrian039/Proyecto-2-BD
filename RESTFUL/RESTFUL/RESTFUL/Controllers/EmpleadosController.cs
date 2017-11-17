@@ -16,7 +16,7 @@ namespace RESTFUL.Controllers
             {
                 //var prueba = entities.Database.SqlQuery<productosxsucursal>("BEGIN; Select * from sucursal(); COMMIT;");
                 entities.Configuration.LazyLoadingEnabled = false;
-                return entities.empleadoes.ToList();
+                return entities.empleadoes.ToList().Where(e=>e.estado!=0);
             }
         }
 
@@ -28,7 +28,7 @@ namespace RESTFUL.Controllers
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var entity = entities.empleadoes.FirstOrDefault(e => e.cedula == id);
+                    var entity = entities.empleadoes.FirstOrDefault(e => e.cedula == id && e.estado!=0);
                     if (entity == null)
                     {
                         return null;

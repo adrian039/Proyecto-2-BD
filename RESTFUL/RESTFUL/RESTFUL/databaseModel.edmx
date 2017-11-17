@@ -95,6 +95,7 @@
           <Property Name="idproducto" Type="int4" Nullable="false" />
           <Property Name="cantidad" Type="int4" />
           <Property Name="precio" Type="int4" />
+          <Property Name="estado" Type="int4" />
         </EntityType>
         <EntityType Name="proveedores">
           <Key>
@@ -596,6 +597,7 @@
           <Property Name="precio" Type="Int32" />
           <NavigationProperty Name="producto" Relationship="Self.fk_idproductos_sucursal" FromRole="productosxsucursal" ToRole="productos" />
           <NavigationProperty Name="sucursale" Relationship="Self.fk_idsucursal_sucursal" FromRole="productosxsucursal" ToRole="sucursales" />
+          <Property Name="estado" Type="Int32" />
         </EntityType>
         <EntityType Name="proveedore">
           <Key>
@@ -1025,6 +1027,7 @@
           <EntitySetMapping Name="productosxsucursals">
             <EntityTypeMapping TypeName="GasStationPharmacyModel.productosxsucursal">
               <MappingFragment StoreEntitySet="productosxsucursal">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
                 <ScalarProperty Name="idproducto" ColumnName="idproducto" />
                 <ScalarProperty Name="cantidad" ColumnName="cantidad" />

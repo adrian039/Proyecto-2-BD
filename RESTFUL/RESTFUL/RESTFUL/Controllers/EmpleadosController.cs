@@ -224,7 +224,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.empleadoes.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Empleado Deleted");
                     }

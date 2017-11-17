@@ -192,7 +192,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.sucursales.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Proveedor Deleted");
                     }

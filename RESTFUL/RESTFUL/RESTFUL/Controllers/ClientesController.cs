@@ -134,7 +134,7 @@ namespace RESTFUL.Controllers
                     }
                     else
                     {
-                        entities.clientes.Remove(entity);
+                        entity.estado = 0;
                         entities.SaveChanges();
                         return Request.CreateResponse(HttpStatusCode.OK, "Client Deleted");
                     }

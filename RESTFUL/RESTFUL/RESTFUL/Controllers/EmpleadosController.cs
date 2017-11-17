@@ -109,8 +109,8 @@ namespace RESTFUL.Controllers
                              idsucursal = c.idsucursal,
                              idrol = c.idrol,
                              cedula = c.idempleado,
-                             idempresa = cm.idempresa
-                         }).Where(e => e.cedula == cedula);
+                             idempresa = cm.idempresa,
+                         }).Where(e => e.cedula == cedula );
                     var entity = temp.Join(entities.roles, c => c.idrol, cm => cm.idrol, (c, cm) => new Models.RolesxSucursal
                     {
                         rol = cm.nombre,
@@ -158,8 +158,9 @@ namespace RESTFUL.Controllers
                         username = cm.username,
                         nombre = cm.nombre,
                         papellido = cm.papellido,
-                        sapellido = cm.sapellido
-                    });
+                        sapellido = cm.sapellido,
+                        estado = cm.estado.Value
+                    }).Where(e=>e.estado!=0);
                     if (entity == null)
                     {
                         return null;

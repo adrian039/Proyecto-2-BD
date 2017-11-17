@@ -21,7 +21,7 @@ namespace RESTFUL.Controllers
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
                     var resp = entities.productosxsucursals.FirstOrDefault(e => (e.idproducto == prod.idproducto) && (e.idsucursal == prod.idsucursal)
-                     && (e.cantidad >= prod.cantidad));
+                     && (e.cantidad >= prod.cantidad) && (e.estado!=0));
                     if (resp != null)
                     {
                         var product = entities.productos.FirstOrDefault(e => e.ean == prod.idproducto);

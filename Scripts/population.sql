@@ -72,8 +72,3 @@ INSERT INTO caja (idcaja, fecha, idsucursal, idempleado, efectivo, tipo) VALUES 
 
 INSERT INTO EMPRESA (nombre) VALUES ('Phischel');
 INSERT INTO EMPRESA (nombre) VALUES ('BombaTica');
-
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (1,3);
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (1,4);
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (2,1);
-INSERT INTO SUCURSALXEMPRESA (idempresa,idsucursal) VALUES (2,2);

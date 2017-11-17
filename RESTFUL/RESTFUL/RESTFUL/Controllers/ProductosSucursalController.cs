@@ -55,7 +55,7 @@ namespace RESTFUL.Controllers
                         imagen = cm.imagen,
                         descripcion = cm.descripcion,
                         Sucursal = c.idsucursal
-                    }).Where(e => e.Sucursal == idSucursal);
+                    }).Where(e => e.Sucursal == idSucursal && e.estado!=0);
                     if (entity != null)
                     {
                         return entity.ToList();

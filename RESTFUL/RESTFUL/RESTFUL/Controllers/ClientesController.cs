@@ -15,7 +15,7 @@ namespace RESTFUL.Controllers
             using (gspEntity entities = new gspEntity())
             {
                 entities.Configuration.LazyLoadingEnabled = false;
-                return entities.clientes.ToList();
+                return entities.clientes.ToList().Where(e=>e.estado!=0);
             }
         }
         [HttpGet]

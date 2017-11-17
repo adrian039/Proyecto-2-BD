@@ -13,46 +13,46 @@
            <form class="form-horizontal">
             <div class="form-group">
              <label> Employee ID</label>
-             <input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="id" required>
+             <input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="cedula" required>
 
            </div>
            <div class="form-group">
              <label>Name</label>
-             <input type="text" class="form-control" name="nameProd" placeholder="Name" ng-model="name" required>
+             <input type="text" class="form-control" name="nameProd" placeholder="Name" ng-model="nombre" required>
 
            </div>
            <div class="form-group">
              <label>Email</label>
-             <input type="text" class="form-control" name="empEmail" placeholder="Email" ng-model="empEmail" required>
+             <input type="text" class="form-control" name="empEmail" placeholder="Email" ng-model="email" required>
 
 
            </div>
 
            <div class="form-group">
             <label for="sucursales">Username</label>
-            <input type="text" class="form-control" name="empUser" placeholder="Username" ng-model="empUser" required>
+            <input type="text" class="form-control" name="empUser" placeholder="Username" ng-model="username" required>
           </div>
 
           <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password" ng-model="userPass" required>
+            <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
 
           </div>
           <div class="form-group">
               <label>Confirm Password</label>
-              <input type="password" class="form-control" placeholder="Confirm Password" ng-model="userPassCon" required>
+              <input type="password" class="form-control" placeholder="Confirm Password" ng-model="conPassword" required>
   
             </div>
 
           <div class="form-group">
             <label>Surname</label>
-            <input type="text" class="form-control" placeholder="Surname" ng-model="empSur" required>
+            <input type="text" class="form-control" placeholder="Surname" ng-model="pApellido" required>
 
           </div>
 
           <div class="form-group">
             <label>Second Surname</label>
-            <input type="text" class="form-control" placeholder="Second Surname" ng-model="empSecSur" required>
+            <input type="text" class="form-control" placeholder="Second Surname" ng-model="sApellido" required>
 
           </div>
           <label>Rol</label>
@@ -66,7 +66,7 @@
 
           <div class="form-group">
             <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3">
-              <button type="submit" class="btn btn-primary" ng-click="setDirection(empUser, userPass, userPassCon, name, empSur, empSecSur, id, dirSpec, empDate, empEmail,false,false)" btn-block>Create Role</button>
+              <button type="submit" class="btn btn-primary" ng-click="createEmployee()" btn-block>Create Employee</button>
             </div>
           </div>
         </form>

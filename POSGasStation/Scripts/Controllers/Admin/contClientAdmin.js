@@ -2,6 +2,11 @@ angular.module("mainModule").controller("contClientAdmin",["$scope","$http",
 function($scope,$http) {
   $scope.clientList;
 
+  $scope.cedula;
+  $scope.nombre;
+  $scope.pApellido;
+  $scope.sApellido;
+  
 
       $scope.init = function(){
         var url='http://gsprest.azurewebsites.net/api/Clientes';
@@ -12,29 +17,21 @@ function($scope,$http) {
       };
 
 
-      $scope.edit=function(id,dir,nme,pAp,sAp,pass,usr,ste,pnz,date){
-
-        var url = 'http://'+getIp()+':58706/api/Clientes';
-        var data={
-          "Cedula":id,
-          "Direccion":dir,
-          "Nombre":nme,
-          "pApellido":pAp,
-          "sApellido":sAp,
-          "Password":pass,
-          "Username":usr,
-          "Estado":ste,
-          "Penalizacion":pnz,
-          "Nacimiento":date
-
+      $scope.edit=function(){
+        console.log("Cedula "+this.cedula);
+        var url = 'http://gsprest.azurewebsites.net/api/Clientes/'+this.cedula;
+        var sendData = {
+          "cedula": parseInt(this.cedula),
+          "nombre": this.nombre,
+          "papellido": this.pApellido,
+          "sapellido":this.sApellido,
+          "estado":1
         };
-        $http.put(url,data)
+        $http.put(url,sendData)
         .then(
           function(response){
               // success callback
-              console.log("erase");
-              animation();
-
+              $scope.init();
             }, 
             function(response){
               // failure callback
@@ -44,22 +41,10 @@ function($scope,$http) {
       }
 
 
-      $scope.delete=function(id,dir,nme,pAP,sAp,pass,usr,ste,pnz,data){
+      $scope.delete=function(id){
 
-        var url = 'http://'+getIp()+':58706/api/Clientes';
-        var data={
-          "Cedula":id,
-          "Direccion":dir,
-          "Nombre":nme,
-          "pApellido":pAp,
-          "sApellido":sAp,
-          "Password":pass,
-          "Username":usr,
-          "Estado":ste,
-          "Penalizacion":pnz,
-          "Nacimiento":date
-
-        };
+        var url = 'http://gsprest.azurewebsites.net/api/Clientes/'+id;
+        
         $http.delete(url,data)
         .then(
             function(response){

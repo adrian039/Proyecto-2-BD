@@ -19,9 +19,9 @@
                   </thead>
                   <tbody>
                     <tr   ng-repeat="r in rolList"  >
-                      <td><i class="fa fa-medkit" aria-hidden="true"></i>  {{r.Nombre}}</td>
-                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{r.idRol}}</td>
-                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{r.Descripcion}}</td>
+                      <td><i class="fa fa-medkit" aria-hidden="true"></i>  {{r.nombre}}</td>
+                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{r.idrol}}</td>
+                      <td><i class="fa fa-medkit" aria-hidden="true"></i> {{r.descripcion}}</td>
                       <td><a class="btn btn-info" data-toggle="modal" data-target="#rolModal">Edit</a></td>
                       <td><a class="btn btn-danger" ng-click="delete(r.idRol,r.Nombre,r.Descripcion)">delete</a></td>
                     </tr>

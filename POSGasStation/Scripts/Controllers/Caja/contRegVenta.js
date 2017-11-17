@@ -116,7 +116,7 @@ function($scope,$http,clientService,userService,$location) {
         "productos":prodVenta,
         "fecha":fecha
       };
-      console.log(prodVenta);
+      console.log(sendData);
       if(prodVenta.length>0){
         $scope.postHttp(url,sendData,(data)=>{
           console.log("Data: "+data);

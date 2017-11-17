@@ -1,10 +1,9 @@
 angular.module("mainModule").controller("contProveedorAdmin",["$scope","$http","userService",
 function($scope,$http,userService) {
-  $scope.providerList
+  $scope.providerList;
 
       $scope.init = function(){
-        console.log(userService.getCompany());
-        var url='http://gsprest.azurewebsites.net/api/Proveedores?id='+userService.getCompany();
+        var url='http://gsprest.azurewebsites.net/api/Proveedores';
         $scope.getHttp(url,(data)=>{
           this.providerList=data;
         });
@@ -16,7 +15,7 @@ function($scope,$http,userService) {
       }
 
       $scope.delete=function(id,nme){
-        \
+        
       }
       
 

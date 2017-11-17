@@ -51,20 +51,33 @@
             </button>
           </div>
           <div class="modal-body">
-            <label>Name</label>
-            <input type="text" class="form-control" name="nameProd" placeholder="Name of the client" ng-model="name" required>
-            <label>ID</label>
-            <input type="text" class="form-control" name="nameProd" placeholder="ID of the client" ng-model="id" required>
+            <div class="form-group">
+              <label >Name</label>
+              <input type="text" class="form-control" id="Name" name="reg_username" placeholder="Name" data-ng-model="nombre" >
+            </div>
+           
+            <div class="form-group">
+              <label>Surname</label>
+              <input type="text" class="form-control" id="Surname" name="reg_username" placeholder="Surname" data-ng-model="pApellido" > 
+            </div>
+            
+            
+            <div class="form-group">
+              <label>Second Surname</label>
+              <input type="text" class="form-control" id="sSurname" name="reg_username" placeholder="Second Surname" data-ng-model="sApellido" ></div>
+              
+              <div class="form-group">
+              <label >Identification</label>
+              <input type="text" class="form-control" id="Identification" name="reg_username" placeholder="Identification" data-ng-model="cedula" >       
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="edit(ID,Direction,Name,fSur,sSur,State,Punish,Birth)">Save changes</button>
+            <button type="button" class="btn btn-primary" ng-click="edit()" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>
     </div>
-e
-
 
 </div>
 

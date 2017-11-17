@@ -2,6 +2,14 @@ angular.module("mainModule").controller("contEmplAdmin",["$scope","$http","userS
 function($scope,$http,userService) {
   $scope.employeelist;
 
+  $scope.cedula;
+  $scope.nombre;
+  $scope.pApellido;
+  $scope.sApellido;
+  $scope.username;
+  $scope.password;
+  $scope.email;
+
 
       $scope.init = function(){
         var url='http://gsprest.azurewebsites.net/api/Empleados?idEmpresa='+userService.getCompany();
@@ -13,9 +21,45 @@ function($scope,$http,userService) {
 
 
       $scope.edit=function(){
+        var url = "http://gsprest.azurewebsites.net/api/Empleados/"+this.cedula;
+        var sendData = {
+          "cedula": parseInt(this.cedula),
+          "nombre": this.nombre,
+          "papellido": this.pApellido,
+          "sapellido":this.sApellido,
+          "username": this.username,
+          "password":this.password,
+          "email":this.email,
+          "estado":1
+        }
+        $http.put(url,sendData)
+        .then(
+          function(response){
+              // success callback
+              $scope.init();
+            }, 
+            function(response){
+              // failure callback
+            }
+            );
       }
 
-      $scope.delete=function(id,nme){
+      $scope.delete=function(){
+
+        var url = 'http://gsprest.azurewebsites.net/api/Clientes/'+id;
+        
+        $http.delete(url,data)
+        .then(
+            function(response){
+              // success callback
+              console.log("erase");
+              animation();
+
+            }, 
+            function(response){
+              // failure callback
+            }
+         );
         
       }
     }]);

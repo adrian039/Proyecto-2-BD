@@ -4,7 +4,7 @@ function($scope,$http,userService) {
   
 
       $scope.init = function(){
-        var url='http://gsprest.azurewebsites.net/api/Roles'+userService.getCompany();
+        var url='http://gsprest.azurewebsites.net/api/Sucursales?idSucxRol='+userService.getSucursal();
         $scope.getHttp(url,(data)=>{
           this.rolList=data;
         });

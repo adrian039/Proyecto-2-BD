@@ -266,3 +266,12 @@ RESTFUL API/RESTFUL API/Web.config
 
 
 *.config
+*.config
+*.js
+*.map
+*.svg
+*.ttf
+RESTFUL/RESTFUL/RESTFUL/Scripts/jquery-1.10.2.min.js
+*.ttf
+RESTFUL/RESTFUL/RESTFUL/fonts/glyphicons-halflings-regular.svg
+*.map

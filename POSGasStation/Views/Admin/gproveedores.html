@@ -23,7 +23,7 @@
                           <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.idproveedor}}</td>
                           <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.telefono}}</td>
                           <td><a class="btn btn-info" data-toggle="modal" data-target="#myModal">Edit</a></td>
-                          <td><a class="btn btn-danger" ng-click="delete(s.Cedula,s.Direccion,s.Nombre,s.pApellido,s.sApellido,s.Password,s.Username,s.Estado,s.Penalizacion,s.Nacimiento)">delete</a></td>
+                          <td><a class="btn btn-danger" ng-click="deleteProv(s.idproveedor)">delete</a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -55,10 +55,12 @@
                 <input type="text" class="form-control" name="nameProd" placeholder="Name of the client" ng-model="name" required>
                 <label>ID</label>
                 <input type="text" class="form-control" name="nameProd" placeholder="ID of the client" ng-model="id" required>
+                <label>Phone</label>
+                <input type="text" class="form-control" name="nameProd" placeholder="Phone" ng-model="phone" required>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="edit(ID,Direction,Name,fSur,sSur,State,Punish,Birth)">Save changes</button>
+                <button type="button" class="btn btn-primary" ng-click="updateProv(id,name,phone)">Save changes</button>
               </div>
             </div>
           </div>

@@ -28,13 +28,30 @@ CREATE OR REPLACE FUNCTION process_raid() RETURNS TRIGGER AS $raid$
             END IF;
         ELSEIF (TG_TABLE_NAME = 'venta') THEN
             IF (TG_OP = 'INSERT') THEN
-                PERFORM dblink_exec('raid_server','INSERT INTO venta VALUES ('|| NEW.idcliente ||','|| NEW.tpago ||','|| NEW.idsucursal ||','|| '''' || NEW.fecha || '''' ||');');
+                PERFORM dblink_exec('raid_server','INSERT INTO venta (idventa,idcliente,tpago,idsucursal,fecha) VALUES ('|| NEW.idventa || ','|| NEW.idcliente ||','|| NEW.tpago ||','|| NEW.idsucursal ||','|| '''' || NEW.fecha || '''' ||');');
                 RETURN NEW;
             END IF;
         ELSEIF (TG_TABLE_NAME = 'detalleventa') THEN
             IF (TG_OP = 'INSERT') THEN
                 PERFORM dblink_exec('raid_server','INSERT INTO detalleventa VALUES ('|| NEW.idventa ||','|| NEW.idproducto ||','|| NEW.cantidad ||');');
                 RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'empleadosxsucursal') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO empleadosxsucursal VALUES ('|| NEW.idempleado ||','|| NEW.idsucursal ||','|| NEW.idrol ||');');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'empresa') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO empresa VALUES ('|| NEW.idempresa ||','|| '''' || NEW.nombre || '''' ||');');
+                RETURN NEW;
+            END IF;
+        ELSEIF (TG_TABLE_NAME = 'productos') THEN
+            IF (TG_OP = 'INSERT') THEN
+                PERFORM dblink_exec('raid_server','INSERT INTO productos VALUES ('|| NEW.ean ||','|| NEW.idproveedor ||','|| '''' || NEW.nombre || '''' ||','|| '''' || NEW.imagen || '''' ||','|| '''' || NEW.descripcion || '''' ||','|| NEW.estado||');');
+                RETURN NEW;
+            ELSEIF (TG_OP = 'UPDATE') THEN
+            
             END IF;
         END IF;
         RETURN NULL; -- result is ignored since this is an AFTER trigger
@@ -59,6 +76,17 @@ BEFORE INSERT OR UPDATE OR DELETE ON detalleventa
 CREATE TRIGGER raid_venta
 BEFORE INSERT OR UPDATE OR DELETE ON venta
     FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_empleadosxsucursal
+BEFORE INSERT OR UPDATE OR DELETE ON empleadosxsucursal
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_empresa
+BEFORE INSERT OR UPDATE OR DELETE ON empresa
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
+CREATE TRIGGER raid_productos
+BEFORE INSERT OR UPDATE OR DELETE ON productos
+    FOR EACH ROW EXECUTE PROCEDURE process_raid();
 */
+
+
 
 

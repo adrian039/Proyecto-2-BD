@@ -40,9 +40,9 @@ CREATE OR REPLACE FUNCTION TOPSALESBYDATE (
 RETURNS TABLE(ean integer, nombre varchar(50), cantidad bigint) AS $$
    
 BEGIN
-	RETURN QUERY SELECT detalleventa.idproducto AS ean, productos.nombre, SUM(detalleventa.cantidad)/2 AS cantidad FROM detalleventa INNER JOIN
-    productos ON (productos.ean=detalleventa.idproducto) INNER JOIN venta ON (venta.idventa IS NOT NULL) WHERE (venta.fecha>=ifecha) 
-    AND (venta.fecha<ffecha) GROUP BY detalleventa.idproducto , productos.nombre ORDER BY cantidad  DESC LIMIT 20;
+	RETURN QUERY SELECT detalleventa.idproducto AS ean, productos.nombre, SUM(detalleventa.cantidad) AS cantidad FROM productos INNER JOIN
+    detalleventa ON (productos.ean=detalleventa.idproducto) INNER JOIN venta ON (detalleventa.idventa=venta.idventa) WHERE (venta.fecha>=ifecha) 
+    AND (venta.fecha<=ffecha) GROUP BY detalleventa.idproducto , productos.nombre ORDER BY cantidad  DESC LIMIT 20;
 END;
 $$ LANGUAGE plpgsql;
 

@@ -42,7 +42,7 @@ namespace RESTFUL.Controllers
                 {
                     NpgsqlConnection conn = new NpgsqlConnection(entities.Database.Connection.ConnectionString);
                     conn.Open();
-                    using (NpgsqlCommand com = new NpgsqlCommand("BEGIN; SELECT * FROM regventa(:P0, :P1, :P2, :P3, :P4, :P5); COMMIT;", conn))
+                    using (NpgsqlCommand com = new NpgsqlCommand("BEGIN; SELECT * FROM regventa(:P0, :P1, :P2, :P3, :P4, :P5, :P6, :P7); COMMIT;", conn))
                     {
                         com.Parameters.Add(new NpgsqlParameter("P0", NpgsqlDbType.Integer));
                         com.Parameters.Add(new NpgsqlParameter("P1", NpgsqlDbType.Integer));
@@ -50,6 +50,8 @@ namespace RESTFUL.Controllers
                         com.Parameters.Add(new NpgsqlParameter("P3", NpgsqlDbType.Integer));
                         com.Parameters.Add(new NpgsqlParameter("P4", NpgsqlDbType.Integer));
                         com.Parameters.Add(new NpgsqlParameter("P5", NpgsqlDbType.Timestamp));
+                        com.Parameters.Add(new NpgsqlParameter("P6", NpgsqlDbType.Time));
+                        com.Parameters.Add(new NpgsqlParameter("P7", NpgsqlDbType.Time));
                         com.Prepare();
                         com.Parameters[0].Value = venta.idCliente;
                         com.Parameters[1].Value = venta.idEmpleado;
@@ -57,6 +59,8 @@ namespace RESTFUL.Controllers
                         com.Parameters[3].Value = venta.idSucursal;
                         com.Parameters[4].Value = venta.tipoPago;
                         com.Parameters[5].Value = venta.fecha;
+                        com.Parameters[6].Value = venta.starts;
+                        com.Parameters[7].Value = venta.ends;
                         using (NpgsqlDataReader dr = com.ExecuteReader())
                         {
                             while (dr.Read())

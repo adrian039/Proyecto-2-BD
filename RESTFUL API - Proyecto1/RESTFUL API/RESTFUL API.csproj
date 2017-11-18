@@ -225,6 +225,7 @@
     <Compile Include="Models\recetasModel.cs" />
     <Compile Include="Models\RolesModel.cs" />
     <Compile Include="Models\sucursalModel.cs" />
+    <Compile Include="Models\ventasModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,11 +6,16 @@ using System.Net.Http;
 using System.Web.Http;
 using RESTFUL_API.Models;
 using System.Data.SqlClient;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using System.Text;
 
 namespace RESTFUL_API.Controllers
 {
     public class PedidosController : ApiController
     {
+        private static readonly HttpClient client = new HttpClient();
         JSONSerializer serial = new JSONSerializer();
         string DatabaseConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["GasStationPharmacyDB"].ConnectionString;
 
@@ -186,28 +191,87 @@ namespace RESTFUL_API.Controllers
         }
 
         [HttpPut]
-        public HttpResponseMessage updatePedido(pedidosModel pedido)
+        public HttpResponseMessage updatePedido([FromBody]pedidosModel pedido)
         {
             try
             {
                 using (SqlConnection conn = new SqlConnection(DatabaseConnectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("UPDATE PEDIDOS SET sucursalRecojo=@sucursal, idCliente=@cliente, horaRecojo=@hora, Telefono=@telefono, Imagen=@imagen, Estado=@estado WHERE idPedido=@id", conn);
-                    cmd.Parameters.AddWithValue("@id", pedido.idPedido);
-                    cmd.Parameters.AddWithValue("@sucursal", pedido.sucursalRecojo);
-                    cmd.Parameters.AddWithValue("@cliente", pedido.idCliente);
-                    cmd.Parameters.AddWithValue("@hora", pedido.horaRecojo);
-                    cmd.Parameters.AddWithValue("@telefono", pedido.Telefono);
-                    cmd.Parameters.AddWithValue("@imagen", pedido.Imagen);
-                    cmd.Parameters.AddWithValue("@estado", pedido.Estado);
-                    cmd.Connection = conn;
-                    conn.Open();
-                    cmd.ExecuteReader();
-                    var message = Request.CreateResponse(HttpStatusCode.Created, pedido);
-                    return message;
+                     SqlCommand cmd = new SqlCommand("UPDATE PEDIDOS SET sucursalRecojo=@sucursal, idCliente=@cliente, horaRecojo=@hora, Telefono=@telefono, Imagen=@imagen, Estado=@estado WHERE idPedido=@id", conn);
+                     cmd.Parameters.AddWithValue("@id", pedido.idPedido);
+                     cmd.Parameters.AddWithValue("@sucursal", pedido.sucursalRecojo);
+                     cmd.Parameters.AddWithValue("@cliente", pedido.idCliente);
+                     cmd.Parameters.AddWithValue("@hora", pedido.horaRecojo);
+                     cmd.Parameters.AddWithValue("@telefono", pedido.Telefono);
+                     cmd.Parameters.AddWithValue("@imagen", pedido.Imagen);
+                     cmd.Parameters.AddWithValue("@estado", pedido.Estado);
+                     cmd.Connection = conn;
+                     conn.Open();
+                     cmd.ExecuteReader();
+                     var message = Request.CreateResponse(HttpStatusCode.Created, pedido);
+                    if (pedido.Estado == 3)
+                    {
+                        return regVentaToApi(pedido.idPedido, pedido.sucursalRecojo.Value, pedido.idCliente.Value);
+                    }
+                    else
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, pedido);
+                    }
                 }
             }
             catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
+        private HttpResponseMessage regVentaToApi(int venta, int suc, int cliente)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(DatabaseConnectionString))
+                {
+                    SqlCommand cmd1 = new SqlCommand("SELECT idProducto AS ean, Cantidad AS cantidad FROM DETALLEPEDIDO WHERE idPedido=@id");
+                    cmd1.Parameters.AddWithValue("@id", venta);
+                    cmd1.Connection = conn;
+                    conn.Open();
+                    using (var reader = cmd1.ExecuteReader())
+                    {
+                       var r = serial.Serialize(reader);
+                       string JSONresult;
+                        JSONresult = JsonConvert.SerializeObject(r);
+                       string jsonText = JSONresult.Replace("\"", "");
+                        string sqlFormattedDate = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff");
+                        JObject ven = new JObject();
+                        ven.Add("idCliente", cliente);
+                        ven.Add("idEmpleado", 1);
+                        ven.Add("idSucursal", suc);
+                        ven.Add("productos", JArray.Parse(JSONresult));
+                        ven.Add("tipoPago", 1);
+                        ven.Add("fecha", sqlFormattedDate);
+                        var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://gsprest.azurewebsites.net/api/Ventas/");
+                        httpWebRequest.ContentType = "application/json";
+                        httpWebRequest.Method = "POST";
+
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            streamWriter.Write(ven);
+                            streamWriter.Flush();
+                            streamWriter.Close();
+                        }
+
+                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                       using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                        {
+                            var result = streamReader.ReadToEnd();
+                            return Request.CreateResponse(HttpStatusCode.OK, result.Replace("\"",""));
+                        }
+
+                    }
+
+                     
+                }
+            }catch(Exception ex)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }

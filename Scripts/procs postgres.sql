@@ -30,3 +30,21 @@ BEGIN
 END;
 $state$ LANGUAGE plpgsql;
 
+
+
+
+CREATE OR REPLACE FUNCTION TOPSALESBYDATE (
+    ifecha DATE,
+    ffecha DATE
+                                    )
+RETURNS TABLE(ean integer, nombre varchar(50), cantidad bigint) AS $$
+   
+BEGIN
+	RETURN QUERY SELECT detalleventa.idproducto AS ean, productos.nombre, SUM(detalleventa.cantidad) AS cantidad FROM detalleventa INNER JOIN
+    productos ON (productos.ean=detalleventa.idproducto) INNER JOIN venta ON (venta.idventa=detalleventa.idventa) WHERE (venta.fecha>=ifecha) 
+    AND (venta.fecha<ffecha) GROUP BY detalleventa.idproducto , productos.nombre ORDER BY cantidad  DESC LIMIT 20;
+END;
+$$ LANGUAGE plpgsql;
+
+
+

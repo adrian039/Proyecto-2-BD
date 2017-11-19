@@ -12,14 +12,15 @@ RETURNS TEXT AS $state$
     DECLARE p2 text;
     DECLARE tam int;
     DECLARE cont int;
-    DECLARE idVenta int; 
+    DECLARE idVen int; 
     DECLARE cant int;
     DECLARE prod int;
 BEGIN
 	cont:=0;
 	tam:=json_array_length(CAST(productos AS json));
-    INSERT INTO venta(idcliente, tpago, idsucursal, fecha, starts, ends) VALUES (idCliente, tipoPago, idSuc, fech, star, endd) RETURNING venta.idventa into idVenta;
-    INSERT INTO ventasxempleado(idventa, idempleado) VALUES (idVenta, idEmpleado);
+    INSERT INTO venta(idcliente, tpago, idsucursal, fecha, starts, ends) VALUES (idCliente, tipoPago, idSuc, fech, star, endd) RETURNING venta.idventa into idVen;
+    RAISE NOTICE idVen;
+    INSERT INTO ventasxempleado(idventa, idempleado) VALUES (idVen, idEmpleado);
 	WHILE cont<tam LOOP
         p2:=productos::json->cont;
         cant:=p2::json->'cantidad';
@@ -91,9 +92,16 @@ $$ LANGUAGE plpgsql;
 
 
 
-SELECT empleado.cedula, empleado.nombre, empleado.papellido, empleado.sapellido, sum(venta.ends-venta.starts) AS tiempoPromedio
-FROM empleado INNER JOIN ventasxempleado ON (ventasxempleado.idempleado=empleado.cedula) INNER JOIN venta ON 
-(venta.idventa=ventasxempleado.idventa) WHERE (venta.fecha='2017-11-17') GROUP BY empleado.cedula;
+CREATE OR REPLACE FUNCTION PROMTIMEEMPLEADO(
+    fech DATE
+)
+RETURNS TABLE(cedula integer, nombre varchar(50), papellido varchar(60), sapellido varchar(60), tiempopromedio interval) AS $$
+BEGIN
+    RETURN QUERY SELECT empleado.cedula, empleado.nombre, empleado.papellido, empleado.sapellido, sum(venta.ends-venta.starts)/count(venta.ends)
+    AS tiempoPromedio FROM empleado INNER JOIN ventasxempleado ON (ventasxempleado.idempleado=empleado.cedula) INNER JOIN venta ON 
+    (venta.idventa=ventasxempleado.idventa) WHERE (venta.fecha=fech) GROUP BY empleado.cedula;
+END;
+$$ LANGUAGE plpgsql;
 
 
 

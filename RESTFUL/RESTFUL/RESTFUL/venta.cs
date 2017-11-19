@@ -27,6 +27,8 @@ namespace RESTFUL
         public int tpago { get; set; }
         public int idsucursal { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<System.TimeSpan> starts { get; set; }
+        public Nullable<System.TimeSpan> ends { get; set; }
     
         public virtual cliente cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

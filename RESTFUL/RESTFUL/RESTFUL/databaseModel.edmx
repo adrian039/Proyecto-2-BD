@@ -152,6 +152,8 @@
           <Property Name="tpago" Type="int4" Nullable="false" />
           <Property Name="idsucursal" Type="int4" Nullable="false" />
           <Property Name="fecha" Type="date" />
+          <Property Name="starts" Type="time" Precision="6" />
+          <Property Name="ends" Type="time" Precision="6" />
         </EntityType>
         <EntityType Name="ventasxempleado">
           <Key>
@@ -703,6 +705,8 @@
           <NavigationProperty Name="tipopago" Relationship="Self.fk_venta_tipopago" FromRole="venta" ToRole="tipopago" />
           <NavigationProperty Name="empleadoes" Relationship="Self.ventasxempleado" FromRole="venta" ToRole="empleado" />
           <NavigationProperty Name="sucursales" Relationship="Self.ventasxsucursal" FromRole="venta" ToRole="sucursales" />
+          <Property Name="starts" Type="Time" Precision="6" />
+          <Property Name="ends" Type="Time" Precision="6" />
         </EntityType>
         <Association Name="fk_caja_cajasxsucursal">
           <End Role="cajasxsucursal" Type="Self.cajasxsucursal" Multiplicity="1" />
@@ -1166,6 +1170,8 @@
           <EntitySetMapping Name="ventas">
             <EntityTypeMapping TypeName="GasStationPharmacyModel.venta">
               <MappingFragment StoreEntitySet="venta">
+                <ScalarProperty Name="ends" ColumnName="ends" />
+                <ScalarProperty Name="starts" ColumnName="starts" />
                 <ScalarProperty Name="idventa" ColumnName="idventa" />
                 <ScalarProperty Name="idcliente" ColumnName="idcliente" />
                 <ScalarProperty Name="tpago" ColumnName="tpago" />

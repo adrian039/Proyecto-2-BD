@@ -104,6 +104,20 @@ END;
 $$ LANGUAGE plpgsql;
 
 
+CREATE OR REPLACE FUNCTION GETDAYSALES(
+    fech DATE
+)
+RETURNS TABLE(idventa integer, idcliente integer, tpago integer, ends time, idsucursal integer, nombre varchar(50), productos json) AS $$
+BEGIN
+    RETURN QUERY SELECT venta.idventa, venta.idcliente, venta.tpago, venta.ends, venta.idsucursal, sucursales.nombre,
+    (SELECT json_agg(json_build_object('ean',detalleventa.idproducto, 'nombre',productos.nombre,'cantidad', 
+    detalleventa.cantidad)) from detalleventa) AS productos FROM venta INNER JOIN detalleventa ON
+    (detalleventa.idventa=venta.idventa) INNER JOIN productos ON (detalleventa.idproducto=productos.ean) 
+    INNER JOIN sucursales ON (sucursales.idsucursal=venta.idsucursal) WHERE (venta.fecha=fech);
+END;
+$$ LANGUAGE plpgsql;
+
+
 
 
 

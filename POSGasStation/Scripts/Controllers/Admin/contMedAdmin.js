@@ -7,6 +7,7 @@ function($scope,$http,userService) {
   $scope.idProveedor;
   $scope.nombre;
   $scope.descripcion;
+  $scope.cantidad;
 
 
       $scope.init = function(){

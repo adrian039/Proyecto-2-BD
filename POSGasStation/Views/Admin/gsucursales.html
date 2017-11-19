@@ -10,6 +10,7 @@
                 <table class="table" >
                   <thead>
                     <tr>
+                      <th>Image</th>
                       <th>Store Name</th>
                       <th>Store ID</th>
                       <th>Address Description</th>
@@ -19,6 +20,7 @@
                   </thead>
                   <tbody>
                     <tr   ng-repeat="s in sucList" >
+                        <td><i class="fa fa-medkit" aria-hidden="true"></i>  <img  src="{{s.imagen}}" style="width: 150px; height: 120px;" alt="image"></td>
                       <td><i class="fa fa-medkit" aria-hidden="true"></i>  {{s.nombre}}</td>
                       <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.idsucursal}}</td>
                       <td><i class="fa fa-medkit" aria-hidden="true"></i> {{s.direccion}}</td>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RESTFUL {
+namespace RESTFUL.Reportes {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -16,14 +16,14 @@ namespace RESTFUL {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class topEmpleadoSales : ReportClass {
         
-        public CrystalReport1() {
+        public topEmpleadoSales() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "topEmpleadoSales.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace RESTFUL {
         
         public override string FullResourceName {
             get {
-                return "RESTFUL.CrystalReport1.rpt";
+                return "RESTFUL.Reportes.topEmpleadoSales.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace RESTFUL {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedtopEmpleadoSales : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedtopEmpleadoSales() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace RESTFUL {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            topEmpleadoSales rpt = new topEmpleadoSales();
             rpt.Site = this.Site;
             return rpt;
         }

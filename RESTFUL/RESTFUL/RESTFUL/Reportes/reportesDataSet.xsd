@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reportesDataSet" targetNamespace="http://tempuri.org/reportesDataSet.xsd" xmlns:mstns="http://tempuri.org/reportesDataSet.xsd" xmlns="http://tempuri.org/reportesDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="reportesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="reportesDataSet" msprop:Generator_UserDSName="reportesDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="topSalesbyDates" msprop:Generator_TableClassName="topSalesbyDatesDataTable" msprop:Generator_TableVarName="tabletopSalesbyDates" msprop:Generator_TablePropName="topSalesbyDates" msprop:Generator_RowDeletingName="topSalesbyDatesRowDeleting" msprop:Generator_RowChangingName="topSalesbyDatesRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyDatesRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyDatesRowDeleted" msprop:Generator_UserTableName="topSalesbyDates" msprop:Generator_RowChangedName="topSalesbyDatesRowChanged" msprop:Generator_RowEvArgName="topSalesbyDatesRowChangeEvent" msprop:Generator_RowClassName="topSalesbyDatesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ean" msprop:Generator_ColumnVarNameInTable="columnean" msprop:Generator_ColumnPropNameInRow="ean" msprop:Generator_ColumnPropNameInTable="eanColumn" msprop:Generator_UserColumnName="ean" type="xs:int" minOccurs="0" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="cantidad" msprop:Generator_ColumnVarNameInTable="columncantidad" msprop:Generator_ColumnPropNameInRow="cantidad" msprop:Generator_ColumnPropNameInTable="cantidadColumn" msprop:Generator_UserColumnName="cantidad" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

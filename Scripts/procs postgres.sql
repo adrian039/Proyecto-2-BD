@@ -25,7 +25,7 @@ BEGIN
         p2:=productos::json->cont;
         cant:=p2::json->'cantidad';
         prod:=p2::json->'ean';
-        INSERT INTO detalleventa(idventa, idproducto, cantidad) VALUES (idVenta, prod, cant);
+        INSERT INTO detalleventa(idventa, idproducto, cantidad) VALUES (idVen, prod, cant);
         UPDATE productosxsucursal SET cantidad=cantidad-cant WHERE productosxsucursal.idsucursal=idSuc AND  productosxsucursal.idproducto=prod;
         cont:=cont+1;
     END LOOP;

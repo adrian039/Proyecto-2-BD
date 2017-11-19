@@ -5,8 +5,38 @@ function($scope,$http,clientService,userService,$location) {
   $scope.qty="";
   $scope.type="";
   $scope.prodList=[];
+  $scope.horaEntrada;
 
   $scope.init = function(){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    
+    var today = new Date();
+    var day = today.getDate() + "";
+    var month = (today.getMonth() + 1) + "";
+    var year = today.getFullYear() + "";
+    var hour = today.getHours() + "";
+    var minutes = today.getMinutes() + "";
+    var seconds = today.getSeconds() + "";
+    
+    day = checkZero(day);
+    month = checkZero(month);
+    year = checkZero(year);
+    hour = checkZero(hour);
+    mintues = checkZero(minutes);
+    seconds = checkZero(seconds);
+
+    function checkZero(data){
+      if(data.length == 1){
+        data = "0" + data;
+      }
+      return data;
+    } 
+    
+    this.horaEntrada=hour + ":" + minutes + ":" + seconds;
+    console.log("Hora Entrada: "+this.horaEntrada);
+
   };
 
   $scope.verifyUser=function(){
@@ -33,11 +63,8 @@ function($scope,$http,clientService,userService,$location) {
 
   $scope.addProduct=function(){
     if(userService.getState()){
-      var url="http://gsprest.azurewebsites.net/api/ProductosSucursal";
+      var url="http://gsprest.azurewebsites.net/api/ProductosSucursal?ean="+this.ean+"&suc="+userService.getSucursal()+"&cant="+this.qty;
       var sendData = {
-        "idproducto": parseInt(this.ean),
-        "cantidad": parseInt(this.qty),
-        "idsucursal": parseInt(userService.getSucursal())
       };
       $scope.postHttp(url,sendData,(data)=>{
         if(data){
@@ -97,7 +124,8 @@ function($scope,$http,clientService,userService,$location) {
         }
         return data;
       }
-      fecha=(year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds);
+      fecha=(year + "-" + month + "-" + day);
+      var horaSalida=hour + ":" + minutes + ":" + seconds;
       var url="http://gsprest.azurewebsites.net/api/Ventas";
       var prodVenta=[];
       for (var i=0;i<this.prodList.length;i++){
@@ -114,7 +142,9 @@ function($scope,$http,clientService,userService,$location) {
         "idSucursal": parseInt(userService.getSucursal()),
         "tipoPago": parseInt(payType),
         "productos":prodVenta,
-        "fecha":fecha
+        "fecha":fecha,
+        "starts":this.horaEntrada,
+        "ends":horaSalida,
       };
       console.log(sendData);
       if(prodVenta.length>0){

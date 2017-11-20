@@ -163,14 +163,6 @@
           <Property Name="idventa" Type="int4" Nullable="false" />
           <Property Name="idempleado" Type="int4" Nullable="false" />
         </EntityType>
-        <EntityType Name="ventasxsucursal">
-          <Key>
-            <PropertyRef Name="idsucursal" />
-            <PropertyRef Name="idventa" />
-          </Key>
-          <Property Name="idsucursal" Type="int4" Nullable="false" />
-          <Property Name="idventa" Type="int4" Nullable="false" />
-        </EntityType>
         <Association Name="fk_caja_cajasxsucursal">
           <End Role="cajasxsucursal" Type="Self.cajasxsucursal" Multiplicity="1" />
           <End Role="caja" Type="Self.caja" Multiplicity="*" />
@@ -401,30 +393,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_ventasxsucursal_sucursales">
-          <End Role="sucursales" Type="Self.sucursales" Multiplicity="1" />
-          <End Role="ventasxsucursal" Type="Self.ventasxsucursal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sucursales">
-              <PropertyRef Name="idsucursal" />
-            </Principal>
-            <Dependent Role="ventasxsucursal">
-              <PropertyRef Name="idsucursal" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_ventasxsucursal_ventas">
-          <End Role="venta" Type="Self.venta" Multiplicity="1" />
-          <End Role="ventasxsucursal" Type="Self.ventasxsucursal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="venta">
-              <PropertyRef Name="idventa" />
-            </Principal>
-            <Dependent Role="ventasxsucursal">
-              <PropertyRef Name="idventa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="GasStationPharmacyModelStoreContainer">
           <EntitySet Name="caja" EntityType="Self.caja" Schema="public" store:Type="Tables" />
           <EntitySet Name="cajasxsucursal" EntityType="Self.cajasxsucursal" Schema="public" store:Type="Tables" />
@@ -442,7 +410,6 @@
           <EntitySet Name="tipopago" EntityType="Self.tipopago" Schema="public" store:Type="Tables" />
           <EntitySet Name="venta" EntityType="Self.venta" Schema="public" store:Type="Tables" />
           <EntitySet Name="ventasxempleado" EntityType="Self.ventasxempleado" Schema="public" store:Type="Tables" />
-          <EntitySet Name="ventasxsucursal" EntityType="Self.ventasxsucursal" Schema="public" store:Type="Tables" />
           <AssociationSet Name="fk_caja_cajasxsucursal" Association="Self.fk_caja_cajasxsucursal">
             <End Role="cajasxsucursal" EntitySet="cajasxsucursal" />
             <End Role="caja" EntitySet="caja" />
@@ -518,14 +485,6 @@
           <AssociationSet Name="fk_venta_tipopago" Association="Self.fk_venta_tipopago">
             <End Role="tipopago" EntitySet="tipopago" />
             <End Role="venta" EntitySet="venta" />
-          </AssociationSet>
-          <AssociationSet Name="fk_ventasxsucursal_sucursales" Association="Self.fk_ventasxsucursal_sucursales">
-            <End Role="sucursales" EntitySet="sucursales" />
-            <End Role="ventasxsucursal" EntitySet="ventasxsucursal" />
-          </AssociationSet>
-          <AssociationSet Name="fk_ventasxsucursal_ventas" Association="Self.fk_ventasxsucursal_ventas">
-            <End Role="venta" EntitySet="venta" />
-            <End Role="ventasxsucursal" EntitySet="ventasxsucursal" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -678,7 +637,6 @@
           <NavigationProperty Name="empresa" Relationship="Self.fk_sucursal_empresa" FromRole="sucursales" ToRole="empresa" />
           <NavigationProperty Name="productosxsucursals" Relationship="Self.fk_idsucursal_sucursal" FromRole="sucursales" ToRole="productosxsucursal" />
           <NavigationProperty Name="ventas" Relationship="Self.fk_venta_sucursal" FromRole="sucursales" ToRole="venta" />
-          <NavigationProperty Name="ventas1" Relationship="Self.ventasxsucursal" FromRole="sucursales" ToRole="venta" />
           <NavigationProperty Name="rolesxsucursals" Relationship="GasStationPharmacyModel.fk_rolesxsucursal_sucursal" FromRole="sucursale" ToRole="rolesxsucursal" />
         </EntityType>
         <EntityType Name="tipopago">
@@ -704,7 +662,6 @@
           <NavigationProperty Name="sucursale" Relationship="Self.fk_venta_sucursal" FromRole="venta" ToRole="sucursales" />
           <NavigationProperty Name="tipopago" Relationship="Self.fk_venta_tipopago" FromRole="venta" ToRole="tipopago" />
           <NavigationProperty Name="empleadoes" Relationship="Self.ventasxempleado" FromRole="venta" ToRole="empleado" />
-          <NavigationProperty Name="sucursales" Relationship="Self.ventasxsucursal" FromRole="venta" ToRole="sucursales" />
           <Property Name="starts" Type="Time" Precision="6" />
           <Property Name="ends" Type="Time" Precision="6" />
         </EntityType>
@@ -894,10 +851,6 @@
           <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
           <End Role="venta" Type="Self.venta" Multiplicity="*" />
         </Association>
-        <Association Name="ventasxsucursal">
-          <End Role="sucursales" Type="Self.sucursale" Multiplicity="*" />
-          <End Role="venta" Type="Self.venta" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="gspEntity" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="cajas" EntityType="Self.caja" />
           <EntitySet Name="cajasxsucursals" EntityType="Self.cajasxsucursal" />
@@ -975,10 +928,6 @@
           </AssociationSet>
           <AssociationSet Name="ventasxempleado" Association="Self.ventasxempleado">
             <End Role="empleado" EntitySet="empleadoes" />
-            <End Role="venta" EntitySet="ventas" />
-          </AssociationSet>
-          <AssociationSet Name="ventasxsucursal" Association="Self.ventasxsucursal">
-            <End Role="sucursales" EntitySet="sucursales" />
             <End Role="venta" EntitySet="ventas" />
           </AssociationSet>
           <EntitySet Name="rolesxsucursals" EntityType="GasStationPharmacyModel.rolesxsucursal" />
@@ -1183,14 +1132,6 @@
           <AssociationSetMapping Name="ventasxempleado" TypeName="GasStationPharmacyModel.ventasxempleado" StoreEntitySet="ventasxempleado">
             <EndProperty Name="empleado">
               <ScalarProperty Name="cedula" ColumnName="idempleado" />
-            </EndProperty>
-            <EndProperty Name="venta">
-              <ScalarProperty Name="idventa" ColumnName="idventa" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="ventasxsucursal" TypeName="GasStationPharmacyModel.ventasxsucursal" StoreEntitySet="ventasxsucursal">
-            <EndProperty Name="sucursales">
-              <ScalarProperty Name="idsucursal" ColumnName="idsucursal" />
             </EndProperty>
             <EndProperty Name="venta">
               <ScalarProperty Name="idventa" ColumnName="idventa" />

@@ -52,7 +52,7 @@ using System.IO;
                         
                                 crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
                                 System.Web.HttpContext.Current.Response, false, "topSales");
-                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                            return Request.CreateResponse(HttpStatusCode.OK, "Hola");
                         }
 
                         };

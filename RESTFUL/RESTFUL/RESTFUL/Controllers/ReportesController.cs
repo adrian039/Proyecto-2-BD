@@ -41,16 +41,18 @@ using System.IO;
                             using (NpgsqlDataReader dr = com.ExecuteReader())
                             {
                                 DataTable table = new DataTable();
+
                                 table.Load(dr);
                                 ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
-                                crystalReport.Load("/Reportes/topSalesbyDates.rpt"); // path of report 
+                                string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/topSalesbyDates.rpt";
+                                crystalReport.Load(strRptPath); // path of report 
                                 crystalReport.SetDataSource(table);
                                 var result = serial.Serialize(dr);
                                 conn.Close();
                         
                                 crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
                                 System.Web.HttpContext.Current.Response, false, "topSales");
-                            //return Request.CreateResponse(HttpStatusCode.OK, result);
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
                         }
 
                         };

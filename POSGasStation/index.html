@@ -38,7 +38,7 @@
     <script src="plugins/owl-carousel/owl.carousel.js"></script>
     <script src="plugins/selectbox/jquery.selectbox-0.1.3.min.js"></script>
     <script src="plugins/countdown/jquery.syotimer.js"></script>
-
+    
     <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
     <script src="https://www.amcharts.com/lib/3/serial.js"></script>
     <script src="https://www.amcharts.com/lib/3/pie.js"></script>
@@ -127,27 +127,6 @@
                     <a data-toggle="modal" ng-click="goTo('userInfo')" ng-show="isActive()||isEmpActive()" >{{getUser().nombre}} {{getUser().papellido}}</a>
                     <a data-toggle="modal" ng-show="isActive()||isEmpActive()" data-ng-click = "logOutUser()"> Log Out</a>
                   </span></li>
-
-                  <li class="dropdown cart-dropdown" ng-click="getBag()" ng-controller="storeController">
-                    <a  class="dropdown-toggle" data-toggle="dropdown"  ><i class="fa fa-shopping-cart"></i>₡{{getFinalPrice();}}</a>
-                    <ul class="dropdown-menu dropdown-menu-right">
-                      <li>Item(s) in your cart</li>
-                      <li  ng-repeat="product in bag" >
-                        <a >
-                          <div class="media">
-                            <img class="media-left media-object" style="width: 50px; height: 50px;" src="data:image/jpg;base64,{{product.product.Image}}" alt="cart-Image">
-                            <div class="media-body">
-                              <h5 class="media-heading">{{product.product.Nombre}} <br><span>₡{{product.product.Precio}}</span></h5>
-                            </div>
-                            <button type="button" class="close" ng-click="deleteFromBag(product)" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          </div>
-                        </a>
-                      </li>
-                      <li>
-                        <div class="btn-group" role="group" aria-label="...">
-                          <button type="button" class="btn btn-default" data-ng-click = "goTo('mybag')">Shopping Cart</button>
-                          <button type="button" class="btn btn-default" ng-controller="mainController" ng-click="goTo('newOrder')">Checkout</button>
-                        </div>
                       </li>
                     </ul>
                   </li>
@@ -212,7 +191,7 @@
                   <a  class="dropdown-toggle"  ng-show="isActive()" ng-click="goTo('userInfo')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
                 </li>
                 <li class="dropdown">
-                    <a  class="dropdown-toggle" ng-show="isEmpActive()&&isAdmin()" ng-click="goTo('estadistica')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stats</a>
+                    <a  class="dropdown-toggle" ng-show="isEmpActive()&&isAdmin()" ng-click="goTo('estadistica')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Reports</a>
                   </li>
                   <li class="dropdown">
                     <a  class="dropdown-toggle" ng-show="isEmpActive()&&isAdmin()" ng-click="goTo('gsucursales')" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stores Managment</a>

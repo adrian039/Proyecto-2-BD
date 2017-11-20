@@ -19,7 +19,6 @@ namespace RESTFUL
         {
             this.detalleventas = new HashSet<detalleventa>();
             this.empleadoes = new HashSet<empleado>();
-            this.sucursales = new HashSet<sucursale>();
         }
     
         public int idventa { get; set; }
@@ -27,6 +26,8 @@ namespace RESTFUL
         public int tpago { get; set; }
         public int idsucursal { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<System.TimeSpan> starts { get; set; }
+        public Nullable<System.TimeSpan> ends { get; set; }
     
         public virtual cliente cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -35,7 +36,5 @@ namespace RESTFUL
         public virtual tipopago tipopago { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empleado> empleadoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sucursale> sucursales { get; set; }
     }
 }

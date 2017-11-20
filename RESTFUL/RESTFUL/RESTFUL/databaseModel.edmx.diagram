@@ -35,7 +35,6 @@
         <AssociationConnector Association="GasStationPharmacyModel.fk_venta_sucursal" ManuallyRouted="false" />
         <AssociationConnector Association="GasStationPharmacyModel.fk_venta_tipopago" ManuallyRouted="false" />
         <AssociationConnector Association="GasStationPharmacyModel.ventasxempleado" ManuallyRouted="false" />
-        <AssociationConnector Association="GasStationPharmacyModel.ventasxsucursal" ManuallyRouted="false" />
         <AssociationConnector Association="GasStationPharmacyModel.rolesxsucursal1" />
         <EntityTypeShape EntityType="GasStationPharmacyModel.rolesxsucursal" Width="1.5" PointX="6" PointY="9.5" />
         <AssociationConnector Association="GasStationPharmacyModel.fk_rolesxsucursal_roles" />

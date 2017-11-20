@@ -18,7 +18,14 @@ function($scope,$http,userService) {
         })
 
       };
-
+      $scope.getRols = function(){
+        var url='http://gsprest.azurewebsites.net/api/Roles';
+        $scope.getHttp(url,(data)=>{
+          $scope.rolList=data;
+          console.log(data);
+        });
+  
+      };
 
       $scope.edit=function(){
         var url = "http://gsprest.azurewebsites.net/api/Empleados/"+this.cedula;

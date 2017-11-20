@@ -20,8 +20,7 @@
                   </thead>
                   <tbody>
                     <tr ng-repeat="s in medList">
-                      <td><i></i> <img  src="{{s.imagen}}" style="width: 50px; height: 50px;" alt="image"></span></td>
-                      <td><i></i>  {{s.nombre}} </td>
+                      <td><i></i> <img  src="{{s.imagen}}" style="width: 150px; height: 120px;" alt="image"></span></td>
                       <td><i></i>  {{s.nombre}} </td>
                       <td><i></i> {{s.ean}}</td>
                       <td><i></i> {{s.descripcion}}</td>
@@ -70,34 +69,26 @@
                    </select>
                  </div>
                  <div class="form-group">
-                   <label for="sucursales">Description</label><br>
-                   <textarea class="form-control" ng-model="descripcion">
-     
-                   </textarea>
-     
-                 </div>
-     
-                 <div class="form-group">
                    <label>Price of the product</label>
-                   <input type="text" class="form-control" placeholder="Price of the product" ng-model="price" required>
+                   <input type="text" class="form-control" placeholder="Price of the product" ng-model="precio" required>
      
                  </div>
      
-                 <div class="form-group">
-                   <label>Medicine</label>
-                   <select class="form-control" id="Company" ng-model="medicine" required>
-                     <option>1:Yes</option>
-                     <option>0:No</option>
-                   </select>
-     
-                 </div>
+
      
                  <div class="form-group">
                    <label>Quantity</label>
-                   <input type="text" class="form-control" placeholder="Price of the product" ng-model="qty" required>
+                   <input type="text" class="form-control" placeholder="Price of the product" ng-model="cantidad" required>
      
      
                  </div>
+                 <div class="form-group">
+                    <label for="sucursales">Description</label><br>
+                    <textarea class="form-control" ng-model="descripcion">
+      
+                    </textarea>
+      
+                  </div>
      
                  <div class="form-group">
                    <label> Choose Image</label>

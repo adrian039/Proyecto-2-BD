@@ -275,3 +275,14 @@ RESTFUL/RESTFUL/RESTFUL/Scripts/jquery-1.10.2.min.js
 *.ttf
 RESTFUL/RESTFUL/RESTFUL/fonts/glyphicons-halflings-regular.svg
 *.map
+*.config
+*.csproj
+*.config
+*.css
+*.css
+*.config
+*.js
+*.config
+RESTFUL/RESTFUL/RESTFUL/packages.config
+*.config
+*.css

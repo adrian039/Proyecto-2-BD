@@ -1,6 +1,7 @@
  
 <!-- MAIN CONTENT SECTION -->
-<section class="mainContent clearfix userProfile" ng-controller="contMedNuevAdmin" data-ng-init="init()">
+<div  ng-controller="contMedNuevAdmin">
+<section class="mainContent clearfix userProfile" data-ng-init="init()">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -39,21 +40,6 @@
 
             </div>
 
-            <div class="form-group">
-              <label>Medicine</label>
-              <select class="form-control" id="Company" ng-model="medicine" required>
-                <option>1:Yes</option>
-                <option>0:No</option>
-              </select>
-
-            </div>
-
-            <div class="form-group">
-              <label>Quantity</label>
-              <input type="text" class="form-control" placeholder="Price of the product" ng-model="qty" required>
-
-
-            </div>
 
             <div class="form-group">
               <label> Choose Image</label>
@@ -66,8 +52,19 @@
 
 
                             <div class="form-group">
-                              <div class="col-md-offset-10 col-md-2 col-sm-offset-9 col-sm-3">
-                                <button type="submit" class="btn btn-primary" ng-click="createProduct(id,house,name,medicine,presc,price,qty)" btn-block>Create Product</button>
+                              <div class="col-md-offset-7 col-md-5 col-sm-offset-9 col-sm-3">
+                                  <div class="form-group">
+                                      <div class="col-md-10">
+                                          <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal"btn-block>Add Product to store</button>
+                                          
+                                      </div>
+                                      <div class="col-md-2">
+                                          <button type="submit" class="btn btn-primary" ng-click="createProduct(id,house,name,medicine,presc,price,qty)" btn-block>Create Product</button>
+                                          
+                                      </div>
+                                      
+                  
+                              </div>
                               </div>
                             </div>
                           </form>
@@ -78,3 +75,39 @@
               </div>
             </div>
           </section>
+
+          <div class="modal fade" id="myModal" tabindex="-1" ng-controller="contMedAdmin" ng-click="UpdateDirections()" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content" >
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Product to Store</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+      
+                    <div class="form-group">
+                        <label> Product</label>
+                        <select class="form-control" id="Company" ng-model="eanCode" required>
+                            <option ng-repeat="p in prodList">{{p.ean}}:{{p.nombre}}</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label> Store</label>
+                          <select class="form-control" id="Company" ng-model="idSuc" required>
+                              <option ng-repeat="p in sucList">{{p.idsucursal}}:{{p.nombre}}</option>
+                            </select>                        
+                      </div>
+      
+                  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addProduct()" data-dismiss="modal">Save changes</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+</div>

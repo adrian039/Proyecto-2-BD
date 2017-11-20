@@ -79,6 +79,8 @@ CREATE TABLE VENTA(
   tPago INT not null,
   idSucursal INT not null,
   fecha DATE,
+  starts TIME,
+  ends TIME,
   
   PRIMARY KEY (idVenta)
 )

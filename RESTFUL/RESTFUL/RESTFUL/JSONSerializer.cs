@@ -4,12 +4,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Diagnostics;
+using Npgsql;
 
 namespace RESTFUL
 {
     public class JSONSerializer
     {
-        public IEnumerable<Dictionary<string, object>> Serialize(SqlDataReader reader)
+        public IEnumerable<Dictionary<string, object>> Serialize(NpgsqlDataReader reader)
         {
             var results = new List<Dictionary<string, object>>();
             var cols = new List<string>();
@@ -23,7 +24,7 @@ namespace RESTFUL
             }
             return results;
         }
-        public Dictionary<string, object> singleserialize(SqlDataReader reader)
+        public Dictionary<string, object> singleserialize(NpgsqlDataReader reader)
         {
             var results = new List<Dictionary<string, object>>();
             var cols = new List<string>();
@@ -35,7 +36,7 @@ namespace RESTFUL
             return SerializeRow(cols, reader);
         }
         private Dictionary<string, object> SerializeRow(IEnumerable<string> cols,
-                                                        SqlDataReader reader)
+                                                        NpgsqlDataReader reader)
         {
             var result = new Dictionary<string, object>();
             foreach (var col in cols)

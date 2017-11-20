@@ -4,6 +4,8 @@ function($scope,$http,userService,$location) {
   $scope.amount="";
   $scope.cajaList;
 
+
+
   $scope.openCash=function(){
     var today = new Date();
     var dd = today.getDate();
@@ -32,7 +34,6 @@ function($scope,$http,userService,$location) {
     } 
     
     today=(year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds);
-    console.log(today);
     if(!userService.getState()){
     var url='http://gsprest.azurewebsites.net/api/Caja';
     var sendData = {

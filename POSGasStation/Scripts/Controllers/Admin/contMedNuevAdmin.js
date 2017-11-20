@@ -8,6 +8,14 @@ function($scope,$http,$location,userService) {
   $scope.descripcion;
 
 
+  $scope.prodList;
+  $scope.sucList;
+  $scope.idSuc;
+  $scope.eanCode;
+  $scope.precio;
+  $scope.cantidad;
+
+
   $scope.providerList;
 
       $scope.init = function(){
@@ -15,7 +23,36 @@ function($scope,$http,$location,userService) {
         $scope.getHttp(url,(data)=>{
           this.providerList=data;
         });
+
+        url = "http://gsprest.azurewebsites.net/api/Productos";
+        $scope.getHttp(url,(data)=>{
+          this.prodList=data;
+        });
+
+        url='http://gsprest.azurewebsites.net/api/Sucursales?idEmpresa='+userService.getCompany();
+        $scope.getHttp(url,(data)=>{
+          this.sucList=data;
+        });
+
+
       }
+
+      $scope.addProduct=function(){
+        var url = "http://gsprest.azurewebsites.net/api/ProductosSucursal";
+        var sendData = {
+          "idsucursal": parseInt(this.idSuc.split(":",1)),
+          "idproducto": parseInt(this.eanCode.split(":",1)),
+          "cantidad": parseInt(this.cantidad),
+          "precio":parseInt(this.precio),
+          "estado":1
+        };
+        
+       $scope.postHttp(url,sendData,(data)=>{
+          console.log("Data: "+data);
+          alert("Process Completed");
+        });
+
+      };
 
 
       $scope.createProduct=function(){
@@ -31,7 +68,10 @@ function($scope,$http,$location,userService) {
 
        $scope.postHttp(url,sendData,(data)=>{
           console.log("Data: "+data);
+          alert("Product Created");
+          $scope.init();
         });
+
         
       };
 

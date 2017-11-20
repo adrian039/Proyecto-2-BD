@@ -20,7 +20,7 @@ angular.module("mainModule").controller("contNuevSucAdmin", ["$scope","$http","d
         "idsucursal": parseInt(this.idSucursal),
         "nombre": this.nombre,
         "direccion": this.direccion,
-        "img":globalImage,
+        "imagen":globalImage,
         "estado":1,
         "idempresa":parseInt(userService.getCompany())
       }

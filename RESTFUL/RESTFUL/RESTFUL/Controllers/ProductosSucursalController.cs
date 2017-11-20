@@ -31,19 +31,19 @@ namespace RESTFUL.Controllers
 
         }
 
-        [HttpGet]
-        public producto hayDisponible([FromBody]productosxsucursal prod)
+        [HttpPost]
+        public producto hayDisponible(int ean, int suc, int cant)
         {
             try
             {
                 using (gspEntity entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    var resp = entities.productosxsucursals.FirstOrDefault(e => (e.idproducto == prod.idproducto) && (e.idsucursal == prod.idsucursal)
-                     && (e.cantidad >= prod.cantidad));
+                    var resp = entities.productosxsucursals.FirstOrDefault(e => (e.idproducto == ean) && (e.idsucursal == suc)
+                     && (e.cantidad >= cant));
                     if (resp != null)
                     {
-                        var product = entities.productos.FirstOrDefault(e => e.ean == prod.idproducto);
+                        var product = entities.productos.FirstOrDefault(e => e.ean == ean);
                         return product;
                     }
                     else

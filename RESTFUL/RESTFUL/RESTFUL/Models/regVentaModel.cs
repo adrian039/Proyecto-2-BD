@@ -14,5 +14,7 @@ namespace RESTFUL.Models
        public int idSucursal {get; set;}
        public int tipoPago { get; set; }
         public System.DateTime fecha { get; set; }
+        public System.TimeSpan starts { get; set; }
+        public System.TimeSpan ends { get; set; }
     }
 }

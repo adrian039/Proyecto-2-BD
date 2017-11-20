@@ -33,7 +33,8 @@ angular.module("mainModule").service('userService', function () {
 	this.getAdmin = function () {
 	  return admin;
 	}
-	this.setRol=function(pRol){rol=pRol;}
+	this.setRol=function(pRol){rol=pRol;
+														console.log("set rol: "+pRol)}
 	this.getRol=function(){return rol;}
 	this.getEmpActive = function () {
 	  return empLogged;

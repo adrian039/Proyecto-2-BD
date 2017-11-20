@@ -1,4 +1,4 @@
-<div  ng-controller="contEmplAdmin" data-ng-init="init()">
+<div  ng-controller="contEstAdmin">
   <section class="mainContent clearfix userProfile"  >
       <div class="container">
         <div class="row">
@@ -62,12 +62,12 @@
           <div class="modal-body">
               <div class="form-group">
                   <label> Store ID</label>
-                  <input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="cedula" required>
+                  <input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="store" required>
                 </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="edit()" data-dismiss="modal">Get Report</button>
+            <button type="button" class="btn btn-primary" ng-click="TopByStore(store)" data-dismiss="modal">Get Report</button>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="edit()" data-dismiss="modal">Get Report</button>
+            <button type="button" class="btn btn-primary" ng-click="TopByEmp(cedula)" data-dismiss="modal">Get Report</button>
           </div>
         </div>
       </div>

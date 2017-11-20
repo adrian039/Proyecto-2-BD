@@ -10,27 +10,34 @@ angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","direct
     $scope.conPassword;
     $scope.email;
     
+    $scope.init = function(){
+      var url='http://gsprest.azurewebsites.net/api/Roles';
+      $scope.getHttp(url,(data)=>{
+        $scope.rolList=data;
+        console.log(data);
+      });
 
-      $scope.createEmployee = function () {
-        if (this.password == this.conPassword) {
-                var url = "http://gsprest.azurewebsites.net/api/Empleados";
-                var sendData = {
-                  "cedula": parseInt(this.cedula),
-                  "nombre": this.nombre,
-                  "papellido": this.pApellido,
-                  "sapellido":this.sApellido,
-                  "username": this.username,
-                  "password":this.password,
-                  "email":this.email,
-                  "estado":1
-                }
-               $scope.postHttp(url,sendData,(data)=>{
-                  console.log("Data: "+data);
-                });
+    };
+    $scope.createEmployee = function () {
+      if (this.password == this.conPassword) {
+              var url = "http://gsprest.azurewebsites.net/api/Empleados";
+              var sendData = {
+                "cedula": parseInt(this.cedula),
+                "nombre": this.nombre,
+                "papellido": this.pApellido,
+                "sapellido":this.sApellido,
+                "username": this.username,
+                "password":this.password,
+                "email":this.email,
+                "estado":1
               }
-              else {
-                alert("Error(03): Passwords not match");
-              }
-        
-          };
-      }]);
+              $scope.postHttp(url,sendData,(data)=>{
+                console.log("Data: "+data);
+              });
+            }
+            else {
+              alert("Error(03): Passwords not match");
+            }
+      
+        };
+    }]);

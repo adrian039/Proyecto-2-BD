@@ -35,6 +35,26 @@ $state$ LANGUAGE plpgsql;
 
 
 
+CREATE OR REPLACE FUNCTION REGEMPLEADO(
+	ced integer, mail varchar(60), userna varchar(50),
+    pass varchar(100), nomb varchar(50), pape varchar(60), 
+    sape varchar(60), rol integer, idsuc integer,
+    est integer  
+)
+RETURNS TEXT AS $$
+BEGIN
+	INSERT INTO empleado(cedula, nombre, papellido, sapellido, username, password, email, estado) VALUES 
+    (ced, nomb, pape, sape, userna, pass, mail, est);
+    INSERT INTO empleadosxsucursal(idempleado, idsucursal, idrol) VALUES (ced, idsuc, rol);
+    RETURN 'true';
+EXCEPTION
+	WHEN OTHERS THEN
+    	return 'error creating employee';
+END;
+$$ LANGUAGE plpgsql;
+
+
+
 
 CREATE OR REPLACE FUNCTION TOPSALESBYDATE (
     ifecha DATE,

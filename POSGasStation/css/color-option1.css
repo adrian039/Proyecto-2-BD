@@ -42,11 +42,11 @@
 .list-group-item.active:hover,
 .panel-primary,
 .panel-primary > .panel-heading {
-  border-color: #3382f0;
+  border-color: #088145;
 }
 
 .category-content {
-  border-top-color: #3382f0;
+  border-top-color: #088145;
 }
 
 .top-right .cart-dropdown a,
@@ -150,7 +150,7 @@
 .list-group-item.active, .list-group-item.active:focus,
 .list-group-item.active:hover,
 .panel-primary > .panel-heading {
-  background-color: #3382f0;
+  background-color: #088145;
 }
 
 .navbar-default .navbar-collapse li a:hover,
@@ -232,7 +232,7 @@
 .label-primary, .badge-link:hover, .badge-link:focus,
 a.list-group-item:hover,
 .jumbotron h1 {
-  color: #3382f0;
+  color: #088145;
 }
 
 .step-drop .sbOptions a:hover,
@@ -241,7 +241,7 @@ a.list-group-item:hover,
 .slider-captionV4 .tp-caption.rs-caption-2 small,
 .dropGeneral .sbOptions a:hover,
 .active .badge {
-  color: #3382f0 !important;
+  color: #088145 !important;
 }
 
 .masking-hover,
@@ -256,18 +256,18 @@ a.list-group-item:hover,
 }
 
 .fullscreenbanner-container .tp-bullets.preview4 {
-  background: #3382f0;
-  background: linear-gradient(to bottom, #3382f0 0%, #3382f0 50%, #3382f0 51%, #3382f0 100%);
+  background: #088145;
+  background: linear-gradient(to bottom, #088145 0%, #088145 50%, #088145 51%, #088145 100%);
 }
 
 .fullscreenbanner-container .tp-bullets.preview4::before {
-  background: #3382f0;
-  background: linear-gradient(135deg, #3382f0 0%, #3382f0 50%, #3382f0 51%, #3382f0 100%);
+  background: #088145;
+  background: linear-gradient(135deg, #088145 0%, #088145 50%, #088145 51%, #088145 100%);
 }
 
 .fullscreenbanner-container .tp-bullets.preview4::after {
-  background: #3382f0;
-  background: linear-gradient(135deg, #3382f0 0%, #3382f0 50%, #3382f0 51%, #3382f0 100%);
+  background: #088145;
+  background: linear-gradient(135deg, #088145 0%, #088145 50%, #088145 51%, #088145 100%);
 }
 
 .darkSection .btn-default {
@@ -275,13 +275,13 @@ a.list-group-item:hover,
 }
 
 .darkSection .btn-default:hover {
-  background-color: #3382f0;
-  border-color: #3382f0;
+  background-color: #088145;
+  border-color: #088145;
 }
 
 .cartListInner .updateArea .btn:hover {
-  background-color: #3382f0;
-  border-color: #3382f0;
+  background-color: #088145;
+  border-color: #088145;
 }
 
 .form-field .btn-link:hover,

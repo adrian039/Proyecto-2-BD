@@ -17,21 +17,33 @@ angular.module("mainModule").controller("contEstAdmin",["$scope","$http","userSe
         }, function(error){ console.log(error);})}
 
 
-        $scope.init=function(){
-        var url = 'http://'+getIp()+':58706/api/Productos?idEmpresa='+userService.getCompany();
-        $http.get(url).then(function(msg){
-        if(msg.data.length==0){alert("No Sells Yet");}
-        else{ $scope.prod = msg.data;
-         process(msg.data);
-        $scope.allOrders();
-        }
-        
-        }
-      );
-    }
 
-      $scope.allOrders=function(){
-        var url = 'http://'+getIp()+':58706/api/Pedidos?idEmpresa='+userService.getCompany();
+      $scope.TopByCO=function(begin,end){
+        var url='http://gsprest.azurewebsites.net/api/Reportes?date1='+begin+'&date2='+end;
+        $http.get(url).then(function(msg){
+          $scope.all = msg.data.conteoPedidos; 
+          console.log($scope.all);       
+          }
+        );
+      }
+      $scope.TopByStore=function(store){
+        var url='http://gsprest.azurewebsites.net/api/Reportes?suc='+store;
+        $http.get(url).then(function(msg){
+          $scope.all = msg.data.conteoPedidos; 
+          console.log($scope.all);       
+          }
+        );
+      }
+      $scope.TopByEmp=function(employee){
+        var url='http://gsprest.azurewebsites.net/api/Reportes?empl='+employee;
+        $http.get(url).then(function(msg){
+          $scope.all = msg.data.conteoPedidos; 
+          console.log($scope.all);       
+          }
+        );
+      }
+      $scope.empTime=function(employee){
+        var url='http://gsprest.azurewebsites.net/api/Reportes?empl='+employee;
         $http.get(url).then(function(msg){
           $scope.all = msg.data.conteoPedidos; 
           console.log($scope.all);       

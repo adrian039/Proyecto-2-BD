@@ -9,6 +9,10 @@ angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","direct
     $scope.password;
     $scope.conPassword;
     $scope.email;
+    $scope.idRol;
+    $scope.idStore;
+
+    $scope.sucList;
     
     $scope.init = function(){
       var url='http://gsprest.azurewebsites.net/api/Roles';
@@ -17,7 +21,24 @@ angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","direct
         console.log(data);
       });
 
+      url='http://gsprest.azurewebsites.net/api/Sucursales?idEmpresa='+userService.getCompany();
+      $scope.getHttp(url,(data)=>{
+        this.sucList=data;
+      });
+
     };
+
+    $scope.setRol=function(role){
+      $scope.idRol=role;
+      
+    };
+
+    $scope.setStore=function(store){
+      $scope.idStore=store;
+    };
+
+
+
     $scope.createEmployee = function () {
       if (this.password == this.conPassword) {
               var url = "http://gsprest.azurewebsites.net/api/Empleados";
@@ -29,8 +50,11 @@ angular.module("mainModule").controller("contNuevEmp", ["$scope","$http","direct
                 "username": this.username,
                 "password":this.password,
                 "email":this.email,
+                "idrol":this.idRol,
+                "idsucursal":this.idStore,
                 "estado":1
               }
+              console.log("Employee: "+sendData.idrol+sendData.idsucursal);
               $scope.postHttp(url,sendData,(data)=>{
                 console.log("Data: "+data);
               });

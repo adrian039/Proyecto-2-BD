@@ -96,8 +96,11 @@ function($scope,$http,clientService,userService,$location) {
   }
   $scope.deleteElement=function(prod){
     for(var i=0;i<this.prodList.length;i++){
-      this.prodList.splice(i,1);
-      i--;
+      if(this.prodList[i].nombre==prod){
+        this.prodList.splice(i,1);
+        i--;
+      }
+      
     }
   }
   
@@ -144,9 +147,9 @@ function($scope,$http,clientService,userService,$location) {
         "productos":prodVenta,
         "fecha":fecha,
         "starts":this.horaEntrada,
+        "idcaja":userService.getCash(),
         "ends":horaSalida,
       };
-      console.log(sendData);
       if(prodVenta.length>0){
         $scope.postHttp(url,sendData,(data)=>{
           console.log("Data: "+data);

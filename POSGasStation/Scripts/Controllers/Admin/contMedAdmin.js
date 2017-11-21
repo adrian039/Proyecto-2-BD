@@ -21,7 +21,7 @@ function($scope,$http,userService) {
           this.providerList=data;
         });
 
-      }
+      };
 
       
 
@@ -40,10 +40,11 @@ function($scope,$http,userService) {
         function(response){
             // success callback
             $scope.init();
-            
+            console.log("update");
           }, 
           function(response){
             // failure callback
+            $scope.init();
           }
           );
 

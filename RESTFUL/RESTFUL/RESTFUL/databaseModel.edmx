@@ -154,6 +154,7 @@
           <Property Name="fecha" Type="date" />
           <Property Name="starts" Type="time" Precision="6" />
           <Property Name="ends" Type="time" Precision="6" />
+          <Property Name="idcaja" Type="int4" />
         </EntityType>
         <EntityType Name="ventasxempleado">
           <Key>
@@ -664,6 +665,7 @@
           <NavigationProperty Name="empleadoes" Relationship="Self.ventasxempleado" FromRole="venta" ToRole="empleado" />
           <Property Name="starts" Type="Time" Precision="6" />
           <Property Name="ends" Type="Time" Precision="6" />
+          <Property Name="idcaja" Type="Int32" />
         </EntityType>
         <Association Name="fk_caja_cajasxsucursal">
           <End Role="cajasxsucursal" Type="Self.cajasxsucursal" Multiplicity="1" />
@@ -1119,6 +1121,7 @@
           <EntitySetMapping Name="ventas">
             <EntityTypeMapping TypeName="GasStationPharmacyModel.venta">
               <MappingFragment StoreEntitySet="venta">
+                <ScalarProperty Name="idcaja" ColumnName="idcaja" />
                 <ScalarProperty Name="ends" ColumnName="ends" />
                 <ScalarProperty Name="starts" ColumnName="starts" />
                 <ScalarProperty Name="idventa" ColumnName="idventa" />

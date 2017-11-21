@@ -8,21 +8,20 @@ using RESTFUL.Models;
 using System.Data.SqlClient;
 using Npgsql;
 using NpgsqlTypes;
-using Newtonsoft.Json.Linq;
 
 namespace RESTFUL.Controllers
 {
     public class VentasController : ApiController
     {
         [HttpGet]
-        public IEnumerable<venta> getVentas([FromUri] System.DateTime fecha)
+        public IEnumerable<venta> getVentas([FromUri] System.DateTime fecha, int idsuc, int idcaja)
         {
             try
             {
                 using (var entities = new gspEntity())
                 {
                     entities.Configuration.LazyLoadingEnabled = false;
-                    return entities.ventas.Where(x => x.fecha == fecha).ToList();
+                    return entities.ventas.Where(x => (x.fecha == fecha) && (x.idsucursal==idsuc) && (x.idcaja==idcaja)).ToList();
                 }
 
             }

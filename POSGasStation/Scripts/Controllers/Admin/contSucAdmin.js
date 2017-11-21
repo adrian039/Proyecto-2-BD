@@ -24,7 +24,7 @@ function($scope,$http,$location,userService,directionService) {
           "idsucursal": parseInt(this.idSucursal),
           "nombre": this.nombre,
           "direccion": this.direccion,
-          "img":globalImage,
+          "imagen":globalImage,
           "estado":1,
           "idempresa":parseInt(userService.getCompany())
         }
@@ -33,6 +33,8 @@ function($scope,$http,$location,userService,directionService) {
           function(response){
               // success callback
               $scope.init();
+              $location.path('/Admin/gsucursales');
+              console.log("update");
             }, 
             function(response){
               // failure callback

@@ -60,7 +60,6 @@ PRIMARY KEY (idRol)
 CREATE TABLE ROLESXSUCURSAL(
   idRol INT,
   idSucursal INT,
-  idempresa INT,
   PRIMARY KEY (idRol, idSucursal)
 )
 
@@ -81,6 +80,7 @@ CREATE TABLE VENTA(
   fecha DATE,
   starts TIME,
   ends TIME,
+  idcaja INT,
   
   PRIMARY KEY (idVenta)
 )
@@ -203,3 +203,4 @@ ADD CONSTRAINT FK_DETALLEVENTA_VENTA FOREIGN KEY (idVenta) REFERENCES venta(idVe
 
 ALTER TABLE DETALLEVENTA
 ADD CONSTRAINT FK_DETALLEVENTA_PRODUCTOS FOREIGN KEY (idProducto) REFERENCES productos(ean)
+

@@ -6,7 +6,8 @@ CREATE OR REPLACE FUNCTION REGVENTA (
     tipoPago int,
     fech timestamp,
     star time,
-    endd time
+    endd time,
+    idcaj int
                                     )
 RETURNS TEXT AS $state$
     DECLARE p2 text;
@@ -18,7 +19,7 @@ RETURNS TEXT AS $state$
 BEGIN
 	cont:=0;
 	tam:=json_array_length(CAST(productos AS json));
-    INSERT INTO venta(idcliente, tpago, idsucursal, fecha, starts, ends) VALUES (idCliente, tipoPago, idSuc, fech, star, endd) RETURNING venta.idventa into idVen;
+    INSERT INTO venta(idcliente, tpago, idsucursal, fecha, starts, ends, idcaja) VALUES (idCliente, tipoPago, idSuc, fech, star, endd, idcaj) RETURNING venta.idventa into idVen;
     RAISE NOTICE idVen;
     INSERT INTO ventasxempleado(idventa, idempleado) VALUES (idVen, idEmpleado);
 	WHILE cont<tam LOOP
@@ -115,11 +116,14 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION PROMTIMEEMPLEADO(
     fech DATE
 )
-RETURNS TABLE(cedula integer, nombre varchar(50), papellido varchar(60), sapellido varchar(60), tiempopromedio interval) AS $$
+RETURNS TABLE(cedula integer, nombre varchar(50), papellido varchar(60), sapellido varchar(60), idsucursal integer, 
+            sucursal varchar(50), tiempopromedio interval) AS $$
 BEGIN
-    RETURN QUERY SELECT empleado.cedula, empleado.nombre, empleado.papellido, empleado.sapellido, sum(venta.ends-venta.starts)/count(venta.ends)
-    AS tiempoPromedio FROM empleado INNER JOIN ventasxempleado ON (ventasxempleado.idempleado=empleado.cedula) INNER JOIN venta ON 
-    (venta.idventa=ventasxempleado.idventa) WHERE (venta.fecha=fech) GROUP BY empleado.cedula;
+    RETURN QUERY SELECT empleado.cedula, empleado.nombre, empleado.papellido, empleado.sapellido, sucursales.idsucursal, 
+    sucursales.nombre AS sucursal, sum(venta.ends-venta.starts)/count(venta.ends)AS tiempoPromedio FROM empleado INNER JOIN 
+    ventasxempleado ON (ventasxempleado.idempleado=empleado.cedula) INNER JOIN venta ON (venta.idventa=ventasxempleado.idventa) 
+    INNER JOIN sucursales ON (sucursales.idsucursal=venta.idsucursal) WHERE (venta.fecha=fech) GROUP BY empleado.cedula, 
+    sucursales.nombre, sucursales.idsucursal;
 END;
 $$ LANGUAGE plpgsql;
 

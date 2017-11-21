@@ -116,8 +116,8 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE FUNCTION PROMTIMEEMPLEADO(
     fech DATE
 )
-RETURNS TABLE(cedula integer,  idsucursal integer, sucursal varchar(50), nombre varchar(50), papellido varchar(60), 
-              sapellido varchar(60), tiempopromedio interval) AS $$
+RETURNS TABLE(cedula integer, nombre varchar(50), papellido varchar(60), sapellido varchar(60), idsucursal integer, 
+            sucursal varchar(50), tiempopromedio interval) AS $$
 BEGIN
     RETURN QUERY SELECT empleado.cedula, empleado.nombre, empleado.papellido, empleado.sapellido, sucursales.idsucursal, 
     sucursales.nombre AS sucursal, sum(venta.ends-venta.starts)/count(venta.ends)AS tiempoPromedio FROM empleado INNER JOIN 

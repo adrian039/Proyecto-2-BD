@@ -13,6 +13,7 @@ namespace RESTFUL.Controllers
 {
     public class VentasController : ApiController
     {
+        JSONSerializer serial = new JSONSerializer();
         [HttpGet]
         public IEnumerable<venta> getVentas([FromUri] System.DateTime fecha, int idsuc, int idcaja)
         {
@@ -28,6 +29,38 @@ namespace RESTFUL.Controllers
             catch (Exception ex)
             {
                 return null;
+            }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage getSucursalSales(int idsuc)
+        {
+            try
+            {
+                using (gspEntity entities = new gspEntity())
+                {
+                    NpgsqlConnection conn = new NpgsqlConnection(entities.Database.Connection.ConnectionString);
+                    conn.Open();
+                    using (NpgsqlCommand com = new NpgsqlCommand("BEGIN; SELECT * FROM getsucursalsales(:P0); COMMIT;", conn))
+                    {
+                        com.Parameters.Add(new NpgsqlParameter("P0", NpgsqlDbType.Integer));
+                        com.Prepare();
+                        com.Parameters[0].Value = idsuc;
+                        using (NpgsqlDataReader dr = com.ExecuteReader())
+                        {
+                            var result = serial.Serialize(dr);
+                            conn.Close();
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                        }
+
+                    };
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 

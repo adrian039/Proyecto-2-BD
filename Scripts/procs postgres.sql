@@ -137,11 +137,26 @@ BEGIN
     json_agg(json_build_object('ean',detalleventa.idproducto, 'nombre',productos.nombre,'cantidad', 
     detalleventa.cantidad))  AS productos FROM venta INNER JOIN detalleventa ON
     (detalleventa.idventa=venta.idventa) INNER JOIN productos ON (detalleventa.idproducto=productos.ean) 
-    INNER JOIN sucursales ON (sucursales.idsucursal=venta.idsucursal) WHERE (venta.fecha=fech) group by venta.idventa,
+    INNER JOIN sucursales ON (sucursales.idsucursal=venta.idsucursal) WHERE (venta.idsucursal=2) group by venta.idventa,
     sucursales.nombre;
 END;
 $$ LANGUAGE plpgsql;
 
+
+
+CREATE OR REPLACE FUNCTION GETSUCURSALSALES(
+    idsuc INTEGER
+)
+RETURNS TABLE(idventa integer, idcliente integer, tpago integer, fecha date, ends time, idsucursal integer, nombre varchar(50), productos json) AS $$
+BEGIN
+    RETURN QUERY SELECT venta.idventa, venta.idcliente, venta.tpago,venta.fecha, venta.ends, venta.idsucursal, sucursales.nombre,
+    json_agg(json_build_object('ean',detalleventa.idproducto, 'nombre',productos.nombre,'cantidad', 
+    detalleventa.cantidad))  AS productos FROM venta INNER JOIN detalleventa ON
+    (detalleventa.idventa=venta.idventa) INNER JOIN productos ON (detalleventa.idproducto=productos.ean) 
+    INNER JOIN sucursales ON (sucursales.idsucursal=venta.idsucursal) WHERE (venta.idsucursal=idsuc) group by venta.idventa,
+    sucursales.nombre;
+END;
+$$ LANGUAGE plpgsql;
 
 
 

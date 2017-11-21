@@ -58,5 +58,15 @@ angular.module("mainModule").controller("contEstAdmin",["$window","$location","$
           }
         );
       }
+      $scope.lowStock=function(){
+        var url='http://localhost:58706/api/Reportes';
+        $http.get(url, {  responseType: 'arraybuffer' })
+        .then(function (response) {                  
+          var file = new Blob([response.data], { type: 'application/pdf' });
+           var fileURL = URL.createObjectURL(file);
+           $window.open($sce.trustAsResourceUrl(fileURL));   
+          }
+        );
+      }
     }]);
     

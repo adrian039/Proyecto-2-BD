@@ -286,3 +286,7 @@ RESTFUL/RESTFUL/RESTFUL/fonts/glyphicons-halflings-regular.svg
 RESTFUL/RESTFUL/RESTFUL/packages.config
 *.config
 *.css
+RESTFUL/RESTFUL/RESTFUL/Web.config
+RESTFUL/RESTFUL/RESTFUL/Web.config
+*.config
+RESTFUL/RESTFUL/RESTFUL/Areas/HelpPage/Views/Web.config

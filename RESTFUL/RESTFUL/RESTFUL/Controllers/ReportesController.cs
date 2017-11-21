@@ -183,10 +183,18 @@ using CrystalDecisions.CrystalReports.Engine;
                         {
                             using (NpgsqlDataReader dr = com.ExecuteReader())
                             {
-                                var result = serial.Serialize(dr);
-                                conn.Close();
-                                return Request.CreateResponse(HttpStatusCode.OK, result);
-                            }
+                            DataTable table = new DataTable();
+                            table.Load(dr);
+                            ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
+                            string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/lowStock.rpt";
+                            crystalReport.Load(strRptPath); // path of report 
+                            crystalReport.SetDataSource(table);
+                            var result = serial.Serialize(dr);
+                            conn.Close();
+                            crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+                            System.Web.HttpContext.Current.Response, false, "response.pdf");
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                        }
 
                         };
 

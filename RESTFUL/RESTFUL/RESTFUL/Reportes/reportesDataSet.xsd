@@ -51,7 +51,7 @@
   <xs:element name="reportesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="reportesDataSet" msprop:Generator_UserDSName="reportesDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="topSalesbyDates" msprop:Generator_TableClassName="topSalesbyDatesDataTable" msprop:Generator_TableVarName="tabletopSalesbyDates" msprop:Generator_TablePropName="topSalesbyDates" msprop:Generator_RowDeletingName="topSalesbyDatesRowDeleting" msprop:Generator_RowChangingName="topSalesbyDatesRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyDatesRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyDatesRowDeleted" msprop:Generator_UserTableName="topSalesbyDates" msprop:Generator_RowChangedName="topSalesbyDatesRowChanged" msprop:Generator_RowEvArgName="topSalesbyDatesRowChangeEvent" msprop:Generator_RowClassName="topSalesbyDatesRow">
+        <xs:element name="topSalesbyDates" msprop:Generator_TableClassName="topSalesbyDatesDataTable" msprop:Generator_TableVarName="tabletopSalesbyDates" msprop:Generator_RowChangedName="topSalesbyDatesRowChanged" msprop:Generator_TablePropName="topSalesbyDates" msprop:Generator_RowDeletingName="topSalesbyDatesRowDeleting" msprop:Generator_RowChangingName="topSalesbyDatesRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyDatesRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyDatesRowDeleted" msprop:Generator_RowClassName="topSalesbyDatesRow" msprop:Generator_UserTableName="topSalesbyDates" msprop:Generator_RowEvArgName="topSalesbyDatesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ean" msprop:Generator_ColumnVarNameInTable="columnean" msprop:Generator_ColumnPropNameInRow="ean" msprop:Generator_ColumnPropNameInTable="eanColumn" msprop:Generator_UserColumnName="ean" type="xs:int" minOccurs="0" />
@@ -62,7 +62,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="topSalesbyEmployee" msprop:Generator_TableClassName="topSalesbyEmployeeDataTable" msprop:Generator_TableVarName="tabletopSalesbyEmployee" msprop:Generator_TablePropName="topSalesbyEmployee" msprop:Generator_RowDeletingName="topSalesbyEmployeeRowDeleting" msprop:Generator_RowChangingName="topSalesbyEmployeeRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyEmployeeRowDeleted" msprop:Generator_UserTableName="topSalesbyEmployee" msprop:Generator_RowChangedName="topSalesbyEmployeeRowChanged" msprop:Generator_RowEvArgName="topSalesbyEmployeeRowChangeEvent" msprop:Generator_RowClassName="topSalesbyEmployeeRow">
+        <xs:element name="topSalesbyEmployee" msprop:Generator_TableClassName="topSalesbyEmployeeDataTable" msprop:Generator_TableVarName="tabletopSalesbyEmployee" msprop:Generator_RowChangedName="topSalesbyEmployeeRowChanged" msprop:Generator_TablePropName="topSalesbyEmployee" msprop:Generator_RowDeletingName="topSalesbyEmployeeRowDeleting" msprop:Generator_RowChangingName="topSalesbyEmployeeRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyEmployeeRowDeleted" msprop:Generator_RowClassName="topSalesbyEmployeeRow" msprop:Generator_UserTableName="topSalesbyEmployee" msprop:Generator_RowEvArgName="topSalesbyEmployeeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ean" msprop:Generator_ColumnVarNameInTable="columnean" msprop:Generator_ColumnPropNameInRow="ean" msprop:Generator_ColumnPropNameInTable="eanColumn" msprop:Generator_UserColumnName="ean" type="xs:int" minOccurs="0" />
@@ -72,7 +72,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="topSalesbyStore" msprop:Generator_TableClassName="topSalesbyStoreDataTable" msprop:Generator_TableVarName="tabletopSalesbyStore" msprop:Generator_TablePropName="topSalesbyStore" msprop:Generator_RowDeletingName="topSalesbyStoreRowDeleting" msprop:Generator_RowChangingName="topSalesbyStoreRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyStoreRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyStoreRowDeleted" msprop:Generator_UserTableName="topSalesbyStore" msprop:Generator_RowChangedName="topSalesbyStoreRowChanged" msprop:Generator_RowEvArgName="topSalesbyStoreRowChangeEvent" msprop:Generator_RowClassName="topSalesbyStoreRow">
+        <xs:element name="topSalesbyStore" msprop:Generator_TableClassName="topSalesbyStoreDataTable" msprop:Generator_TableVarName="tabletopSalesbyStore" msprop:Generator_RowChangedName="topSalesbyStoreRowChanged" msprop:Generator_TablePropName="topSalesbyStore" msprop:Generator_RowDeletingName="topSalesbyStoreRowDeleting" msprop:Generator_RowChangingName="topSalesbyStoreRowChanging" msprop:Generator_RowEvHandlerName="topSalesbyStoreRowChangeEventHandler" msprop:Generator_RowDeletedName="topSalesbyStoreRowDeleted" msprop:Generator_RowClassName="topSalesbyStoreRow" msprop:Generator_UserTableName="topSalesbyStore" msprop:Generator_RowEvArgName="topSalesbyStoreRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ean" msprop:Generator_ColumnVarNameInTable="columnean" msprop:Generator_ColumnPropNameInRow="ean" msprop:Generator_ColumnPropNameInTable="eanColumn" msprop:Generator_UserColumnName="ean" type="xs:int" minOccurs="0" />
@@ -82,7 +82,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="timexEmp" msprop:Generator_TableClassName="timexEmpDataTable" msprop:Generator_TableVarName="tabletimexEmp" msprop:Generator_TablePropName="timexEmp" msprop:Generator_RowDeletingName="timexEmpRowDeleting" msprop:Generator_RowChangingName="timexEmpRowChanging" msprop:Generator_RowEvHandlerName="timexEmpRowChangeEventHandler" msprop:Generator_RowDeletedName="timexEmpRowDeleted" msprop:Generator_UserTableName="timexEmp" msprop:Generator_RowChangedName="timexEmpRowChanged" msprop:Generator_RowEvArgName="timexEmpRowChangeEvent" msprop:Generator_RowClassName="timexEmpRow">
+        <xs:element name="timexEmp" msprop:Generator_TableClassName="timexEmpDataTable" msprop:Generator_TableVarName="tabletimexEmp" msprop:Generator_RowChangedName="timexEmpRowChanged" msprop:Generator_TablePropName="timexEmp" msprop:Generator_RowDeletingName="timexEmpRowDeleting" msprop:Generator_RowChangingName="timexEmpRowChanging" msprop:Generator_RowEvHandlerName="timexEmpRowChangeEventHandler" msprop:Generator_RowDeletedName="timexEmpRowDeleted" msprop:Generator_RowClassName="timexEmpRow" msprop:Generator_UserTableName="timexEmp" msprop:Generator_RowEvArgName="timexEmpRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="cedula" msprop:Generator_ColumnVarNameInTable="columncedula" msprop:Generator_ColumnPropNameInRow="cedula" msprop:Generator_ColumnPropNameInTable="cedulaColumn" msprop:Generator_UserColumnName="cedula" type="xs:int" />
@@ -120,6 +120,17 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="lowStock" msprop:Generator_TableClassName="lowStockDataTable" msprop:Generator_TableVarName="tablelowStock" msprop:Generator_TablePropName="lowStock" msprop:Generator_RowDeletingName="lowStockRowDeleting" msprop:Generator_RowChangingName="lowStockRowChanging" msprop:Generator_RowEvHandlerName="lowStockRowChangeEventHandler" msprop:Generator_RowDeletedName="lowStockRowDeleted" msprop:Generator_UserTableName="lowStock" msprop:Generator_RowChangedName="lowStockRowChanged" msprop:Generator_RowEvArgName="lowStockRowChangeEvent" msprop:Generator_RowClassName="lowStockRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ean" msprop:Generator_ColumnVarNameInTable="columnean" msprop:Generator_ColumnPropNameInRow="ean" msprop:Generator_ColumnPropNameInTable="eanColumn" msprop:Generator_UserColumnName="ean" type="xs:int" minOccurs="0" />
+              <xs:element name="cantidad" msprop:Generator_ColumnVarNameInTable="columncantidad" msprop:Generator_ColumnPropNameInRow="cantidad" msprop:Generator_ColumnPropNameInTable="cantidadColumn" msprop:Generator_UserColumnName="cantidad" type="xs:int" minOccurs="0" />
+              <xs:element name="nombre" msprop:Generator_ColumnVarNameInTable="columnnombre" msprop:Generator_ColumnPropNameInRow="nombre" msprop:Generator_ColumnPropNameInTable="nombreColumn" msprop:Generator_UserColumnName="nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="sucursal" msdata:Caption="cedula" msprop:Generator_ColumnVarNameInTable="columnsucursal" msprop:Generator_ColumnPropNameInRow="sucursal" msprop:Generator_ColumnPropNameInTable="sucursalColumn" msprop:Generator_UserColumnName="sucursal" type="xs:string" minOccurs="0" />
+              <xs:element name="idsucursal" msprop:Generator_ColumnVarNameInTable="columnidsucursal" msprop:Generator_ColumnPropNameInRow="idsucursal" msprop:Generator_ColumnPropNameInTable="idsucursalColumn" msprop:Generator_UserColumnName="idsucursal" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1">
@@ -141,6 +152,14 @@
     <xs:unique name="timexEmp_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:timexEmp" />
       <xs:field xpath="mstns:cedula" />
+    </xs:unique>
+    <xs:unique name="lowStock_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:lowStock" />
+      <xs:field xpath="mstns:ean" />
+    </xs:unique>
+    <xs:unique name="Constraint2" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:lowStock" />
+      <xs:field xpath="mstns:idsucursal" />
     </xs:unique>
   </xs:element>
 </xs:schema>

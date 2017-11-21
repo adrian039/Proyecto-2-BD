@@ -363,16 +363,10 @@
       <DependentUpon>getDaySales.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reportes\lowQuantity.cs">
+    <Compile Include="Reportes\lowStock.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>lowQuantity.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reportes\promTimeEmpleado.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>promTimeEmpleado.rpt</DependentUpon>
+      <DependentUpon>lowStock.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\reportesDataSet.Designer.cs">
@@ -531,13 +525,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>getDaySales.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\lowQuantity.rpt">
+    <EmbeddedResource Include="Reportes\lowStock.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>lowQuantity.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reportes\promTimeEmpleado.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>promTimeEmpleado.cs</LastGenOutput>
+      <LastGenOutput>lowStock.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\topEmpleadoSales.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

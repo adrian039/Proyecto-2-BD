@@ -87,21 +87,21 @@
               <div class="form-group">
                 <div class="form-group">
                   <label>Initial Date</label><br>
-                  <input type="datetime-local" ng-model="initDate" name="empDate" required>
+                  <input class="datepicker" ng-model="initDate" data-date-format="mm/dd/yyyy">
                 </div>
                 <div class="form-group">
                   <label>Final Date</label><br>
-                  <input type="datetime-local" ng-model="finalDate" name="empDate" required>
+                  <input class="datepicker" ng-model="finalDate" data-date-format="mm/dd/yyyy">
                 </div>
-     
-                </div>
+               
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="TopByCO(initDate,finalDate)" data-dismiss="modal">Get Report</button>
+            <button type="button" class="btn btn-primary" ng-click="TopByCO(initDate,finalDate)" data-dismiss="modal" >Get Report</button>
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     <div class="modal fade" id="topEmp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -137,14 +137,14 @@
             </button>
           </div>
           <div class="modal-body">
-              <div class="form-group">
-                  <label> Employee ID</label>
-                  <input type="text" class="form-control" name="idEmp" placeholder="ID" ng-model="cedula" required>
-                </div>
+            <div class="form-group">
+              <label>Selected Date</label><br>
+              <input class="datepicker" ng-model="finalDate" data-date-format="mm/dd/yyyy">
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" ng-click="edit()" data-dismiss="modal">Get Report</button>
+            <button type="button" class="btn btn-primary" ng-click="empTime(finalDate)" data-dismiss="modal">Get Report</button>
           </div>
         </div>
       </div>

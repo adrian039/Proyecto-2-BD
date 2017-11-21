@@ -60,7 +60,6 @@ PRIMARY KEY (idRol)
 CREATE TABLE ROLESXSUCURSAL(
   idRol INT,
   idSucursal INT,
-  idempresa INT,
   PRIMARY KEY (idRol, idSucursal)
 )
 

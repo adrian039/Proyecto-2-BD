@@ -16,5 +16,6 @@ namespace RESTFUL.Models
         public System.DateTime fecha { get; set; }
         public System.TimeSpan starts { get; set; }
         public System.TimeSpan ends { get; set; }
+        public int idcaja { get; set; }
     }
 }

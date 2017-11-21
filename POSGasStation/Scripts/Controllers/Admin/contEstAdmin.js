@@ -1,6 +1,6 @@
 
-angular.module("mainModule").controller("contEstAdmin",["$scope","$http","userService",
-  function($scope,$http,userService) {
+angular.module("mainModule").controller("contEstAdmin",["$window","$location","$sce","$scope","$http","userService",
+  function($window,$location,$sce,$scope,$http,userService) {
 
 
     $scope.getHttp= function(url , callback){
@@ -19,30 +19,42 @@ angular.module("mainModule").controller("contEstAdmin",["$scope","$http","userSe
 
 
       $scope.TopByCO=function(begin,end){
-        var url='http://gsprest.azurewebsites.net/api/Reportes?date1='+begin+'&date2='+end;
-        $http.get(url).then(function(msg){
-           console.log(msg);     
+        var url='http://localhost:58706/api/Reportes?date1='+begin+'&date2='+end; 
+          $http.get(url, {  responseType: 'arraybuffer' })
+          .then(function (response) {                  
+            var file = new Blob([response.data], { type: 'application/pdf' });
+             var fileURL = URL.createObjectURL(file);
+             $window.open($sce.trustAsResourceUrl(fileURL));
           }
         );
       }
       $scope.TopByStore=function(store){
-        var url='http://gsprest.azurewebsites.net/api/Reportes?suc='+parseInt(store);
-        $http.get(url).then(function(msg){
-           console.log(msg);     
+        var url='http://localhost:58706/api/Reportes?suc='+parseInt(store);
+        $http.get(url, {  responseType: 'arraybuffer' })
+        .then(function (response) {                  
+          var file = new Blob([response.data], { type: 'application/pdf' });
+           var fileURL = URL.createObjectURL(file);
+           $window.open($sce.trustAsResourceUrl(fileURL));   
           }
         );
       }
       $scope.TopByEmp=function(employee){
-        var url='http://gsprest.azurewebsites.net/api/Reportes?empl='+parseInt(employee);
-        $http.get(url).then(function(msg){
-           console.log(msg);     
+        var url='http://localhost:58706/api/Reportes?empl='+parseInt(employee);
+        $http.get(url, {  responseType: 'arraybuffer' })
+        .then(function (response) {                  
+          var file = new Blob([response.data], { type: 'application/pdf' });
+           var fileURL = URL.createObjectURL(file);
+           $window.open($sce.trustAsResourceUrl(fileURL));   
           }
         );
       }
-      $scope.empTime=function(employee){
-        var url='http://gsprest.azurewebsites.net/api/Reportes?empl='+(employee);
-        $http.get(url).then(function(msg){
-           console.log(msg);     
+      $scope.empTime=function(date){
+        var url='http://localhost:58706/api/Reportes?date='+date;
+        $http.get(url, {  responseType: 'arraybuffer' })
+        .then(function (response) {                  
+          var file = new Blob([response.data], { type: 'application/pdf' });
+           var fileURL = URL.createObjectURL(file);
+           $window.open($sce.trustAsResourceUrl(fileURL));   
           }
         );
       }

@@ -36,6 +36,7 @@ angular.module("mainModule").config(function ( $routeProvider, $locationProvider
       when('/Stores/ProductsxOrder', { templateUrl: '../Views/Stores/ProductsxOrder.html', controller: 'userController' }).
       when('/Admin/gproveedores', { templateUrl: '../Views/Admin/gproveedores.html', controller: 'userController' }).
       when('/Admin/nuevProvider', { templateUrl: '../Views/Admin/nuevProvider.html', controller: 'userController' }).
+      when('/Admin/pdf', { templateUrl: '../Views/Admin/pdf.html', controller: 'userController' }).
     //----------------------Caja Views------------------------------------------------------------
       when('/Caja/abrirCaja', { templateUrl: '../Views/Caja/abrirCaja.html', controller: 'userController' }).
       when('/Caja/regVenta', { templateUrl: '../Views/Caja/regVenta.html', controller: 'userController' }).

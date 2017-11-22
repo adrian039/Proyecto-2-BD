@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="RESTFUL.Controllers.CajaController">
+    <Position X="1.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\CajaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.ClientesController">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAEAAAAAAAAAAAIAAIg=</HashCode>
+      <FileName>Controllers\ClientesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.EmpleadosController">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAACAEgAgAAAAAAAAIAAIg=</HashCode>
+      <FileName>Controllers\EmpleadosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.HomeController">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.ProductosController">
+    <Position X="3.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAEAAAAAAAAAAAIAAIg=</HashCode>
+      <FileName>Controllers\ProductosController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.ProductosSucursalController">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAA=</HashCode>
+      <FileName>Controllers\ProductosSucursalController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.ProveedoresController">
+    <Position X="6.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAEAAAAAAAAAAAIAAIg=</HashCode>
+      <FileName>Controllers\ProveedoresController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.ReportesController">
+    <Position X="1.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAEiAAAAAQAAAAAKAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ReportesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.RolesController">
+    <Position X="3.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAgAAAAAAAAAAAAAAAAAACAAAAAIAAAA=</HashCode>
+      <FileName>Controllers\RolesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.SucursalesController">
+    <Position X="5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAQAAACAAAAAAAAACAEAAAAAAAAAAAIAAIg=</HashCode>
+      <FileName>Controllers\SucursalesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.ValuesController">
+    <Position X="6.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAACAEAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Controllers\ValuesController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.Controllers.VentasController">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAQAAAAAIAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\VentasController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RESTFUL.JSONSerializer">
+    <Position X="6.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAQAAACAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>JSONSerializer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -244,11 +244,14 @@ namespace RESTFUL_API.Controllers
                         string sqlFormattedDate = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss.fff");
                         JObject ven = new JObject();
                         ven.Add("idCliente", cliente);
-                        ven.Add("idEmpleado", 1);
+                        ven.Add("idEmpleado", 0);
                         ven.Add("idSucursal", suc);
                         ven.Add("productos", JArray.Parse(JSONresult));
                         ven.Add("tipoPago", 1);
                         ven.Add("fecha", sqlFormattedDate);
+                        ven.Add("starts", "00:00:00");
+                        ven.Add("ends", "00:00:00");
+                        ven.Add("idcaja", 0);
                         var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://gsprest.azurewebsites.net/api/Ventas/");
                         httpWebRequest.ContentType = "application/json";
                         httpWebRequest.Method = "POST";

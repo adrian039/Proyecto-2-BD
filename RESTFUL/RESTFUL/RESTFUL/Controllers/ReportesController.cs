@@ -11,7 +11,7 @@ using System.Web.Http;
 using CrystalDecisions.Shared;
 using CrystalDecisions.CrystalReports.Engine;
 
-using System.IO;
+
     namespace RESTFUL.Controllers
     {
         public class ReportesController : ApiController
@@ -46,13 +46,17 @@ using System.IO;
                                 ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
                                 string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/topSalesbyDates.rpt";
                                 crystalReport.Load(strRptPath); // path of report 
+                                table.Columns.Add("initDate");
+                                table.Columns.Add("finalDate");
+                            foreach (DataRow row in table.Rows)
+                                {
+                                    row["initDate"] =date1;
+                                    row["finalDate"] = date2;
+                            }
                                 crystalReport.SetDataSource(table);
-                                var result = serial.Serialize(dr);
-                                conn.Close();
-                        
                                 crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
                                 System.Web.HttpContext.Current.Response, false, "topSales");
-                            return Request.CreateResponse(HttpStatusCode.OK, "Hola");
+                            return Request.CreateResponse(HttpStatusCode.OK, System.Web.HttpContext.Current.Response);
                         }
 
                         };
@@ -85,10 +89,24 @@ using System.IO;
                             com.Parameters[0].Value = suc;
                             using (NpgsqlDataReader dr = com.ExecuteReader())
                             {
-                                var result = serial.Serialize(dr);
-                                conn.Close();
-                                return Request.CreateResponse(HttpStatusCode.OK, result);
+                            DataTable table = new DataTable();
+                            table.Load(dr);
+                            ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
+                            string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/topSucursalSales.rpt";
+                            crystalReport.Load(strRptPath); // path of report 
+                            table.Columns.Add("storeID");
+                            foreach (DataRow row in table.Rows)
+                            {
+                                row["storeID"] = suc;
                             }
+                            crystalReport.SetDataSource(table);
+                            var result = serial.Serialize(dr);
+                            conn.Close();
+                            crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+                            System.Web.HttpContext.Current.Response, false, "topSales" +
+                            "");
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                        }
 
                         };
 
@@ -120,10 +138,23 @@ using System.IO;
                             com.Parameters[0].Value = empl;
                             using (NpgsqlDataReader dr = com.ExecuteReader())
                             {
-                                var result = serial.Serialize(dr);
-                                conn.Close();
-                                return Request.CreateResponse(HttpStatusCode.OK, result);
+                            DataTable table = new DataTable();
+                            table.Load(dr);
+                            table.Columns.Add("cedula");
+                            foreach (DataRow row in table.Rows) {
+                                row["cedula"] = empl;
                             }
+                            ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
+                            string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/topEmpleadoSales.rpt";
+                            crystalReport.Load(strRptPath); // path of report 
+                            //crystalReport.SetParameterValue("id", empl);
+                            crystalReport.SetDataSource(table);
+                            var result = serial.Serialize(dr);
+                            conn.Close();
+                            crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+                            System.Web.HttpContext.Current.Response, false, "response.pdf");
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                        }
 
                         };
 
@@ -152,10 +183,18 @@ using System.IO;
                         {
                             using (NpgsqlDataReader dr = com.ExecuteReader())
                             {
-                                var result = serial.Serialize(dr);
-                                conn.Close();
-                                return Request.CreateResponse(HttpStatusCode.OK, result);
-                            }
+                            DataTable table = new DataTable();
+                            table.Load(dr);
+                            ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
+                            string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/lowStock.rpt";
+                            crystalReport.Load(strRptPath); // path of report 
+                            crystalReport.SetDataSource(table);
+                            var result = serial.Serialize(dr);
+                            conn.Close();
+                            crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+                            System.Web.HttpContext.Current.Response, false, "response.pdf");
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                        }
 
                         };
 
@@ -187,10 +226,23 @@ using System.IO;
                             com.Parameters[0].Value = date;
                             using (NpgsqlDataReader dr = com.ExecuteReader())
                             {
-                                var result = serial.Serialize(dr);
-                                conn.Close();
-                                return Request.CreateResponse(HttpStatusCode.OK, result);
+                            DataTable table = new DataTable();
+                            table.Load(dr);
+                            table.Columns.Add("date");
+                            foreach (DataRow row in table.Rows)
+                            {
+                                row["date"] = date;
                             }
+                            ReportDocument crystalReport = new ReportDocument(); // creating object of crystal report
+                            string strRptPath = System.Web.HttpContext.Current.Server.MapPath("~/") + "Reportes/empAverage.rpt";
+                            crystalReport.Load(strRptPath); // path of report 
+                            crystalReport.SetDataSource(table);
+                            var result = serial.Serialize(dr);
+                            conn.Close();
+                            crystalReport.ExportToHttpResponse(ExportFormatType.PortableDocFormat,
+                            System.Web.HttpContext.Current.Response, false, "response.pdf");
+                            return Request.CreateResponse(HttpStatusCode.OK, result);
+                        }
 
                         };
 

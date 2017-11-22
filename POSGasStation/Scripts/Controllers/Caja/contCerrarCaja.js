@@ -79,7 +79,7 @@ function($scope,$http,userService,$location) {
           return data;
         }
         fecha=(year + "-" + month + "-" + day);
-        var url = 'http://gsprest.azurewebsites.net/api/Ventas?fecha='+fecha;
+        var url = 'http://gsprest.azurewebsites.net/api/Ventas?fecha='+fecha+'&idsuc='+userService.getSucursal()+'&idcaja='+userService.getCash();
         $scope.getHttp(url,(data)=>{
           this.resumen=data;
         })

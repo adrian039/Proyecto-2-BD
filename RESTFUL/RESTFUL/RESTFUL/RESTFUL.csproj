@@ -357,10 +357,10 @@
     <Compile Include="proveedore.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\getDaySales.cs">
+    <Compile Include="Reportes\bills.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>getDaySales.rpt</DependentUpon>
+      <DependentUpon>bills.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reportes\lowStock.cs">
@@ -521,9 +521,9 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reportes\getDaySales.rpt">
+    <EmbeddedResource Include="Reportes\bills.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>getDaySales.cs</LastGenOutput>
+      <LastGenOutput>bills.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\lowStock.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

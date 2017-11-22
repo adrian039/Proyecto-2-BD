@@ -37,7 +37,7 @@
                   </tr>
                   <tr >
                     <td> Bils Report</td>
-                    <td><a class="btn btn-success" ng-click="">Select</a></td>
+                    <td><a class="btn btn-success" data-toggle="modal" data-target="#dateSales">Select</a></td>
                   </tr>
                 </tbody>
                   </table>
@@ -131,7 +131,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Update Employee Info</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Take Care Time Date</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -145,6 +145,28 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary" ng-click="empTime(finalDate)" data-dismiss="modal">Get Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="dateSales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Date Sales Report</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Selected Date</label><br>
+              <input class="datepicker" ng-model="finalDate" data-date-format="mm/dd/yyyy">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="getSalesByDate(finalDate)" data-dismiss="modal">Get Report</button>
           </div>
         </div>
       </div>

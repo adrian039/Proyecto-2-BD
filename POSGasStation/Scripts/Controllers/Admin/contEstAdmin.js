@@ -68,5 +68,15 @@ angular.module("mainModule").controller("contEstAdmin",["$window","$location","$
           }
         );
       }
+      $scope.getSalesByDate=function(date){
+        var url='http://localhost:58706/api/Reportes?fecha='+date;
+        $http.get(url, {  responseType: 'arraybuffer' })
+        .then(function (response) {                  
+          var file = new Blob([response.data], { type: 'application/pdf' });
+           var fileURL = URL.createObjectURL(file);
+           $window.open($sce.trustAsResourceUrl(fileURL));   
+          }
+        );
+      }
     }]);
     

@@ -431,6 +431,9 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <None Include="netcompiler.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -465,6 +468,7 @@
     <None Include="CRRuntime_64bit_13_0_21.msi">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Properties\PublishProfiles\AzureRest2017 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ceteamgasstationpharmacy - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\CETEAMRESTFUL2017 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\gsprest - Web Deploy.pubxml" />

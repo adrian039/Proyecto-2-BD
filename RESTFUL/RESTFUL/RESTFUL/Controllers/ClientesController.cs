@@ -35,7 +35,6 @@ namespace RESTFUL.Controllers
                     {
                         return entity;
                     }
-
                 }
             }
             catch (Exception ex)
